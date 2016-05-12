@@ -15,6 +15,7 @@
 		150B8DB11CE4C2AD00BC4DA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 150B8DAF1CE4C2AD00BC4DA4 /* LaunchScreen.storyboard */; };
 		150B8DBC1CE4C2AD00BC4DA4 /* AirAppStaffTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 150B8DBB1CE4C2AD00BC4DA4 /* AirAppStaffTests.m */; };
 		150B8DC71CE4C2AD00BC4DA4 /* AirAppStaffUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 150B8DC61CE4C2AD00BC4DA4 /* AirAppStaffUITests.m */; };
+		150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		150B8DC21CE4C2AD00BC4DA4 /* AirAppStaffUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirAppStaffUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		150B8DC61CE4C2AD00BC4DA4 /* AirAppStaffUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirAppStaffUITests.m; sourceTree = "<group>"; };
 		150B8DC81CE4C2AD00BC4DA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		150B8DD41CE4C32700BC4DA4 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				150B8DAF1CE4C2AD00BC4DA4 /* LaunchScreen.storyboard */,
 				150B8DB21CE4C2AD00BC4DA4 /* Info.plist */,
 				150B8DA11CE4C2AD00BC4DA4 /* Supporting Files */,
+				150B8DD41CE4C32700BC4DA4 /* HomeViewController.h */,
+				150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */,
 			);
 			path = AirAppStaff;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				150B8DA91CE4C2AD00BC4DA4 /* ViewController.m in Sources */,
 				150B8DA61CE4C2AD00BC4DA4 /* AppDelegate.m in Sources */,
 				150B8DA31CE4C2AD00BC4DA4 /* main.m in Sources */,
+				150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
