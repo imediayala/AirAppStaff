@@ -16,6 +16,9 @@
 		150B8DBC1CE4C2AD00BC4DA4 /* AirAppStaffTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 150B8DBB1CE4C2AD00BC4DA4 /* AirAppStaffTests.m */; };
 		150B8DC71CE4C2AD00BC4DA4 /* AirAppStaffUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 150B8DC61CE4C2AD00BC4DA4 /* AirAppStaffUITests.m */; };
 		150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */; };
+		1524B6D31CE671630062485E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1524B6D21CE671630062485E /* DetailViewController.m */; };
+		1524B6D61CE672BD0062485E /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1524B6D51CE672BD0062485E /* HomeTableViewCell.m */; };
+		475CF3BCEAF952D5ACBB4C55 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE483CFBE1B7551E7D3DFAAF /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,13 @@
 		150B8DC81CE4C2AD00BC4DA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		150B8DD41CE4C32700BC4DA4 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		1524B6D11CE671630062485E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		1524B6D21CE671630062485E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		1524B6D41CE672BD0062485E /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
+		1524B6D51CE672BD0062485E /* HomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
+		5AA256DF415F5B764F076623 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		AE483CFBE1B7551E7D3DFAAF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6520AB2E28A0774D6A1871B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				475CF3BCEAF952D5ACBB4C55 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +99,8 @@
 				150B8DBA1CE4C2AD00BC4DA4 /* AirAppStaffTests */,
 				150B8DC51CE4C2AD00BC4DA4 /* AirAppStaffUITests */,
 				150B8D9F1CE4C2AD00BC4DA4 /* Products */,
+				3C8EE9C211304522E4CB7294 /* Pods */,
+				4C6FA1469F34D8B70AF52242 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,17 +117,13 @@
 		150B8DA01CE4C2AD00BC4DA4 /* AirAppStaff */ = {
 			isa = PBXGroup;
 			children = (
-				150B8DA41CE4C2AD00BC4DA4 /* AppDelegate.h */,
-				150B8DA51CE4C2AD00BC4DA4 /* AppDelegate.m */,
+				151BC90E1CEA4A9D00D54C02 /* Delegates */,
+				151BC90D1CEA4A7B00D54C02 /* Controllers */,
 				150B8DA71CE4C2AD00BC4DA4 /* ViewController.h */,
 				150B8DA81CE4C2AD00BC4DA4 /* ViewController.m */,
 				150B8DAA1CE4C2AD00BC4DA4 /* Main.storyboard */,
-				150B8DAD1CE4C2AD00BC4DA4 /* Assets.xcassets */,
 				150B8DAF1CE4C2AD00BC4DA4 /* LaunchScreen.storyboard */,
-				150B8DB21CE4C2AD00BC4DA4 /* Info.plist */,
 				150B8DA11CE4C2AD00BC4DA4 /* Supporting Files */,
-				150B8DD41CE4C32700BC4DA4 /* HomeViewController.h */,
-				150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */,
 			);
 			path = AirAppStaff;
 			sourceTree = "<group>";
@@ -122,7 +131,9 @@
 		150B8DA11CE4C2AD00BC4DA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				150B8DAD1CE4C2AD00BC4DA4 /* Assets.xcassets */,
 				150B8DA21CE4C2AD00BC4DA4 /* main.m */,
+				150B8DB21CE4C2AD00BC4DA4 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -145,6 +156,45 @@
 			path = AirAppStaffUITests;
 			sourceTree = "<group>";
 		};
+		151BC90D1CEA4A7B00D54C02 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				150B8DD41CE4C32700BC4DA4 /* HomeViewController.h */,
+				150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */,
+				1524B6D11CE671630062485E /* DetailViewController.h */,
+				1524B6D21CE671630062485E /* DetailViewController.m */,
+				1524B6D41CE672BD0062485E /* HomeTableViewCell.h */,
+				1524B6D51CE672BD0062485E /* HomeTableViewCell.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		151BC90E1CEA4A9D00D54C02 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				150B8DA41CE4C2AD00BC4DA4 /* AppDelegate.h */,
+				150B8DA51CE4C2AD00BC4DA4 /* AppDelegate.m */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		3C8EE9C211304522E4CB7294 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5AA256DF415F5B764F076623 /* Pods.debug.xcconfig */,
+				E6520AB2E28A0774D6A1871B /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4C6FA1469F34D8B70AF52242 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AE483CFBE1B7551E7D3DFAAF /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,9 +202,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 150B8DCB1CE4C2AD00BC4DA4 /* Build configuration list for PBXNativeTarget "AirAppStaff" */;
 			buildPhases = (
+				E09A58639DB093857D427F6B /* Check Pods Manifest.lock */,
 				150B8D9A1CE4C2AD00BC4DA4 /* Sources */,
 				150B8D9B1CE4C2AD00BC4DA4 /* Frameworks */,
 				150B8D9C1CE4C2AD00BC4DA4 /* Resources */,
+				E158B74EC5302F8EE8D80C33 /* Embed Pods Frameworks */,
+				802365CAA4DB9507D9F602C5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,12 +326,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		802365CAA4DB9507D9F602C5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E09A58639DB093857D427F6B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E158B74EC5302F8EE8D80C33 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		150B8D9A1CE4C2AD00BC4DA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1524B6D31CE671630062485E /* DetailViewController.m in Sources */,
 				150B8DA91CE4C2AD00BC4DA4 /* ViewController.m in Sources */,
+				1524B6D61CE672BD0062485E /* HomeTableViewCell.m in Sources */,
 				150B8DA61CE4C2AD00BC4DA4 /* AppDelegate.m in Sources */,
 				150B8DA31CE4C2AD00BC4DA4 /* main.m in Sources */,
 				150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */,
@@ -420,9 +523,11 @@
 		};
 		150B8DCC1CE4C2AD00BC4DA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AA256DF415F5B764F076623 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AirAppStaff/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.idesigndreams.AirAppStaff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -431,9 +536,11 @@
 		};
 		150B8DCD1CE4C2AD00BC4DA4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6520AB2E28A0774D6A1871B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AirAppStaff/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.idesigndreams.AirAppStaff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -505,6 +612,7 @@
 				150B8DCD1CE4C2AD00BC4DA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		150B8DCE1CE4C2AD00BC4DA4 /* Build configuration list for PBXNativeTarget "AirAppStaffTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +621,7 @@
 				150B8DD01CE4C2AD00BC4DA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		150B8DD11CE4C2AD00BC4DA4 /* Build configuration list for PBXNativeTarget "AirAppStaffUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +630,7 @@
 				150B8DD31CE4C2AD00BC4DA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

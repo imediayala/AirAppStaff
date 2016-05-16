@@ -7,7 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Firebase/Firebase.h>
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
+
+    IBOutlet UITableView *solicitudesTableView;
+    
+}
+@property (strong, nonatomic) IBOutlet UIButton *propertyButton;
+
+@property (nonatomic, strong) NSString* name;
+
+
+@property (nonatomic, strong) Firebase* firebase;
+
+@property (nonatomic, strong) NSMutableArray* tableData;
+
+- (IBAction)sendWriteRequest:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UITextField *inputSolicitudText;
+
+@property (strong, nonatomic) IBOutlet UILabel *outputSolicitudLabel;
 
 @end
