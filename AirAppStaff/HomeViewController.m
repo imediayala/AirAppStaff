@@ -135,7 +135,7 @@ Firebase *myRootRef = [[Firebase alloc] initWithUrl:@"https://airappstaff.fireba
     
 //    NSLog(fireBaseSolicitud);
     
-}œ
+}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 
