@@ -10,8 +10,10 @@
 #import "HomeTableViewCell.h"
 #import "DetailViewController.h"
 #import <Firebase/Firebase.h>
+@import Firebase;
 
-#define airAppNS @"https://airappstaff.firebaseio.com"
+
+#define airAppNS @"https://airappstaff.firebaseio.com/user-posts/<user-id>/<unique-post-id>"
 
 @interface HomeViewController (){
     
@@ -27,6 +29,7 @@
 @synthesize tableData;
 @synthesize newMessagesOnTop;
 @synthesize propertyButton;
+@synthesize ref;
 
 
 
@@ -38,60 +41,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Initialize array that will store chat messages.
-    self.tableData = [[NSMutableArray alloc] init];
     
     
-    // Initialize the root of our Firebase namespace.
-    self.firebase = [[Firebase alloc] initWithUrl:airAppNS];
+    self.ref = [[FIRDatabase database] reference];
     
-    // Pick a random number between 1-1000 for our username.
-    self.name = [NSString stringWithFormat:@"Guest%d", arc4random() % 1000];
-    [propertyButton setTitle:self.name forState:UIControlStateNormal];
-    
-
-    
-    // Decide whether or not to reverse the messages
-    newMessagesOnTop = YES;
-    
-    // This allows us to check if these were messages already stored on the server
-    // when we booted up (YES) or if they are new messages since we've started the app.
-    // This is so that we can batch together the initial messages' reloadData for a perf gain.
-    __block BOOL initialAdds = YES;
-    
-    [self.firebase observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        // Add the chat message to the array.
-        if (newMessagesOnTop) {
-            [self.tableData insertObject:snapshot.value atIndex:0];
-        } else {
-            [self.tableData addObject:snapshot.value];
-        }
-        
-        // Reload the table view so the new message will show up.
-        if (!initialAdds) {
-            [solicitudesTableView reloadData];
-        }
-    }];
-    
-    // Value event fires right after we get the events already stored in the Firebase repo.
-    // We've gotten the initial messages stored on the server, and we want to run reloadData on the batch.
-    // Also set initialAdds=NO so that we'll reload after each additional childAdded event.
-    [self.firebase observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        // Reload the table view so that the intial messages show up
-        [solicitudesTableView reloadData];
-        initialAdds = NO;
-    }];
-
+    [self getUserState];
     
     
-    
-    
-    
-    
-//    tableData = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
-
+   
     // Do any additional setup after loading the view.
 }
+
+-(void) getUserState{
+
+    
+    [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth,
+                                                    FIRUser *_Nullable user) {
+        if (user != nil) {
+            // User is signed in.
+            
+            NSLog(@"user is signed in");
+            
+        } else {
+            // No user is signed in.
+            
+            NSLog(@"user is not signed in");
+        }
+    }];
+
+
+
+}
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -103,37 +86,21 @@
     
     
 
-// Create a reference to a Firebase database URL
-Firebase *myRootRef = [[Firebase alloc] initWithUrl:@"https://airappstaff.firebaseio.com"];
-// Write data to Firebase
-[myRootRef setValue:@"Do you have data? You'll love Firebase."];
-    
-    
 }
 
 - (IBAction)sendWriteRequest:(id)sender {
     
-    NSString *fireBaseSolicitud = inputSolicitudText.text;
     
-    // Create a reference to a Firebase database URL
-    Firebase *myRootRef = [[Firebase alloc] initWithUrl:airAppNS];
-    
-    
-    // Write data to Firebase
-    [myRootRef setValue:fireBaseSolicitud];
-    
-    
-    [myRootRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
-        
-        
-        outputSolicitudLabel.text = snapshot.value;
-        
-        [solicitudesTableView reloadData];
+//    NSString *key = [[ref child:@"posts"] childByAutoId].key;
+//    NSDictionary *post = @{@"uid": userID,
+//                           @"author": username,
+//                           @"title": title,
+//                           @"body": body};
+//    NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
+//                                   [NSString stringWithFormat:@"/user-posts/%@/%@/", userID, key]: post};
+//    [_ref updateChildValues:childUpdates];
+//    
 
-    }];
-    
-//    NSLog(fireBaseSolicitud);
     
 }
 

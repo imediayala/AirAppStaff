@@ -8,18 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <Firebase/Firebase.h>
+#import "PostDataModel.h"
 
 @interface HomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
 
     IBOutlet UITableView *solicitudesTableView;
     
 }
+
+@property(strong, nonatomic) IBOutlet PostDataModel *ref;
+
 @property (strong, nonatomic) IBOutlet UIButton *propertyButton;
 
 @property (nonatomic, strong) NSString* name;
-
-
-@property (nonatomic, strong) Firebase* firebase;
 
 @property (nonatomic, strong) NSMutableArray* tableData;
 
