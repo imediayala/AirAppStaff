@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Firebase;
 
 @interface DetailViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *detailLabel;
 
 @property(strong, nonatomic) NSString *detailArray;
+
+@property (strong, nonatomic) FIRDataSnapshot *details;
 
 
 

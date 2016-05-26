@@ -6,10 +6,13 @@
 //  Copyright © 2016 idesigndreams. All rights reserved.
 //
 
+#import "AppState.h"
+#import "Constants.h"
 #import "LoginAuthViewController.h"
 #import <Firebase/Firebase.h>
 @import Firebase;
 #import "AppDelegate.h"
+#import "MeasurementHelper.h"
 
 
 
@@ -24,13 +27,17 @@
 
 
 - (void)viewDidLoad {
+    
+    
     [super viewDidLoad];
     
 
-    
-    
-    
     // Do any additional setup after loading the view.
+    
+        FIRUser *user = [FIRAuth auth].currentUser;
+        if (user) {
+            [self signedIn:user];
+        }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,13 +56,10 @@
  */
 
 - (void)viewDidAppear:(BOOL)animated {
-    FIRUser *user = [FIRAuth auth].currentUser;
-    if (user) {
-//        [self signedIn:user];
-    }
+
 }
 
-- (IBAction)signedIn:(id)sender {
+- (IBAction)didTapSignedIn:(id)sender {
     // Sign In with credentials.
     NSString *email = loginTextField.text;
     NSString *password = passwordTextField.text;
@@ -67,12 +71,14 @@
                                  return;
                              }
                              
-                             // Ejecuta delegado
-                                                          AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
-                                                          appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+                                NSLog(@"Succed!");
                              
-                              NSLog(@"Succed!");
-//                             [self signedIn:user];
+//                             // Ejecuta delegado
+//                                                          AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
+//                                                          appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+                             
+                           
+                             [self signedIn:user];
                          }];
 }
 
@@ -100,7 +106,7 @@
             NSLog(@"%@", error.localizedDescription);
             return;
         }
-//        [self signedIn:[FIRAuth auth].currentUser];
+        [self signedIn:[FIRAuth auth].currentUser];
     }];
 }
 
@@ -134,43 +140,17 @@
     [self presentViewController:prompt animated:YES completion:nil];
 }
 
-//- (void)signedIn:(FIRUser *)user {
-//    [MeasurementHelper sendLoginEvent];
-//    
-//    [AppState sharedInstance].displayName = user.displayName.length > 0 ? user.displayName : user.email;
-//    [AppState sharedInstance].photoUrl = user.photoURL;
-//    [AppState sharedInstance].signedIn = YES;
-//    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationKeysSignedIn
-//                                                        object:nil userInfo:nil];
-//    [self performSegueWithIdentifier:SeguesSignInToFp sender:nil];
-//}
+- (void)signedIn:(FIRUser *)user {
+    [MeasurementHelper sendLoginEvent];
+    
+    [AppState sharedInstance].displayName = user.displayName.length > 0 ? user.displayName : user.email;
+    [AppState sharedInstance].photoUrl = user.photoURL;
+    [AppState sharedInstance].signedIn = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationKeysSignedIn
+                                                        object:nil userInfo:nil];
+    [self performSegueWithIdentifier:SeguesSignInToFp sender:nil];
+}
 
 
-//- (IBAction)sendLogin:(id)sender {
-//    
-//    
-//    [[FIRAuth auth] signInWithEmail:loginTextField.text
-//                           password:passwordTextField.text
-//                         completion:^(FIRUser *user, NSError *error) {
-//                             
-//                             
-//                             // ...
-//                             // Ejecuta delegado
-//                             AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
-//                             appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-//                             
-//                             NSLog(@"Succed!");
-//                             
-//                             }];
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//}
+
 @end

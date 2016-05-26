@@ -18,9 +18,11 @@
 		150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */; };
 		1524B6D31CE671630062485E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1524B6D21CE671630062485E /* DetailViewController.m */; };
 		1524B6D61CE672BD0062485E /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1524B6D51CE672BD0062485E /* HomeTableViewCell.m */; };
+		152F04C21CF709C50013BF74 /* AppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F04C11CF709C50013BF74 /* AppState.m */; };
+		152F04C51CF70ADF0013BF74 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F04C41CF70ADF0013BF74 /* Constants.m */; };
+		152F04C81CF713EA0013BF74 /* MeasurementHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F04C71CF713EA0013BF74 /* MeasurementHelper.m */; };
 		1543021E1CEB9F0600A1268B /* LoginAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543021D1CEB9F0600A1268B /* LoginAuthViewController.m */; };
 		154335D41CECFEA40002EDDA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154335D31CECFEA40002EDDA /* GoogleService-Info.plist */; };
-		15E0DD851CED0DC5003D25E6 /* PostDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E0DD841CED0DC5003D25E6 /* PostDataModel.m */; };
 		475CF3BCEAF952D5ACBB4C55 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE483CFBE1B7551E7D3DFAAF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -64,11 +66,15 @@
 		1524B6D21CE671630062485E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		1524B6D41CE672BD0062485E /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
 		1524B6D51CE672BD0062485E /* HomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
+		152F04C01CF709C50013BF74 /* AppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppState.h; sourceTree = "<group>"; };
+		152F04C11CF709C50013BF74 /* AppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppState.m; sourceTree = "<group>"; };
+		152F04C31CF70ADF0013BF74 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		152F04C41CF70ADF0013BF74 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		152F04C61CF713EA0013BF74 /* MeasurementHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementHelper.h; sourceTree = "<group>"; };
+		152F04C71CF713EA0013BF74 /* MeasurementHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurementHelper.m; sourceTree = "<group>"; };
 		1543021C1CEB9F0600A1268B /* LoginAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAuthViewController.h; sourceTree = "<group>"; };
 		1543021D1CEB9F0600A1268B /* LoginAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAuthViewController.m; sourceTree = "<group>"; };
 		154335D31CECFEA40002EDDA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		15E0DD831CED0DC5003D25E6 /* PostDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDataModel.h; sourceTree = "<group>"; };
-		15E0DD841CED0DC5003D25E6 /* PostDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDataModel.m; sourceTree = "<group>"; };
 		5AA256DF415F5B764F076623 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AE483CFBE1B7551E7D3DFAAF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6520AB2E28A0774D6A1871B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,8 +182,12 @@
 				1524B6D51CE672BD0062485E /* HomeTableViewCell.m */,
 				1543021C1CEB9F0600A1268B /* LoginAuthViewController.h */,
 				1543021D1CEB9F0600A1268B /* LoginAuthViewController.m */,
-				15E0DD831CED0DC5003D25E6 /* PostDataModel.h */,
-				15E0DD841CED0DC5003D25E6 /* PostDataModel.m */,
+				152F04C01CF709C50013BF74 /* AppState.h */,
+				152F04C11CF709C50013BF74 /* AppState.m */,
+				152F04C31CF70ADF0013BF74 /* Constants.h */,
+				152F04C41CF70ADF0013BF74 /* Constants.m */,
+				152F04C61CF713EA0013BF74 /* MeasurementHelper.h */,
+				152F04C71CF713EA0013BF74 /* MeasurementHelper.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -393,14 +403,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				152F04C81CF713EA0013BF74 /* MeasurementHelper.m in Sources */,
 				1524B6D31CE671630062485E /* DetailViewController.m in Sources */,
 				1543021E1CEB9F0600A1268B /* LoginAuthViewController.m in Sources */,
 				150B8DA91CE4C2AD00BC4DA4 /* ViewController.m in Sources */,
-				15E0DD851CED0DC5003D25E6 /* PostDataModel.m in Sources */,
 				1524B6D61CE672BD0062485E /* HomeTableViewCell.m in Sources */,
 				150B8DA61CE4C2AD00BC4DA4 /* AppDelegate.m in Sources */,
 				150B8DA31CE4C2AD00BC4DA4 /* main.m in Sources */,
 				150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */,
+				152F04C21CF709C50013BF74 /* AppState.m in Sources */,
+				152F04C51CF70ADF0013BF74 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

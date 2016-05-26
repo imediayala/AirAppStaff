@@ -10,7 +10,13 @@
 #import "HomeTableViewCell.h"
 #import "DetailViewController.h"
 #import <Firebase/Firebase.h>
+#import "AppState.h"
+#import "Constants.h"
+#import "MeasurementHelper.h"
+
 @import Firebase;
+
+
 
 
 #define airAppNS @"https://airappstaff.firebaseio.com/user-posts/<user-id>/<unique-post-id>"
@@ -24,62 +30,75 @@
 
 @implementation HomeViewController
 
-@synthesize inputSolicitudText;
-@synthesize outputSolicitudLabel;
-@synthesize tableData;
-@synthesize newMessagesOnTop;
-@synthesize propertyButton;
-@synthesize ref;
 
+- (IBAction)didSendMessage:(UIButton *)sender {
+    [self textFieldShouldReturn:_textField];
+}
 
+- (IBAction)didPressCrash:(id)sender {
+    assert(NO);
+}
 
-
-
-
-
+- (IBAction)didPressFreshConfig:(id)sender {
+    [self fetchConfig];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ref = [[FIRDatabase database] reference];
+    _ref = [[FIRDatabase database] reference];
     
-//    _msglength = 10;
-    tableData = [[NSMutableArray alloc] init];
+    _msglength = 10;
+    _messages = [[NSMutableArray alloc] init];
     
-//    [self loadAd];
-//    [_clientTable registerClass:UITableViewCell.self forCellReuseIdentifier:@"tableViewCell"];
-//    [self fetchConfig];
-//    [self configureStorage];
+    [self loadAd];
+    [_clientTable registerClass:UITableViewCell.self forCellReuseIdentifier:@"tableViewCell"];
+    [self fetchConfig];
+    [self configureStorage];
 }
 
+- (void)loadAd {
+}
 
+- (void)fetchConfig {
+}
+
+- (void)configureStorage {
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(nonnull NSString *)string {
+    NSString *text = textField.text;
+    if (!text) {
+        return YES;
+    }
+    long newLength = text.length + string.length - range.length;
+    return (newLength <= _msglength);
+}
 
 - (void)viewWillAppear:(BOOL)animated {
-//    [tableData removeAllObjects];
+    [_messages removeAllObjects];
     // Listen for new messages in the Firebase database
-//    _refHandle = [[ref child:@"messages"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
-//        [tableData addObject:snapshot];
-//        [solicitudesTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:tableData.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
-//    }];
+    _refHandle = [[_ref child:@"messagesreplies"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+        [_messages addObject:snapshot];
+        [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
+    }];
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return nil; //no. of row you want
-}
-
 
 - (void)viewWillDisappear:(BOOL)animated {
-//    [_ref removeObserverWithHandle:_refHandle];
+    [_ref removeObserverWithHandle:_refHandle];
 }
 
+// UITableViewDataSource protocol methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [_messages count];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     // Dequeue cell
-    UITableViewCell *cell = [solicitudesTableView dequeueReusableCellWithIdentifier:@"tableViewCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [_clientTable dequeueReusableCellWithIdentifier:@"tableViewCell" forIndexPath:indexPath];
     
     // Unpack message from Firebase DataSnapshot
-    FIRDataSnapshot *messageSnapshot = tableData[indexPath.row];
+    FIRDataSnapshot *messageSnapshot = _messages[indexPath.row];
     NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
     NSString *name = message[MessageFieldsname];
     NSString *text = message[MessageFieldstext];
@@ -97,6 +116,102 @@
     }
     
     return cell;
+    
+}
+
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    FIRDataSnapshot* articulo = [FIRDataSnapshot new];
+    
+    articulo= [_messages objectAtIndex:indexPath.row];
+    
+    
+    [self performSegueWithIdentifier:@"showDetail" sender:articulo];
+    
+    
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{if ([[segue identifier] isEqualToString:@"showDetail"]){
+        // Get reference to the destination view controller
+        DetailViewController *vc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        vc.details = (FIRDataSnapshot*)sender;
+    
+    
+    }
+}
+
+
+// UITextViewDelegate protocol methods
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self sendMessage:@{MessageFieldstext: textField.text}];
+    textField.text = @"";
+    return YES;
+}
+
+- (void)sendMessage:(NSDictionary *)data {
+    
+    
+    NSMutableDictionary *mdata = [data mutableCopy];
+    mdata[MessageFieldsname] = [AppState sharedInstance].displayName;
+    NSURL *photoUrl = AppState.sharedInstance.photoUrl;
+    if (photoUrl) {
+        mdata[MessageFieldsphotoUrl] = [photoUrl absoluteString];
+    }
+    
+    // Push data to Firebase Database
+    [[[_ref child:@"messagesreplies"] childByAutoId] setValue:mdata];
+}
+
+# pragma mark - Image Picker
+
+- (IBAction)didTapAddPhoto:(id)sender {
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    } else {
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+//- (void)imagePickerController:(UIImagePickerController *)picker
+//didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//    [picker dismissViewControllerAnimated:YES completion:NULL];
+//    
+//    NSURL *referenceUrl = info[UIImagePickerControllerReferenceURL];
+//    PHFetchResult* assets = [PHAsset fetchAssetsWithALAssetURLs:@[referenceUrl] options:nil];
+//    PHAsset *asset = [assets firstObject];
+//    [asset requestContentEditingInputWithOptions:nil
+//                               completionHandler:^(PHContentEditingInput *contentEditingInput, NSDictionary *info) {
+//                                   NSURL *imageFile = contentEditingInput.fullSizeImageURL;
+//                                   NSString *filePath = [NSString stringWithFormat:@"%@/%lld/%@", [FIRAuth auth].currentUser.uid, (long long)([[NSDate date] timeIntervalSince1970] * 1000.0), [referenceUrl lastPathComponent]];
+//                               }
+//     ];
+//}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (IBAction)signOut:(UIButton *)sender {
+    [AppState sharedInstance].signedIn = false;
+    [self performSegueWithIdentifier:SeguesFpToSignIn sender:nil];
+}
+
+- (void)showAlert:(NSString *)title message:(NSString *)message {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDestructive handler:nil];
+        [alert addAction:dismissAction];
+        [self presentViewController:alert animated: true completion: nil];
+    });
 }
 
 @end

@@ -7,6 +7,9 @@
 //
 
 #import "DetailViewController.h"
+#import "Constants.h"
+@import Firebase;
+
 
 @interface DetailViewController ()
 
@@ -14,14 +17,17 @@
 
 @implementation DetailViewController
 @synthesize detailLabel;
+@synthesize details;
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     NSString *text = details.value[MessageFieldstext];
     
+    self.detailLabel.text = text;
+    NSLog(@"Your name is %@", text);
     
-    self.detailLabel.text = self.detailArray;
     // Do any additional setup after loading the view.
 }
 

@@ -8,26 +8,42 @@
 
 #import <UIKit/UIKit.h>
 #import <Firebase/Firebase.h>
-#import "PostDataModel.h"
 
-@interface HomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
 
-    IBOutlet UITableView *solicitudesTableView;
-    
+@interface HomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
+
+//    IBOutlet UITableView *solicitudesTableView;
+    int _msglength;
+    FIRDatabaseHandle _refHandle;
 }
 
-@property(strong, nonatomic) IBOutlet FIRDatabaseReference *ref;
 
-@property (strong, nonatomic) IBOutlet UIButton *propertyButton;
 
-@property (nonatomic, strong) NSString* name;
 
-@property (nonatomic, strong) NSMutableArray* tableData;
+//
+//@property (strong, nonatomic) IBOutlet UIButton *propertyButton;
+//
+//@property (nonatomic, strong) NSString* name;
+//
+//@property (nonatomic, strong) NSMutableArray* tableData;
+//
+//- (IBAction)sendWriteRequest:(id)sender;
+//
+//@property (strong, nonatomic) IBOutlet UITextField *inputSolicitudText;
+//
+//@property (strong, nonatomic) IBOutlet UILabel *outputSolicitudLabel;
 
-- (IBAction)sendWriteRequest:(id)sender;
 
-@property (strong, nonatomic) IBOutlet UITextField *inputSolicitudText;
 
-@property (strong, nonatomic) IBOutlet UILabel *outputSolicitudLabel;
+@property(nonatomic, weak) IBOutlet UITextField *textField;
+@property(nonatomic, weak) IBOutlet UIButton *sendButton;
+
+@property(nonatomic, weak) IBOutlet GADBannerView *banner;
+@property(nonatomic, weak) IBOutlet UITableView *clientTable;
+
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *messages;
+@property (strong, nonatomic) FIRStorageReference *storageRef;
+@property (nonatomic, strong) FIRRemoteConfig *remoteConfig;
 
 @end

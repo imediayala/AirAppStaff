@@ -1,10 +1,14 @@
-platform :ios, ‘8.1’
+platform :ios, '7.0'
 
+pod 'Firebase/Storage'
+pod 'Firebase/AdMob'
+pod 'Firebase/Auth'
+pod 'Firebase/Crash'
+pod 'Firebase/Database'
+pod 'Firebase/RemoteConfig'
 pod 'Firebase'
 
-pod 'Firebase/Auth'
-
-pod 'Firebase/Database'
-
+target ‘AirAppStaff’ do
+end
 
 
