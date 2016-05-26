@@ -16,7 +16,7 @@
     
 }
 
-@property(strong, nonatomic) IBOutlet PostDataModel *ref;
+@property(strong, nonatomic) IBOutlet FIRDatabaseReference *ref;
 
 @property (strong, nonatomic) IBOutlet UIButton *propertyButton;
 

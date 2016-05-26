@@ -151,7 +151,7 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="sendLogin:" destination="gTf-pG-eK3" eventType="touchUpInside" id="QSH-on-9oX"/>
+                                    <action selector="signedIn:" destination="gTf-pG-eK3" eventType="touchUpInside" id="WUV-rv-hCk"/>
                                 </connections>
                             </button>
                         </subviews>

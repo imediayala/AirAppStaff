@@ -41,134 +41,62 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    ref = [[FIRDatabase database] reference];
     
+//    _msglength = 10;
+    tableData = [[NSMutableArray alloc] init];
     
-    self.ref = [[FIRDatabase database] reference];
-    
-    [self getUserState];
-    
-    
-   
-    // Do any additional setup after loading the view.
-}
-
--(void) getUserState{
-
-    
-    [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth,
-                                                    FIRUser *_Nullable user) {
-        if (user != nil) {
-            // User is signed in.
-            
-            NSLog(@"user is signed in");
-            
-        } else {
-            // No user is signed in.
-            
-            NSLog(@"user is not signed in");
-        }
-    }];
-
-
-
+//    [self loadAd];
+//    [_clientTable registerClass:UITableViewCell.self forCellReuseIdentifier:@"tableViewCell"];
+//    [self fetchConfig];
+//    [self configureStorage];
 }
 
 
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+//    [tableData removeAllObjects];
+    // Listen for new messages in the Firebase database
+//    _refHandle = [[ref child:@"messages"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+//        [tableData addObject:snapshot];
+//        [solicitudesTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:tableData.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
+//    }];
 }
 
--(void) fireBaseWriteRequest{
-    
-    
-    
-
-}
-
-- (IBAction)sendWriteRequest:(id)sender {
-    
-    
-//    NSString *key = [[ref child:@"posts"] childByAutoId].key;
-//    NSDictionary *post = @{@"uid": userID,
-//                           @"author": username,
-//                           @"title": title,
-//                           @"body": body};
-//    NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
-//                                   [NSString stringWithFormat:@"/user-posts/%@/%@/", userID, key]: post};
-//    [_ref updateChildValues:childUpdates];
-//    
-
-    
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-
-    return 1;
-}
-
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
-
-    return [tableData count];
-    
-}
-
-#pragma mark - TableView
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    static NSString *simpleTableIdentifier = @"cellIdentifier";
+    return nil; //no. of row you want
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+//    [_ref removeObserverWithHandle:_refHandle];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    // Dequeue cell
+    UITableViewCell *cell = [solicitudesTableView dequeueReusableCellWithIdentifier:@"tableViewCell" forIndexPath:indexPath];
     
-    UITableViewCell *cell = [solicitudesTableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    // Unpack message from Firebase DataSnapshot
+    FIRDataSnapshot *messageSnapshot = tableData[indexPath.row];
+    NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
+    NSString *name = message[MessageFieldsname];
+    NSString *text = message[MessageFieldstext];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", name, text];
+    cell.imageView.image = [UIImage imageNamed: @"ic_account_circle"];
+    NSString *photoUrl = message[MessageFieldsphotoUrl];
+    if (photoUrl) {
+        NSURL *url = [NSURL URLWithString:photoUrl];
+        if (url) {
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            if (data) {
+                cell.imageView.image = [UIImage imageWithData:data];
+            }
+        }
     }
-    
-    cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
     
     return cell;
 }
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Make sure your segue name in storyboard is the same as this line
-    if ([[segue identifier] isEqualToString:@"showDetail"])
-    {
-      
-        NSIndexPath *indexPath = [solicitudesTableView indexPathForSelectedRow];
-        DetailViewController *destViewController = segue.destinationViewController;
-        destViewController.detailArray = [tableData objectAtIndex:indexPath.row];
-    }
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-    
-    //    //perform segue
-    
-    
-    [self performSegueWithIdentifier:@"showDetail" sender:tableData];
-    
-   
-    
-}
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 @end
