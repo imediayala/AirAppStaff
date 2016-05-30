@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditUserViewController : UIViewController
+@interface EditUserViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UITableView *editUserTableView;
 @end

@@ -24,6 +24,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table view data source
+//
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//#warning Incomplete implementation, return the number of sections
+//    return 0;
+//}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 6;
+}
+
+
+ - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+ UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"usuariocell" forIndexPath:indexPath];
+ 
+//  Configure the cell...
+ 
+ return cell;
+ }
+ 
+
+
 /*
 #pragma mark - Navigation
 

@@ -48,6 +48,14 @@
     
     _ref = [[FIRDatabase database] reference];
     
+//    
+//            [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
+    
+    
+    //----
+    //[self reloadMessages];
+    //----
+    
     _msglength = 10;
     _messages = [[NSMutableArray alloc] init];
     
@@ -66,8 +74,18 @@
 - (void)configureStorage {
 }
 
+/// Reload messages data
+- (void) reloadMessages {
+    [_clientTable reloadData];
+    // Listen for new messages in the Firebase database
+    _refHandle = [[_ref child:@"messages"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+        [_messages addObject:snapshot];
+        [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
+    }];
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(nonnull NSString *)string {
-    NSString *text = textField.text;
+    NSString *text = _textField.text;
     if (!text) {
         return YES;
     }
@@ -77,16 +95,23 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [_messages removeAllObjects];
-    // Listen for new messages in the Firebase database
-    _refHandle = [[_ref child:@"messagesreplies"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
-        [_messages addObject:snapshot];
-        [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
-    }];
+    [_clientTable reloadData];
+    [self reloadMessages];
+
+
+//    // Listen for new messages in the Firebase database
+//    _refHandle = [[_ref child:@"messages"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+//        [_messages addObject:snapshot];
+//        [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
+//    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [_ref removeObserverWithHandle:_refHandle];
 }
+
+# pragma mark - TableView
+
 
 // UITableViewDataSource protocol methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -94,15 +119,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"cellHome";
+    
     // Dequeue cell
-    UITableViewCell *cell = [_clientTable dequeueReusableCellWithIdentifier:@"tableViewCell" forIndexPath:indexPath];
+    HomeTableViewCell *cell = (HomeTableViewCell*)[_clientTable dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     // Unpack message from Firebase DataSnapshot
     FIRDataSnapshot *messageSnapshot = _messages[indexPath.row];
     NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
     NSString *name = message[MessageFieldsname];
     NSString *text = message[MessageFieldstext];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", name, text];
+    cell.solicitaLabel.text = [NSString stringWithFormat:@"%@: %@", name, text];
     cell.imageView.image = [UIImage imageNamed: @"ic_account_circle"];
     NSString *photoUrl = message[MessageFieldsphotoUrl];
     if (photoUrl) {
@@ -135,6 +166,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {if ([[segue identifier] isEqualToString:@"showDetail"]){
+    
         // Get reference to the destination view controller
         DetailViewController *vc = [segue destinationViewController];
         
@@ -148,7 +180,7 @@
 
 // UITextViewDelegate protocol methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self sendMessage:@{MessageFieldstext: textField.text}];
+    [self sendMessage:@{MessageFieldstext: _textField.text}];
     textField.text = @"";
     return YES;
 }
@@ -164,7 +196,7 @@
     }
     
     // Push data to Firebase Database
-    [[[_ref child:@"messagesreplies"] childByAutoId] setValue:mdata];
+    [[[_ref child:@"messages"] childByAutoId] setValue:mdata];
 }
 
 # pragma mark - Image Picker

@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <Firebase/Firebase.h>
+@import Firebase;
+
 
 
 @interface HomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
-
-//    IBOutlet UITableView *solicitudesTableView;
+    
     int _msglength;
     FIRDatabaseHandle _refHandle;
 }
@@ -44,6 +45,6 @@
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *messages;
 @property (strong, nonatomic) FIRStorageReference *storageRef;
-@property (nonatomic, strong) FIRRemoteConfig *remoteConfig;
+@property (strong, nonatomic) FIRRemoteConfig *remoteConfig;
 
 @end

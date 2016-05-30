@@ -23,6 +23,10 @@
 		152F04C81CF713EA0013BF74 /* MeasurementHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F04C71CF713EA0013BF74 /* MeasurementHelper.m */; };
 		1543021E1CEB9F0600A1268B /* LoginAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543021D1CEB9F0600A1268B /* LoginAuthViewController.m */; };
 		154335D41CECFEA40002EDDA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154335D31CECFEA40002EDDA /* GoogleService-Info.plist */; };
+		1545D1331CFC350300DB68D6 /* UsersProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1545D1321CFC350300DB68D6 /* UsersProfileViewController.m */; };
+		15A7FDB31CFC4ACF00C9AF78 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */; };
+		15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */; };
+		15AFB04D1CF86B560085F793 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */; };
 		475CF3BCEAF952D5ACBB4C55 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE483CFBE1B7551E7D3DFAAF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +79,14 @@
 		1543021C1CEB9F0600A1268B /* LoginAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAuthViewController.h; sourceTree = "<group>"; };
 		1543021D1CEB9F0600A1268B /* LoginAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAuthViewController.m; sourceTree = "<group>"; };
 		154335D31CECFEA40002EDDA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1545D1311CFC350300DB68D6 /* UsersProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersProfileViewController.h; sourceTree = "<group>"; };
+		1545D1321CFC350300DB68D6 /* UsersProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersProfileViewController.m; sourceTree = "<group>"; };
+		15A7FDB11CFC4ACF00C9AF78 /* EditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserViewController.h; sourceTree = "<group>"; };
+		15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserViewController.m; sourceTree = "<group>"; };
+		15A7FDB71CFC5F6D00C9AF78 /* EditUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserTableViewController.h; sourceTree = "<group>"; };
+		15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserTableViewController.m; sourceTree = "<group>"; };
+		15AFB04B1CF86B560085F793 /* DetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
+		15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
 		5AA256DF415F5B764F076623 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AE483CFBE1B7551E7D3DFAAF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6520AB2E28A0774D6A1871B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,20 +186,25 @@
 		151BC90D1CEA4A7B00D54C02 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				15AFB04A1CF86B350085F793 /* TableViewCells */,
 				150B8DD41CE4C32700BC4DA4 /* HomeViewController.h */,
 				150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */,
 				1524B6D11CE671630062485E /* DetailViewController.h */,
 				1524B6D21CE671630062485E /* DetailViewController.m */,
-				1524B6D41CE672BD0062485E /* HomeTableViewCell.h */,
-				1524B6D51CE672BD0062485E /* HomeTableViewCell.m */,
-				1543021C1CEB9F0600A1268B /* LoginAuthViewController.h */,
-				1543021D1CEB9F0600A1268B /* LoginAuthViewController.m */,
 				152F04C01CF709C50013BF74 /* AppState.h */,
 				152F04C11CF709C50013BF74 /* AppState.m */,
+				1543021C1CEB9F0600A1268B /* LoginAuthViewController.h */,
+				1543021D1CEB9F0600A1268B /* LoginAuthViewController.m */,
 				152F04C31CF70ADF0013BF74 /* Constants.h */,
 				152F04C41CF70ADF0013BF74 /* Constants.m */,
 				152F04C61CF713EA0013BF74 /* MeasurementHelper.h */,
 				152F04C71CF713EA0013BF74 /* MeasurementHelper.m */,
+				1545D1311CFC350300DB68D6 /* UsersProfileViewController.h */,
+				1545D1321CFC350300DB68D6 /* UsersProfileViewController.m */,
+				15A7FDB11CFC4ACF00C9AF78 /* EditUserViewController.h */,
+				15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */,
+				15A7FDB71CFC5F6D00C9AF78 /* EditUserTableViewController.h */,
+				15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -199,6 +216,17 @@
 				150B8DA51CE4C2AD00BC4DA4 /* AppDelegate.m */,
 			);
 			name = Delegates;
+			sourceTree = "<group>";
+		};
+		15AFB04A1CF86B350085F793 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				1524B6D41CE672BD0062485E /* HomeTableViewCell.h */,
+				1524B6D51CE672BD0062485E /* HomeTableViewCell.m */,
+				15AFB04B1CF86B560085F793 /* DetailTableViewCell.h */,
+				15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 		3C8EE9C211304522E4CB7294 /* Pods */ = {
@@ -406,13 +434,17 @@
 				152F04C81CF713EA0013BF74 /* MeasurementHelper.m in Sources */,
 				1524B6D31CE671630062485E /* DetailViewController.m in Sources */,
 				1543021E1CEB9F0600A1268B /* LoginAuthViewController.m in Sources */,
+				15AFB04D1CF86B560085F793 /* DetailTableViewCell.m in Sources */,
 				150B8DA91CE4C2AD00BC4DA4 /* ViewController.m in Sources */,
+				1545D1331CFC350300DB68D6 /* UsersProfileViewController.m in Sources */,
 				1524B6D61CE672BD0062485E /* HomeTableViewCell.m in Sources */,
 				150B8DA61CE4C2AD00BC4DA4 /* AppDelegate.m in Sources */,
 				150B8DA31CE4C2AD00BC4DA4 /* main.m in Sources */,
 				150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */,
 				152F04C21CF709C50013BF74 /* AppState.m in Sources */,
 				152F04C51CF70ADF0013BF74 /* Constants.m in Sources */,
+				15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */,
+				15A7FDB31CFC4ACF00C9AF78 /* EditUserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +540,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "d5692cf2-c09b-401d-944c-70afb7330517";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -547,7 +579,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "d5692cf2-c09b-401d-944c-70afb7330517";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -565,7 +597,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.idesigndreams.AirAppStaff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5692cf2-c09b-401d-944c-70afb7330517";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -581,7 +613,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.idesigndreams.AirAppStaff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5692cf2-c09b-401d-944c-70afb7330517";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -593,7 +625,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.idesigndreams.AirAppStaffTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5692cf2-c09b-401d-944c-70afb7330517";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirAppStaff.app/AirAppStaff";
 			};
 			name = Debug;
@@ -606,7 +638,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.idesigndreams.AirAppStaffTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5692cf2-c09b-401d-944c-70afb7330517";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirAppStaff.app/AirAppStaff";
 			};
 			name = Release;
@@ -618,7 +650,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.idesigndreams.AirAppStaffUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5692cf2-c09b-401d-944c-70afb7330517";
+				PROVISIONING_PROFILE = "6460bda5-a5c2-4d1b-ac19-6e4ec83f0ccd";
 				TEST_TARGET_NAME = AirAppStaff;
 			};
 			name = Debug;
@@ -630,7 +662,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.idesigndreams.AirAppStaffUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5692cf2-c09b-401d-944c-70afb7330517";
+				PROVISIONING_PROFILE = "6460bda5-a5c2-4d1b-ac19-6e4ec83f0ccd";
 				TEST_TARGET_NAME = AirAppStaff;
 			};
 			name = Release;

@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UsersProfileViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UILabel *userLabel;
+@property (strong, nonatomic) IBOutlet UILabel *emailLabel;
+@property (strong, nonatomic) IBOutlet UILabel *passwordLabel;
+@property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
 
 @end
