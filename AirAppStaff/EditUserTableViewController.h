@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface EditUserTableViewController : UITableViewController
+- (IBAction)doneNavigationItem:(id)sender;
+- (IBAction)cancelNavigationItem:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *userText;
+@property (strong, nonatomic) IBOutlet UITextField *mailText;
+@property (strong, nonatomic) IBOutlet UITextField *employeeText;
+@property (strong, nonatomic) IBOutlet UITextField *phoneText;
+@property (strong, nonatomic) IBOutlet UITextField *favoritosText;
+@property (strong, nonatomic) IBOutlet UITextField *passText;
 
 @end

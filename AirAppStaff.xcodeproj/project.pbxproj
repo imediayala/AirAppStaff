@@ -201,10 +201,10 @@
 				152F04C71CF713EA0013BF74 /* MeasurementHelper.m */,
 				1545D1311CFC350300DB68D6 /* UsersProfileViewController.h */,
 				1545D1321CFC350300DB68D6 /* UsersProfileViewController.m */,
-				15A7FDB11CFC4ACF00C9AF78 /* EditUserViewController.h */,
-				15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */,
 				15A7FDB71CFC5F6D00C9AF78 /* EditUserTableViewController.h */,
 				15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */,
+				15A7FDB11CFC4ACF00C9AF78 /* EditUserViewController.h */,
+				15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

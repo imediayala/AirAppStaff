@@ -128,12 +128,16 @@
         cell = [[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    FIRUser *user = [FIRAuth auth].currentUser;
+    FIRUserProfileChangeRequest *changeRequest = [user profileChangeRequest];
+    
     // Unpack message from Firebase DataSnapshot
     FIRDataSnapshot *messageSnapshot = _messages[indexPath.row];
     NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
     NSString *name = message[MessageFieldsname];
     NSString *text = message[MessageFieldstext];
-    cell.solicitaLabel.text = [NSString stringWithFormat:@"%@: %@", name, text];
+    cell.nameLabel.text = [NSString stringWithFormat:@"%@",  name];
+    cell.solicitaLabel.text = [NSString stringWithFormat:@"%@",  text];
     cell.imageView.image = [UIImage imageNamed: @"ic_account_circle"];
     NSString *photoUrl = message[MessageFieldsphotoUrl];
     if (photoUrl) {

@@ -65,7 +65,7 @@
         // getTokenWithCompletion:completion: instead.
       
         self.emailLabel.text = email;
-        self.userLabel.text = uid;
+        self.userLabel.text = name;
         
 //        
 //      self.lblCalories.text = [NSString stringWithFormat:@"%@", self.pickData[row]];

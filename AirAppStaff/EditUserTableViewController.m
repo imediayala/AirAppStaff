@@ -7,6 +7,8 @@
 //
 
 #import "EditUserTableViewController.h"
+@import Firebase;
+
 
 @interface EditUserTableViewController ()
 
@@ -14,19 +16,74 @@
 
 @implementation EditUserTableViewController
 
+@synthesize userText;
+@synthesize mailText;
+@synthesize employeeText;
+@synthesize phoneText;
+@synthesize favoritosText;
+@synthesize passText;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    self.navigationItem.leftBarButtonItem.title = @"Cancel";
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+    
+    [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth,
+                                                    FIRUser *_Nullable user) {
+        if (user != nil) {
+            // User is signed in.
+            
+            [self requestProfileInfo];
+            
+        } else {
+            // No user is signed in.
+        }
+    }];
+    
+    
+    [self requestProfileInfo];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) requestProfileInfo{
+    
+    
+    FIRUser *user = [FIRAuth auth].currentUser;
+    
+    if (user != nil) {
+        NSString *name = user.displayName;
+        NSString *email = user.email;
+        NSURL *photoUrl = user.photoURL;
+        NSString *uid = user.uid;  // The user's ID, unique to the Firebase
+        // project. Do NOT use this value to
+        // authenticate with your backend server, if
+        // you have one. Use
+        // getTokenWithCompletion:completion: instead.
+        
+        self.mailText.text = email;
+        self.userText.text = name;
+        
+        //
+        //      self.lblCalories.text = [NSString stringWithFormat:@"%@", self.pickData[row]];
+        //
+        
+    } else {
+        // No user is signed in.
+    }
+    
 }
 
 #pragma mark - Table view data source
@@ -93,4 +150,28 @@
 }
 */
 
+- (IBAction)doneNavigationItem:(id)sender {
+    
+    
+    FIRUser *user = [FIRAuth auth].currentUser;
+    FIRUserProfileChangeRequest *changeRequest = [user profileChangeRequest];
+    
+    changeRequest.displayName = userText.text;
+    changeRequest.photoURL =
+    [NSURL URLWithString:@"https://example.com/jane-q-user/profile.jpg"];
+    [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
+        if (error) {
+            // An error happened.
+        } else {
+            // Profile updated.
+        }
+    }];
+}
+
+- (IBAction)cancelNavigationItem:(id)sender {
+    
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"prueba"];
+    [self presentViewController:controller animated:YES completion:NULL];
+
+}
 @end
