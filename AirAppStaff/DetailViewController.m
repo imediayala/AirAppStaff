@@ -61,9 +61,22 @@ FIRDatabaseHandle _refHandle;
     
     [_repliesTable reloadData];
     // Listen for new messages in the Firebase database
-    _refHandle = [[_ref child:@"post-comments"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
-        [_comments addObject:snapshot];
-        [_repliesTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_comments.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
+//    _refHandle = [[_ref child:@"post-comments"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+//        [_comments addObject:snapshot];
+//        [_repliesTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_comments.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
+    
+        
+        //    // [START child_event_listener]
+        //    // Listen for new comments in the Firebase database
+            [_commentsRef
+             observeEventType:FIRDataEventTypeChildAdded
+             withBlock:^(FIRDataSnapshot *snapshot) {
+                 [self.comments addObject:snapshot];
+                 [_repliesTable insertRowsAtIndexPaths:@[
+                                                          [NSIndexPath indexPathForRow:[self.comments count] - 1 inSection:0]
+                                                          ]
+                                       withRowAnimation:UITableViewRowAnimationAutomatic];
+        
     }];
     
     
@@ -158,7 +171,13 @@ FIRDatabaseHandle _refHandle;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PostTableViewCell *cell = [_repliesTable dequeueReusableCellWithIdentifier:@"post" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"post";
+    
+    // Dequeue cell
+    PostTableViewCell *cell = (PostTableViewCell*)[_repliesTable dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
 //    if (indexPath.section == kSectionPost) {
 //        cell = [tableView dequeueReusableCellWithIdentifier:@"post"];
 //        PostTableViewCell *postcell = (PostTableViewCell *)cell;
@@ -178,7 +197,7 @@ FIRDatabaseHandle _refHandle;
     FIRDataSnapshot *messageSnapshot = _comments[indexPath.row];
     NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
     NSString *name = message[MessageFieldsname];
-    NSString *text = message[MessageFieldstext];
+    NSString *text = message[MessageFieldstextview];
     cell.authorLabel.text = [NSString stringWithFormat:@"%@", name];
     cell.postBody.text = [NSString stringWithFormat:@"%@", text];
 

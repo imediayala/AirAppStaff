@@ -17,6 +17,10 @@ extern NSString *const SeguesFpToSignIn;
 
 extern NSString *const MessageFieldsname;
 extern NSString *const MessageFieldstext;
+extern NSString *const MessageFieldstextview;
+
 extern NSString *const MessageFieldsphotoUrl;
+
+
 
 @end
