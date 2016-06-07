@@ -22,6 +22,7 @@
 @synthesize phoneText;
 @synthesize favoritosText;
 @synthesize passText;
+@synthesize imageBox;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,6 +76,7 @@
         
         self.mailText.text = email;
         self.userText.text = name;
+//        self.imageBox.image = photoUrl;
         
         //
         //      self.lblCalories.text = [NSString stringWithFormat:@"%@", self.pickData[row]];
@@ -170,8 +172,47 @@
 
 - (IBAction)cancelNavigationItem:(id)sender {
     
+    
     UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"prueba"];
     [self presentViewController:controller animated:YES completion:NULL];
 
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageBox.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (IBAction)chooseImageButton:(id)sender {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+}
+
+- (IBAction)takePhotoButton:(id)sender {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+    
 }
 @end

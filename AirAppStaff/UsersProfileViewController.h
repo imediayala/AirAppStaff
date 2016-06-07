@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *emailLabel;
 @property (strong, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *imageBox;
 
 @end

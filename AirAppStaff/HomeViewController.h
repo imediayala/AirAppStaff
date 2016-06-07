@@ -12,7 +12,7 @@
 
 
 
-@interface HomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
+@interface HomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate>{
     
     int _msglength;
     FIRDatabaseHandle _refHandle;
@@ -38,6 +38,7 @@
 
 @property(nonatomic, weak) IBOutlet UITextField *textField;
 @property(nonatomic, weak) IBOutlet UIButton *sendButton;
+- (IBAction)sendSolicitudButton:(id)sender;
 
 @property(nonatomic, weak) IBOutlet GADBannerView *banner;
 @property(nonatomic, weak) IBOutlet UITableView *clientTable;

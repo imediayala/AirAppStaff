@@ -15,8 +15,8 @@ NSString *const NotificationKeysSignedIn = @"onSignInCompleted";
 NSString *const SeguesSignInToFp = @"SignInToFP";
 NSString *const SeguesFpToSignIn = @"FPToSignIn";
 
-NSString *const MessageFieldsname = @"name";
-NSString *const MessageFieldstext = @"text";
+NSString *const MessageFieldsname = @"author";
+NSString *const MessageFieldstext = @"body";
 NSString *const MessageFieldsphotoUrl = @"photoUrl";
 
 

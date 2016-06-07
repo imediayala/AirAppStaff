@@ -13,9 +13,9 @@
 #import "AppState.h"
 #import "Constants.h"
 #import "MeasurementHelper.h"
+#import "User.h"
 
 @import Firebase;
-
 
 
 
@@ -31,9 +31,9 @@
 @implementation HomeViewController
 
 
-- (IBAction)didSendMessage:(UIButton *)sender {
-    [self textFieldShouldReturn:_textField];
-}
+//- (IBAction)didSendMessage:(UIButton *)sender {
+//    [self textFieldShouldReturn:_textField];
+//}
 
 - (IBAction)didPressCrash:(id)sender {
     assert(NO);
@@ -52,11 +52,15 @@
 //            [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
     
     
+    /// TEXT FIELD DELEGATE
+    
+    [_textField setDelegate:self];
+    
     //----
     //[self reloadMessages];
     //----
     
-    _msglength = 10;
+    _msglength = 100;
     _messages = [[NSMutableArray alloc] init];
     
     [self loadAd];
@@ -78,20 +82,20 @@
 - (void) reloadMessages {
     [_clientTable reloadData];
     // Listen for new messages in the Firebase database
-    _refHandle = [[_ref child:@"messages"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+    _refHandle = [[_ref child:@"posts"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
         [_messages addObject:snapshot];
         [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
     }];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(nonnull NSString *)string {
-    NSString *text = _textField.text;
-    if (!text) {
-        return YES;
-    }
-    long newLength = text.length + string.length - range.length;
-    return (newLength <= _msglength);
-}
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(nonnull NSString *)string {
+//    NSString *text = _textField.text;
+//    if (!text) {
+//        return YES;
+//    }
+//    long newLength = text.length + string.length - range.length;
+//    return (newLength <= _msglength);
+//}
 
 - (void)viewWillAppear:(BOOL)animated {
     [_messages removeAllObjects];
@@ -184,24 +188,98 @@
 
 // UITextViewDelegate protocol methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self sendMessage:@{MessageFieldstext: _textField.text}];
-    textField.text = @"";
+//    [self sendSolicitudButton:@{MessageFieldstext:_textField.text}];
+        _textField.text = @"";
+
+    [_textField resignFirstResponder];
+   
     return YES;
+    
+    //
+    //    if([string isEqualToString:@"\n"]) {
+    //        [_textField resignFirstResponder];
+    //        return NO;
+    //    }
+    //    return YES;
 }
+
+
+
+- (void)writeNewPost:(NSString *)userID username:(NSString *)username title:(NSString *)title body:(NSString *)body {
+    // Create new post at /user-posts/$userid/$postid and at
+    // /posts/$postid simultaneously
+    // [START write_fan_out]
+    NSString *key = [[_ref child:@"posts"] childByAutoId].key;
+    NSDictionary *post = @{@"uid": userID,
+                           @"author": username,
+                           @"title": title,
+                           @"body": body};
+    NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
+                                   [NSString stringWithFormat:@"/user-posts/%@/%@/", userID, key]: post};
+    [_ref updateChildValues:childUpdates];
+    // [END write_fan_out]
+    
+}
+
+- (IBAction)sendSolicitudButton:(id)sender {
+    
+    
+    // [START single_value_read]
+    NSString *userID = [FIRAuth auth].currentUser.uid;
+    [[[_ref child:@"users"] child:userID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        // Get user value
+        User *user = [[User alloc] initWithUsername:snapshot.value[@"username"]];
+        
+        
+        
+        [self writeNewPost:userID
+                  username:user.username
+                     title:_textField.text
+                      body:_textField.text];
+        
+        [self textFieldShouldReturn:_textField];
+
+        
+    }];
+    
+}
+
+//Text field Return
+
+//-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//    
+//    if([string isEqualToString:@"\n"]) {
+//        [_textField resignFirstResponder];
+//        return NO;
+//    }
+//    return YES;
+//
+//
+//
+//}
+
 
 - (void)sendMessage:(NSDictionary *)data {
     
-    
-    NSMutableDictionary *mdata = [data mutableCopy];
-    mdata[MessageFieldsname] = [AppState sharedInstance].displayName;
-    NSURL *photoUrl = AppState.sharedInstance.photoUrl;
-    if (photoUrl) {
-        mdata[MessageFieldsphotoUrl] = [photoUrl absoluteString];
-    }
-    
-    // Push data to Firebase Database
-    [[[_ref child:@"messages"] childByAutoId] setValue:mdata];
+ 
+    //    NSMutableDictionary *mdata = [data mutableCopy];
+    //    mdata[MessageFieldsname] = [AppState sharedInstance].displayName;
+    //    NSURL *photoUrl = AppState.sharedInstance.photoUrl;
+    //    if (photoUrl) {
+    //        mdata[MessageFieldsphotoUrl] = [photoUrl absoluteString];
+    //    }
+    //
+    //    // Push data to Firebase Database
+    //    [[[_ref child:@"messages"] childByAutoId] setValue:mdata];
+    //
+    //    
+    //    
+    //    
+    //
+        
+   
 }
+
 
 # pragma mark - Image Picker
 

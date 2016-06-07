@@ -24,6 +24,9 @@
 		1543021E1CEB9F0600A1268B /* LoginAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543021D1CEB9F0600A1268B /* LoginAuthViewController.m */; };
 		154335D41CECFEA40002EDDA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154335D31CECFEA40002EDDA /* GoogleService-Info.plist */; };
 		1545D1331CFC350300DB68D6 /* UsersProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1545D1321CFC350300DB68D6 /* UsersProfileViewController.m */; };
+		155D6D451D0622CE004408DD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D441D0622CE004408DD /* User.m */; };
+		155D6D481D063BC7004408DD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D471D063BC7004408DD /* Post.m */; };
+		155D6D4B1D063CE7004408DD /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D4A1D063CE7004408DD /* PostTableViewCell.m */; };
 		15A7FDB31CFC4ACF00C9AF78 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */; };
 		15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */; };
 		15AFB04D1CF86B560085F793 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */; };
@@ -81,6 +84,12 @@
 		154335D31CECFEA40002EDDA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1545D1311CFC350300DB68D6 /* UsersProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersProfileViewController.h; sourceTree = "<group>"; };
 		1545D1321CFC350300DB68D6 /* UsersProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersProfileViewController.m; sourceTree = "<group>"; };
+		155D6D431D0622CE004408DD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		155D6D441D0622CE004408DD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		155D6D461D063BC7004408DD /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		155D6D471D063BC7004408DD /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		155D6D491D063CE7004408DD /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
+		155D6D4A1D063CE7004408DD /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
 		15A7FDB11CFC4ACF00C9AF78 /* EditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserViewController.h; sourceTree = "<group>"; };
 		15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserViewController.m; sourceTree = "<group>"; };
 		15A7FDB71CFC5F6D00C9AF78 /* EditUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserTableViewController.h; sourceTree = "<group>"; };
@@ -187,6 +196,10 @@
 			isa = PBXGroup;
 			children = (
 				15AFB04A1CF86B350085F793 /* TableViewCells */,
+				155D6D431D0622CE004408DD /* User.h */,
+				155D6D441D0622CE004408DD /* User.m */,
+				155D6D461D063BC7004408DD /* Post.h */,
+				155D6D471D063BC7004408DD /* Post.m */,
 				150B8DD41CE4C32700BC4DA4 /* HomeViewController.h */,
 				150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */,
 				1524B6D11CE671630062485E /* DetailViewController.h */,
@@ -225,6 +238,8 @@
 				1524B6D51CE672BD0062485E /* HomeTableViewCell.m */,
 				15AFB04B1CF86B560085F793 /* DetailTableViewCell.h */,
 				15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */,
+				155D6D491D063CE7004408DD /* PostTableViewCell.h */,
+				155D6D4A1D063CE7004408DD /* PostTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -436,7 +451,10 @@
 				1543021E1CEB9F0600A1268B /* LoginAuthViewController.m in Sources */,
 				15AFB04D1CF86B560085F793 /* DetailTableViewCell.m in Sources */,
 				150B8DA91CE4C2AD00BC4DA4 /* ViewController.m in Sources */,
+				155D6D451D0622CE004408DD /* User.m in Sources */,
 				1545D1331CFC350300DB68D6 /* UsersProfileViewController.m in Sources */,
+				155D6D481D063BC7004408DD /* Post.m in Sources */,
+				155D6D4B1D063CE7004408DD /* PostTableViewCell.m in Sources */,
 				1524B6D61CE672BD0062485E /* HomeTableViewCell.m in Sources */,
 				150B8DA61CE4C2AD00BC4DA4 /* AppDelegate.m in Sources */,
 				150B8DA31CE4C2AD00BC4DA4 /* main.m in Sources */,

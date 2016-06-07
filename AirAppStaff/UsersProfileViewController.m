@@ -20,7 +20,7 @@
 @synthesize emailLabel;
 @synthesize passwordLabel;
 @synthesize phoneLabel;
-
+@synthesize imageBox;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +42,7 @@
     }];
     
     [self requestProfileInfo];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,15 +58,24 @@
     if (user != nil) {
         NSString *name = user.displayName;
         NSString *email = user.email;
-        NSURL *photoUrl = user.photoURL;
+//        NSURL *photoUrl = user.photoURL;
+        
+//        NSURL *url = [NSURL URLWithString: user.photoURL];
+
+//        NSString *filePath = [NSString stringWithFormat:user.photoURL];
+//        UIImage *im = [UIImage imageWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString:filePath]]];
+        
         NSString *uid = user.uid;  // The user's ID, unique to the Firebase
         // project. Do NOT use this value to
         // authenticate with your backend server, if
         // you have one. Use
         // getTokenWithCompletion:completion: instead.
-      
+    
         self.emailLabel.text = email;
         self.userLabel.text = name;
+//        self.imageBox.image = im;
+        
+        
         
 //        
 //      self.lblCalories.text = [NSString stringWithFormat:@"%@", self.pickData[row]];
@@ -75,6 +85,11 @@
         // No user is signed in.
     }
 
+}
+
+-(void) imagePickerController:(UIImagePickerController *)UIPicker didFinishPickingMediaWithInfo:(NSDictionary *) info
+{
+    NSURL* localUrl = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
 }
 
 /*
