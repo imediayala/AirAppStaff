@@ -16,9 +16,9 @@
 
 @import Firebase;
 
-static const int kSectionSend = 2;
-static const int kSectionComments = 1;
-static const int kSectionPost = 0;
+//static const int kSectionSend = 2;
+//static const int kSectionComments = 1;
+//static const int kSectionPost = 0;
 
 
 @interface DetailViewController ()
@@ -36,6 +36,8 @@ FIRDatabaseHandle _refHandle;
     self.commentsRef = [[ref child:@"post-comments"] child:_details.key];
     self.comments = [[NSMutableArray alloc] init];
     self.post = [[Post alloc] init];
+    
+    _repliesTable.allowsMultipleSelectionDuringEditing = NO;
 //    UINib *nib = [UINib nibWithNibName:@"PostTableViewCell" bundle:nil];
 //    [_repliesTable registerNib:nib forCellReuseIdentifier:@"post"];
     
@@ -139,6 +141,22 @@ FIRDatabaseHandle _refHandle;
 
 
 #pragma mark - Table view data source
+
+
+// Override to support conditional editing of the table view.
+// This only needs to be implemented if you are going to be returning NO
+// for some items. By default, all items are editable.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+    }
+}
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //    return 3;

@@ -35,6 +35,7 @@
 //@property (strong, nonatomic) IBOutlet UILabel *outputSolicitudLabel;
 
 
+- (FIRDatabaseReference *)refForIndex:(NSUInteger)index;
 
 @property(nonatomic, weak) IBOutlet UITextField *textField;
 @property(nonatomic, weak) IBOutlet UIButton *sendButton;
@@ -42,6 +43,11 @@
 
 @property(nonatomic, weak) IBOutlet GADBannerView *banner;
 @property(nonatomic, weak) IBOutlet UITableView *clientTable;
+
+@property (strong, nonatomic) FIRDatabaseReference *postRef;
+
+
+
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *messages;

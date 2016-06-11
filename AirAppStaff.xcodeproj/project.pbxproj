@@ -29,6 +29,7 @@
 		155D6D4B1D063CE7004408DD /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D4A1D063CE7004408DD /* PostTableViewCell.m */; };
 		15A7FDB31CFC4ACF00C9AF78 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */; };
 		15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */; };
+		15AF1FCC1D0A528B001F89B6 /* FirebaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF1FCB1D0A528B001F89B6 /* FirebaseDataSource.m */; };
 		15AFB04D1CF86B560085F793 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */; };
 		475CF3BCEAF952D5ACBB4C55 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE483CFBE1B7551E7D3DFAAF /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,8 @@
 		15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserViewController.m; sourceTree = "<group>"; };
 		15A7FDB71CFC5F6D00C9AF78 /* EditUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserTableViewController.h; sourceTree = "<group>"; };
 		15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserTableViewController.m; sourceTree = "<group>"; };
+		15AF1FCA1D0A528B001F89B6 /* FirebaseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseDataSource.h; sourceTree = "<group>"; };
+		15AF1FCB1D0A528B001F89B6 /* FirebaseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseDataSource.m; sourceTree = "<group>"; };
 		15AFB04B1CF86B560085F793 /* DetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
 		15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
 		5AA256DF415F5B764F076623 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */,
 				15A7FDB11CFC4ACF00C9AF78 /* EditUserViewController.h */,
 				15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */,
+				15AF1FCA1D0A528B001F89B6 /* FirebaseDataSource.h */,
+				15AF1FCB1D0A528B001F89B6 /* FirebaseDataSource.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 				155D6D4B1D063CE7004408DD /* PostTableViewCell.m in Sources */,
 				1524B6D61CE672BD0062485E /* HomeTableViewCell.m in Sources */,
 				150B8DA61CE4C2AD00BC4DA4 /* AppDelegate.m in Sources */,
+				15AF1FCC1D0A528B001F89B6 /* FirebaseDataSource.m in Sources */,
 				150B8DA31CE4C2AD00BC4DA4 /* main.m in Sources */,
 				150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */,
 				152F04C21CF709C50013BF74 /* AppState.m in Sources */,

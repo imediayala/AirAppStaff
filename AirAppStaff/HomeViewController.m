@@ -46,7 +46,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    /// TEXT FIELD DELEGATE
+    
+    [_textField setDelegate:self];
+    
+    
+    
     _ref = [[FIRDatabase database] reference];
+    
+    _postRef = [_ref child:@"posts"];
+
+    
     
 //    
 //            [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
@@ -56,7 +67,9 @@
     
     [_textField setDelegate:self];
     
-    //----
+    
+    
+        //----
     //[self reloadMessages];
     //----
     
@@ -67,7 +80,43 @@
     [_clientTable registerClass:UITableViewCell.self forCellReuseIdentifier:@"tableViewCell"];
     [self fetchConfig];
     [self configureStorage];
+    
+    
+    //Cell editing
+    
+    _clientTable.allowsMultipleSelectionDuringEditing = NO;
+
 }
+
+//-(void) textFieldDidBeginEditing:(UITextField *)textField{
+//    
+//    if (_textField.text.length > 1) {
+//        
+//        _sendButton.enabled = YES;
+//        
+//    }else{
+//        _sendButton.enabled = NO;
+//        
+//    }
+//    
+//}
+
+
+-(void) textFieldDidEndEditing:(UITextField *)textField{
+    
+    
+    
+    if (_textField.text.length > 1) {
+        _sendButton.enabled = YES;
+        
+    }else{
+        _sendButton.enabled = NO;
+        
+    }
+    
+
+}
+
 
 - (void)loadAd {
 }
@@ -98,6 +147,16 @@
 //}
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    NSString* welcomeText = @"Crea una solicitud";
+
+    
+    if ((_textField.text = welcomeText)) {
+        _sendButton.enabled = NO;
+    }
+    
+
+    
     [_messages removeAllObjects];
     [_clientTable reloadData];
     [self reloadMessages];
@@ -114,8 +173,53 @@
     [_ref removeObserverWithHandle:_refHandle];
 }
 
+- (int) indexOfMessage:(FIRDataSnapshot *)snapshot {
+    int index = 0;
+    for (FIRDataSnapshot *comment in _messages) {
+        if ([snapshot.key isEqualToString:comment.key]) {
+            return index;
+        }
+        ++index;
+    }
+    return -1;
+}
+
+
+
 # pragma mark - TableView
 
+
+// Override to support conditional editing of the table view.
+// This only needs to be implemented if you are going to be returning NO
+// for some items. By default, all items are editable.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        //// add code here for when you hit delete /////
+        
+        FIRDataSnapshot *msg = [_messages objectAtIndex:indexPath.row];
+        
+        [_messages removeObjectAtIndex:indexPath.row];
+
+        
+        [msg.ref removeValue];
+        
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        };
+
+
+    
+}
 
 // UITableViewDataSource protocol methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -188,19 +292,12 @@
 
 // UITextViewDelegate protocol methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-//    [self sendSolicitudButton:@{MessageFieldstext:_textField.text}];
-        _textField.text = @"";
+    
+    
 
-    [_textField resignFirstResponder];
+    [self sendSolicitudButton:nil];
    
     return YES;
-    
-    //
-    //    if([string isEqualToString:@"\n"]) {
-    //        [_textField resignFirstResponder];
-    //        return NO;
-    //    }
-    //    return YES;
 }
 
 
@@ -214,9 +311,14 @@
                            @"author": username,
                            @"title": title,
                            @"body": body};
+    
+    
     NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
                                    [NSString stringWithFormat:@"/user-posts/%@/%@/", userID, key]: post};
     [_ref updateChildValues:childUpdates];
+    
+    _textField.text = @"";
+    [_textField resignFirstResponder];
     // [END write_fan_out]
     
 }
@@ -236,9 +338,6 @@
                   username:user.username
                      title:_textField.text
                       body:_textField.text];
-        
-        [self textFieldShouldReturn:_textField];
-
         
     }];
     
@@ -261,23 +360,6 @@
 
 - (void)sendMessage:(NSDictionary *)data {
     
- 
-    //    NSMutableDictionary *mdata = [data mutableCopy];
-    //    mdata[MessageFieldsname] = [AppState sharedInstance].displayName;
-    //    NSURL *photoUrl = AppState.sharedInstance.photoUrl;
-    //    if (photoUrl) {
-    //        mdata[MessageFieldsphotoUrl] = [photoUrl absoluteString];
-    //    }
-    //
-    //    // Push data to Firebase Database
-    //    [[[_ref child:@"messages"] childByAutoId] setValue:mdata];
-    //
-    //    
-    //    
-    //    
-    //
-        
-   
 }
 
 
@@ -327,5 +409,20 @@
         [self presentViewController:alert animated: true completion: nil];
     });
 }
+
+#pragma mark Cancel message
+
+
+-(void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [super touchesBegan:touches withEvent:event];
+    
+    [self.view endEditing:YES];
+
+
+
+}
+
+
+
 
 @end
