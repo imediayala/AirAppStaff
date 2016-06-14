@@ -314,7 +314,7 @@
         <!--Turnos-->
         <scene sceneID="Zp1-zb-xu9">
             <objects>
-                <viewController id="Exi-86-vUs" sceneMemberID="viewController">
+                <viewController id="Exi-86-vUs" customClass="TimeTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D4V-E5-ty4"/>
                         <viewControllerLayoutGuide type="bottom" id="jeE-ar-gEf"/>
@@ -322,9 +322,43 @@
                     <view key="view" contentMode="scaleToFill" id="2lq-QO-vzD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Nt-TO-vkD">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timecell" rowHeight="64" id="W57-e1-KEi" customClass="TimeTableViewCell">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W57-e1-KEi" id="ZF3-N4-GOg">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70s-QN-zdl">
+                                                    <rect key="frame" x="8" y="20" width="237" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="employeeLabel" destination="ZF3-N4-GOg" id="6ES-08-ejR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Exi-86-vUs" id="DZO-wQ-sJl"/>
+                                    <outlet property="delegate" destination="Exi-86-vUs" id="hxH-7l-0fB"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Turnos" id="jfV-Yj-UDY"/>
+                    <connections>
+                        <outlet property="timeTableView" destination="5Nt-TO-vkD" id="KRY-4e-qop"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sZT-dN-hTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
