@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TimeTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UIView *employeeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *employeeLabel;
 
 @end
