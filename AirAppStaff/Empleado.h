@@ -48,7 +48,8 @@
 @property(strong, nonatomic) NSString* dia31;
 
 
-- (instancetype)initWithName:(NSString *)aName;
+- (instancetype)initWithName:(NSString *)aName dias:(NSString*) diasUno dias:(NSString*) diasDos ;
+
 
 
 @end

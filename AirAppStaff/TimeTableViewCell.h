@@ -10,5 +10,6 @@
 
 @interface TimeTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *employeeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *diaUnoLabel;
 
 @end

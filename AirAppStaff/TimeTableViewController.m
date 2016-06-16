@@ -10,6 +10,7 @@
 #import "TimeTableViewCell.h"
 #import "Empleado.h"
 #import "Empleado.h"
+#import "TimeTableCollectionViewController.h"
 
 @interface TimeTableViewController ()
 
@@ -65,17 +66,27 @@ NSArray * timeNameArray;
     
                             //NSLog(@"Heres the Json ==> %@", jsonData);
                             
-                            NSArray *empleadosJson = [jsonData objectForKey:@"empleados"];
+                            NSArray *empleadosJson = [jsonData valueForKey:@"empleados"];
                             
                             NSMutableArray* empleados = [[NSMutableArray alloc] init];
                             
                             for (int i = 0; i<empleadosJson.count; i++) {
                                 NSString *nombre = [[empleadosJson objectAtIndex:i] objectForKey:@"Nombre"];
+                                 NSString *dia = [[empleadosJson objectAtIndex:i] objectForKey:@"Dia1"];
+                                NSString *dia2 = [[empleadosJson objectAtIndex:i] objectForKey:@"Dia2"];
+
                                 
-                                Empleado * employee = [[Empleado alloc] initWithName:nombre];
+                                Empleado * employee = [[Empleado alloc] initWithName:nombre dias:dia dias:dia2];
+                                
+                                //mal porque lo estaba duplicando el objecto en array
+                                
+//                                Empleado * diaUno = [[Empleado alloc] initWithName:dia];
+
                                 
                                 [empleados addObject: employee];
                                 
+//                                [empleados addObject: diaUno];
+
                                 
                             }
                             
@@ -83,7 +94,7 @@ NSArray * timeNameArray;
                             
                             _timeNameArray = empleados;
                             
-                            // Very important!!! makes the app going trhu their thread life 
+                            // Very important!!! makes the app going trhu their thread life, since has a block to achieve the function this kind of bypass it to the normal thrad cycle
                             
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 [self.timeTableView reloadData];
@@ -98,6 +109,10 @@ NSArray * timeNameArray;
                 }] resume];
 }
 
+
+
+
+#pragma mark TableView Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
@@ -123,9 +138,37 @@ NSArray * timeNameArray;
     Empleado * empleado = [_timeNameArray objectAtIndex:indexPath.row];
     
     cell.employeeLabel.text = empleado.name;
+    cell.diaUnoLabel.text =empleado.dia1;
     
     return cell;
 
+}
+
+
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Empleado* articulo;
+    
+    articulo= [_timeNameArray objectAtIndex:indexPath.row];
+    
+    
+    [self performSegueWithIdentifier:@"showtimeshift" sender:articulo];
+    
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{if ([[segue identifier] isEqualToString:@"showtimeshift"]){
+    
+    // Get reference to the destination view controller
+    TimeTableCollectionViewController *vc = [segue destinationViewController];
+    
+    // Pass any objects to the view controller here, like...
+    vc.shifts = (Empleado *)sender;
+    
+    
+}
 }
 
 

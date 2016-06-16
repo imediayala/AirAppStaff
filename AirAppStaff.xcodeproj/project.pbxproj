@@ -31,6 +31,8 @@
 		15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */; };
 		15AF1FCC1D0A528B001F89B6 /* FirebaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF1FCB1D0A528B001F89B6 /* FirebaseDataSource.m */; };
 		15AFB04D1CF86B560085F793 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */; };
+		15D0F6BB1D11F01600049C7C /* TimeTableCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D0F6BA1D11F01600049C7C /* TimeTableCollectionViewController.m */; };
+		15D0F6BE1D11F5D400049C7C /* ShiftsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D0F6BD1D11F5D400049C7C /* ShiftsCollectionViewCell.m */; };
 		15DF7D221D0E22CA00143439 /* Empleado.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DF7D211D0E22CA00143439 /* Empleado.m */; };
 		15DF7D251D0E235400143439 /* TimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DF7D241D0E235400143439 /* TimeTableViewController.m */; };
 		15DF7D281D0E260700143439 /* TimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DF7D271D0E260700143439 /* TimeTableViewCell.m */; };
@@ -102,6 +104,10 @@
 		15AF1FCB1D0A528B001F89B6 /* FirebaseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseDataSource.m; sourceTree = "<group>"; };
 		15AFB04B1CF86B560085F793 /* DetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
 		15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
+		15D0F6B91D11F01600049C7C /* TimeTableCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTableCollectionViewController.h; sourceTree = "<group>"; };
+		15D0F6BA1D11F01600049C7C /* TimeTableCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTableCollectionViewController.m; sourceTree = "<group>"; };
+		15D0F6BC1D11F5D400049C7C /* ShiftsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftsCollectionViewCell.h; sourceTree = "<group>"; };
+		15D0F6BD1D11F5D400049C7C /* ShiftsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftsCollectionViewCell.m; sourceTree = "<group>"; };
 		15DF7D201D0E22CA00143439 /* Empleado.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Empleado.h; sourceTree = "<group>"; };
 		15DF7D211D0E22CA00143439 /* Empleado.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Empleado.m; sourceTree = "<group>"; };
 		15DF7D231D0E235400143439 /* TimeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTableViewController.h; sourceTree = "<group>"; };
@@ -223,6 +229,8 @@
 				15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */,
 				15DF7D231D0E235400143439 /* TimeTableViewController.h */,
 				15DF7D241D0E235400143439 /* TimeTableViewController.m */,
+				15D0F6B91D11F01600049C7C /* TimeTableCollectionViewController.h */,
+				15D0F6BA1D11F01600049C7C /* TimeTableCollectionViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -247,6 +255,8 @@
 				155D6D4A1D063CE7004408DD /* PostTableViewCell.m */,
 				15DF7D261D0E260700143439 /* TimeTableViewCell.h */,
 				15DF7D271D0E260700143439 /* TimeTableViewCell.m */,
+				15D0F6BC1D11F5D400049C7C /* ShiftsCollectionViewCell.h */,
+				15D0F6BD1D11F5D400049C7C /* ShiftsCollectionViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -491,9 +501,11 @@
 				150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */,
 				152F04C21CF709C50013BF74 /* AppState.m in Sources */,
 				152F04C51CF70ADF0013BF74 /* Constants.m in Sources */,
+				15D0F6BE1D11F5D400049C7C /* ShiftsCollectionViewCell.m in Sources */,
 				15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */,
 				15DF7D221D0E22CA00143439 /* Empleado.m in Sources */,
 				15DF7D251D0E235400143439 /* TimeTableViewController.m in Sources */,
+				15D0F6BB1D11F01600049C7C /* TimeTableCollectionViewController.m in Sources */,
 				15A7FDB31CFC4ACF00C9AF78 /* EditUserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
