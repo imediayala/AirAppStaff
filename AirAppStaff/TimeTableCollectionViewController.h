@@ -11,6 +11,8 @@
 
 @interface TimeTableCollectionViewController : UICollectionViewController
 
-@property (strong, nonatomic) Empleado * shifts;
+@property (strong, nonatomic) Empleado* empleado;
+
+@property (strong, nonatomic) NSArray* shiftsArray;
 
 @end

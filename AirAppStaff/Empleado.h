@@ -12,6 +12,8 @@
 
 @property(strong, nonatomic) NSString* name;
 
+@property(strong, nonatomic) NSString* workerDays;
+
 
 // Days of the month
 
@@ -48,7 +50,7 @@
 @property(strong, nonatomic) NSString* dia31;
 
 
-- (instancetype)initWithName:(NSString *)aName dias:(NSString*) diasUno dias:(NSString*) diasDos ;
+- (instancetype)initWithName:(NSString *)aName;
 
 
 

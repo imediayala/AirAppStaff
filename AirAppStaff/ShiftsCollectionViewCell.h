@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ShiftsCollectionViewCell : UICollectionViewCell
-@property (strong, nonatomic) IBOutlet UILabel *diaUnoLabel;
-@property (strong, nonatomic) IBOutlet UILabel *diaDosLabel;
+@property (strong, nonatomic) IBOutlet UILabel *turnoLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *diaLabel;
 
 @end

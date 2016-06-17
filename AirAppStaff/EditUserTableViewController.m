@@ -173,15 +173,17 @@
 - (IBAction)cancelNavigationItem:(id)sender {
     
     
-    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"prueba"];
-    [self presentViewController:controller animated:YES completion:NULL];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+//    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"prueba"];
+//    [self presentViewController:controller animated:YES completion:NULL];
 
 }
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -190,7 +192,7 @@
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.imageBox.image = chosenImage;
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
 
