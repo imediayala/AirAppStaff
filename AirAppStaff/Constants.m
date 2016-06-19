@@ -18,6 +18,8 @@ NSString *const SeguesFpToSignIn = @"FPToSignIn";
 NSString *const MessageFieldsname = @"author";
 NSString *const MessageFieldstext = @"body";
 NSString *const MessageFieldstextview = @"text";
+NSString *const MessageFieldscolor = @"color";
+
 
 NSString *const MessageFieldsphotoUrl = @"photoUrl";
 

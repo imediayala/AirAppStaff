@@ -51,6 +51,10 @@
     
     [_textField setDelegate:self];
     
+    [self.navigationController.navigationBar setBarTintColor:[UIColor lightGrayColor]];
+
+
+
     
     
     _ref = [[FIRDatabase database] reference];
@@ -134,6 +138,8 @@
     _refHandle = [[_ref child:@"posts"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
         [_messages addObject:snapshot];
         [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
+        
+
     }];
 }
 

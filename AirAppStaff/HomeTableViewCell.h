@@ -14,7 +14,9 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
+@property (strong, nonatomic) IBOutlet UIImageView *userPictureImage;
 
+@property (strong, nonatomic) IBOutlet UIImageView *priorityColorIndicator;
 
 
 

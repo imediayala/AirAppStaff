@@ -171,7 +171,7 @@ NSArray * timeNameArray;
     Empleado * empleado = [_timeNameArray objectAtIndex:indexPath.row];
     
     cell.employeeLabel.text = empleado.name;
-    cell.diaUnoLabel.text =empleado.dia1;
+//    cell.diaUnoLabel.text =empleado.dia1;
     
     return cell;
 
