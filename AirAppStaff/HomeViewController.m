@@ -51,7 +51,7 @@
     
     [_textField setDelegate:self];
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor lightGrayColor]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
 
 
 
@@ -153,6 +153,16 @@
 //}
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    
+    // Creating nav bar button item to post
+    
+    UIBarButtonItem * post = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target: self action:@selector(openPostCompleteView)];
+    
+    [[[self.navigationController navigationBar] topItem] setRightBarButtonItem:post];
+    
+    
     
     NSString* welcomeText = @"Crea una solicitud";
 
@@ -175,7 +185,26 @@
 //    }];
 }
 
+
+
+
+-(void) openPostCompleteView{
+
+
+    [self performSegueWithIdentifier:@"postsegue" sender:nil];
+    
+    
+    NSLog(@"opening");
+
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    [[[self.navigationController navigationBar] topItem] setRightBarButtonItem:nil];
+
+    
     [_ref removeObserverWithHandle:_refHandle];
 }
 

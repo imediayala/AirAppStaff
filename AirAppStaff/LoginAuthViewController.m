@@ -34,10 +34,10 @@
 
     // Do any additional setup after loading the view.
     
-        FIRUser *user = [FIRAuth auth].currentUser;
-        if (user) {
-            [self signedIn:user];
-        }
+//        FIRUser *user = [FIRAuth auth].currentUser;
+//        if (user) {
+//            [self signedIn:user];
+//        }
 }
 
 - (void)didReceiveMemoryWarning {

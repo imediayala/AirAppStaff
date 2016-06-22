@@ -56,8 +56,7 @@
     FIRUser *user = [FIRAuth auth].currentUser;
     
     if (user != nil) {
-        NSString *name = user.displayName;
-        NSString *email = user.email;
+
 //        NSURL *photoUrl = user.photoURL;
         
 //        NSURL *url = [NSURL URLWithString: user.photoURL];
@@ -71,15 +70,10 @@
         // you have one. Use
         // getTokenWithCompletion:completion: instead.
     
-        self.emailLabel.text = email;
-        self.userLabel.text = name;
+        self.emailLabel.text = user.email;
+        self.userLabel.text = user.displayName;
 //        self.imageBox.image = im;
-        
-        
-        
-//        
-//      self.lblCalories.text = [NSString stringWithFormat:@"%@", self.pickData[row]];
-//        
+    
         
     } else {
         // No user is signed in.

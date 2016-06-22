@@ -27,6 +27,8 @@
 		155D6D451D0622CE004408DD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D441D0622CE004408DD /* User.m */; };
 		155D6D481D063BC7004408DD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D471D063BC7004408DD /* Post.m */; };
 		155D6D4B1D063CE7004408DD /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D4A1D063CE7004408DD /* PostTableViewCell.m */; };
+		1574606F1D19337A007A53DB /* MessageModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1574606E1D19337A007A53DB /* MessageModalViewController.m */; };
+		157460721D193525007A53DB /* FireBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 157460711D193525007A53DB /* FireBaseApi.m */; };
 		15A7FDB31CFC4ACF00C9AF78 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */; };
 		15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */; };
 		15AF1FCC1D0A528B001F89B6 /* FirebaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF1FCB1D0A528B001F89B6 /* FirebaseDataSource.m */; };
@@ -96,6 +98,10 @@
 		155D6D471D063BC7004408DD /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		155D6D491D063CE7004408DD /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
 		155D6D4A1D063CE7004408DD /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
+		1574606D1D19337A007A53DB /* MessageModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModalViewController.h; sourceTree = "<group>"; };
+		1574606E1D19337A007A53DB /* MessageModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModalViewController.m; sourceTree = "<group>"; };
+		157460701D193525007A53DB /* FireBaseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireBaseApi.h; sourceTree = "<group>"; };
+		157460711D193525007A53DB /* FireBaseApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireBaseApi.m; sourceTree = "<group>"; };
 		15A7FDB11CFC4ACF00C9AF78 /* EditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserViewController.h; sourceTree = "<group>"; };
 		15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserViewController.m; sourceTree = "<group>"; };
 		15A7FDB71CFC5F6D00C9AF78 /* EditUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserTableViewController.h; sourceTree = "<group>"; };
@@ -215,6 +221,33 @@
 			children = (
 				15DF7D1F1D0E227900143439 /* Models */,
 				15AFB04A1CF86B350085F793 /* TableViewCells */,
+				157460731D193536007A53DB /* Protocols */,
+				157460741D193579007A53DB /* Controllers */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		151BC90E1CEA4A9D00D54C02 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				150B8DA41CE4C2AD00BC4DA4 /* AppDelegate.h */,
+				150B8DA51CE4C2AD00BC4DA4 /* AppDelegate.m */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		157460731D193536007A53DB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				157460701D193525007A53DB /* FireBaseApi.h */,
+				157460711D193525007A53DB /* FireBaseApi.m */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		157460741D193579007A53DB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				150B8DD41CE4C32700BC4DA4 /* HomeViewController.h */,
 				150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */,
 				1524B6D11CE671630062485E /* DetailViewController.h */,
@@ -231,17 +264,10 @@
 				15DF7D241D0E235400143439 /* TimeTableViewController.m */,
 				15D0F6B91D11F01600049C7C /* TimeTableCollectionViewController.h */,
 				15D0F6BA1D11F01600049C7C /* TimeTableCollectionViewController.m */,
+				1574606D1D19337A007A53DB /* MessageModalViewController.h */,
+				1574606E1D19337A007A53DB /* MessageModalViewController.m */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		151BC90E1CEA4A9D00D54C02 /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				150B8DA41CE4C2AD00BC4DA4 /* AppDelegate.h */,
-				150B8DA51CE4C2AD00BC4DA4 /* AppDelegate.m */,
-			);
-			name = Delegates;
 			sourceTree = "<group>";
 		};
 		15AFB04A1CF86B350085F793 /* TableViewCells */ = {
@@ -499,11 +525,13 @@
 				15AF1FCC1D0A528B001F89B6 /* FirebaseDataSource.m in Sources */,
 				150B8DA31CE4C2AD00BC4DA4 /* main.m in Sources */,
 				150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */,
+				157460721D193525007A53DB /* FireBaseApi.m in Sources */,
 				152F04C21CF709C50013BF74 /* AppState.m in Sources */,
 				152F04C51CF70ADF0013BF74 /* Constants.m in Sources */,
 				15D0F6BE1D11F5D400049C7C /* ShiftsCollectionViewCell.m in Sources */,
 				15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */,
 				15DF7D221D0E22CA00143439 /* Empleado.m in Sources */,
+				1574606F1D19337A007A53DB /* MessageModalViewController.m in Sources */,
 				15DF7D251D0E235400143439 /* TimeTableViewController.m in Sources */,
 				15D0F6BB1D11F01600049C7C /* TimeTableCollectionViewController.m in Sources */,
 				15A7FDB31CFC4ACF00C9AF78 /* EditUserViewController.m in Sources */,
