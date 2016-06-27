@@ -71,7 +71,18 @@ FireBaseApi * controller;
 }
 - (IBAction)sendPost:(id)sender {
     
-    [controller sendPost:_solicitudTextField.text];
+    
+    if (_colorDefinedForPriority == nil) {
+        NSString *none = @"sinPrioridad";
+        _colorDefinedForPriority = none;
+    }
+    
+    
+    [controller sendPost:_solicitudTextField.text colorId:_colorDefinedForPriority];
+    
+  
+    
+
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -85,6 +96,84 @@ FireBaseApi * controller;
         NSLog(@"succeded");
     }
 
+
+}
+
+
+- (IBAction)activatesPriorityGreenButton:(id)sender {
+    
+    UIButton *button = (UIButton *)sender;
+    if (!button.selected) {
+//        button.backgroundColor = [UIColor greenColor];
+        button.selected = YES;
+        
+        NSString *green = @"green";
+        _colorDefinedForPriority = green;
+        
+        
+        _priorityYellowButtonProperty.hidden = YES;
+        _priorityRedButtonProperty.hidden = YES;
+        
+        
+    }
+    else{
+//        button.backgroundColor = [UIColor grayColor];
+        button.selected = NO;
+        
+        _priorityYellowButtonProperty.hidden = NO;
+        _priorityRedButtonProperty.hidden = NO;
+    }
+    
+    
+
+}
+
+- (IBAction)activatesPriorityYellowButton:(id)sender {
+    
+    UIButton *button = (UIButton *)sender;
+    if (!button.selected) {
+        //        button.backgroundColor = [UIColor greenColor];
+        button.selected = YES;
+        
+        NSString *yellow = @"yellow";
+        
+        
+        _colorDefinedForPriority = yellow;
+        
+    }
+    else{
+        //        button.backgroundColor = [UIColor grayColor];
+        button.selected = NO;
+    }
+    
+    
+
+    
+    
+}
+
+- (IBAction)activatesPriorityRedButton:(id)sender {
+    
+    
+    UIButton *button = (UIButton *)sender;
+    if (!button.selected) {
+        //        button.backgroundColor = [UIColor greenColor];
+        button.selected = YES;
+        
+        NSString *red = @"red";
+        _colorDefinedForPriority = red;
+        
+      
+    }
+    else{
+        //        button.backgroundColor = [UIColor grayColor];
+        button.selected = NO;
+        
+     
+        
+    }
+    
+    
 
 }
 @end

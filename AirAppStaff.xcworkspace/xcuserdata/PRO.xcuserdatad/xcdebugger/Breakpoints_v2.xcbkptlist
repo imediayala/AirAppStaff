@@ -25,60 +25,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AirAppStaff/FireBaseApi.m"
-            timestampString = "488244903.543823"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "-writeNewPost:username:title:body:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AirAppStaff/FireBaseApi.m"
-            timestampString = "488244903.543823"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "-sendPost:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AirAppStaff/FireBaseApi.m"
-            timestampString = "488244903.543823"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-sendPost:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "AirAppStaff/HomeViewController.m"
-            timestampString = "488243628.128384"
+            timestampString = "488759792.477441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
             landmarkName = "-sendSolicitudButton:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AirAppStaff/HomeViewController.m"
-            timestampString = "488243633.940079"
+            timestampString = "488759792.477441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "443"
+            endingLineNumber = "443"
             landmarkName = "-sendSolicitudButton:"
             landmarkType = "5">
             <Locations>
@@ -106,11 +58,11 @@
                   moduleName = "AirAppStaff"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///DEVELOPMENT/Xcode%20Projects/AirAppStaff/AirAppStaff/HomeViewController.m"
-                  timestampString = "488245271.988358"
+                  timestampString = "488758811.835783"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "366"
-                  endingLineNumber = "366"
+                  startingLineNumber = "437"
+                  endingLineNumber = "437"
                   offsetFromSymbolStart = "204">
                </Location>
                <Location
@@ -121,14 +73,30 @@
                   moduleName = "AirAppStaff"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///DEVELOPMENT/Xcode%20Projects/AirAppStaff/AirAppStaff/HomeViewController.m"
-                  timestampString = "488245271.988586"
+                  timestampString = "488758811.83603"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "366"
-                  endingLineNumber = "366"
+                  startingLineNumber = "437"
+                  endingLineNumber = "437"
                   offsetFromSymbolStart = "24">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AirAppStaff/MessageModalViewController.m"
+            timestampString = "488756926.369165"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "-activatesPriorityRedButton:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

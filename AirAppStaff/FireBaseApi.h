@@ -32,7 +32,7 @@
 //
 //-(void) callUser;
 //
--(void)sendPost:(NSString *)msg;
+-(void)sendPost:(NSString *)msg colorId:(NSString*)color;
 
 
 

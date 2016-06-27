@@ -8,7 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimeTableViewController : UIViewController
+@interface TimeTableViewController : UIViewController{
+
+
+    UILabel *activityLabel;
+    UIActivityIndicatorView *activityIndicator;
+    UIView *container;
+    CGRect frame;
+    
+}
+
+-(id)initWithFrame:(CGRect) theFrame;
+
+
+
 @property (strong, nonatomic) IBOutlet UITableView *timeTableView;
 
 @property (strong, nonatomic) NSArray* timeNameArray;

@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *priorityColorIndicator;
 
+@property (strong, nonatomic) IBOutlet UILabel *priorityIndicatorLabel;
 
 
 @end

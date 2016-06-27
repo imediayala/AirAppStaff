@@ -12,7 +12,7 @@
 
 
 
-@interface HomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate>{
+@interface HomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate,UISearchControllerDelegate,UISearchBarDelegate>{
     
     int _msglength;
     FIRDatabaseHandle _refHandle;

@@ -23,6 +23,8 @@
 
 @interface HomeViewController (){
     
+    NSArray* messagesSearchArray;
+    
 }
 @property (nonatomic) BOOL newMessagesOnTop;
 @end
@@ -91,6 +93,8 @@
     _clientTable.allowsMultipleSelectionDuringEditing = NO;
 
 }
+
+
 
 //-(void) textFieldDidBeginEditing:(UITextField *)textField{
 //    
@@ -258,7 +262,12 @@
 
 // UITableViewDataSource protocol methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_messages count];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [messagesSearchArray count];
+        
+    } else {
+        return [_messages count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -275,12 +284,61 @@
     FIRUserProfileChangeRequest *changeRequest = [user profileChangeRequest];
     
     // Unpack message from Firebase DataSnapshot
-    FIRDataSnapshot *messageSnapshot = _messages[indexPath.row];
+    
+    
+
+    FIRDataSnapshot *messageSnapshot = nil;
+    Constants * objectPrueba;
+    
+    
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        messageSnapshot = [messagesSearchArray objectAtIndex:indexPath.row];
+    } else {
+        messageSnapshot = [_messages objectAtIndex:indexPath.row];
+    }
+      
+    
+//    FIRDataSnapshot *messageSnapshot = _messages[indexPath.row];
+    
+    
     NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
     NSString *name = message[MessageFieldsname];
     NSString *text = message[MessageFieldstext];
+    NSString *color = message[MessageFieldscolor];
     cell.nameLabel.text = [NSString stringWithFormat:@"%@",  name];
     cell.solicitaLabel.text = [NSString stringWithFormat:@"%@",  text];
+    cell.priorityIndicatorLabel.text = [NSString stringWithFormat:@"%@",  color];
+    
+    
+    NSString *green = @"green";
+    NSString *yellow = @"yellow";
+    NSString *red = @"red";
+    NSString *withoutPriority = @"sinPrioridad";
+
+    if ([cell.priorityIndicatorLabel.text isEqualToString: green]) {
+        cell.priorityIndicatorLabel.textColor = [UIColor greenColor];
+        cell.priorityIndicatorLabel.text = @"Prioridad Normal";
+        return cell;
+    }
+    
+    else if ([cell.priorityIndicatorLabel.text isEqualToString: yellow]) {
+        cell.priorityIndicatorLabel.textColor = [UIColor yellowColor];
+        cell.priorityIndicatorLabel.text = @"Prioridad Media";
+    }
+    
+    else if ([cell.priorityIndicatorLabel.text isEqualToString:red]) {
+        cell.priorityIndicatorLabel.textColor = [UIColor redColor];
+        cell.priorityIndicatorLabel.text = @"Prioridad Alta";
+    }
+    
+    else if ([cell.priorityIndicatorLabel.text isEqualToString:withoutPriority]) {
+        cell.priorityIndicatorLabel.textColor = [UIColor grayColor];
+        cell.priorityIndicatorLabel.text = @"Sin Prioridad :(";
+
+
+    }
+    
     cell.imageView.image = [UIImage imageNamed: @"ic_account_circle"];
     NSString *photoUrl = message[MessageFieldsphotoUrl];
     if (photoUrl) {
@@ -295,7 +353,26 @@
     
     return cell;
     
+}//Search display controller filtering
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    messagesSearchArray = [_messages filteredArrayUsingPredicate:resultPredicate];
 }
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
+
+
+
 
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

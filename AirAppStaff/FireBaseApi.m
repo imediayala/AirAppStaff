@@ -82,14 +82,16 @@
     }
 }
 //
-- (void)writeNewPost:(NSString *)userID username:(NSString *)username title:(NSString *)title body:(NSString *)body {
+- (void)writeNewPost:(NSString *)userID username:(NSString *)username body:(NSString *)body color:(NSString*) color{
     // Create new post at /user-posts/$userid/$postid and at
     // /posts/$postid simultaneously
     // [START write_fan_out]
     NSString *key = [[_ref child:@"posts"] childByAutoId].key;
     NSDictionary *post = @{@"uid": userID,
                            @"author": username,
-                           @"body": body};
+                           @"body": body,
+                           @"color": color};
+    
     
     
     NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
@@ -110,7 +112,7 @@
 
 
 
--(void)sendPost:(NSString *)msg{
+-(void)sendPost:(NSString *)msg colorId:(NSString *)color{
     
     // Reference for FiDataBase
     
@@ -130,8 +132,9 @@
         
         [self writeNewPost:userID
                   username:user.username
-                     title:msg
-                      body:msg];
+                  
+                      body:msg
+                     color:color];
         
     }];
     

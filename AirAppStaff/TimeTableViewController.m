@@ -26,12 +26,50 @@ NSArray * timeNameArray;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+//    [self loadView];
+//    [super viewWillAppear:animated];
+    
     [self nsurlSessionWebServices];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+///init frame for spining indicator wheel
+
+
+-(id)initWithFrame:(CGRect) theFrame{
+    
+    
+    if (self=[super init]) {
+        frame = theFrame;
+        self.view.frame = theFrame;
+    }
+    return self;
+}
+
+
+-(void)loadView {
+    [super loadView];
+    container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 30)];
+    activityLabel = [[UILabel alloc] init];
+    activityLabel.text = NSLocalizedString(@"Loading", @"string1");
+    activityLabel.textColor = [UIColor lightGrayColor];
+    activityLabel.font = [UIFont boldSystemFontOfSize:17];
+    [container addSubview:activityLabel];
+    activityLabel.frame = CGRectMake(0, 3, 70, 25);
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [container addSubview:activityIndicator];
+    activityIndicator.frame = CGRectMake(80, 0, 30, 30);
+    
+    [self.view addSubview:container];
+    container.center = CGPointMake(frame.size.width/2, frame.size.height/2);
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 
@@ -129,6 +167,9 @@ NSArray * timeNameArray;
                             
                             // Very important!!! makes the app going trhu their thread life, since has a block to achieve the function this kind of bypass it to the normal thrad cycle
                             
+                            
+//                            [activityIndicator stopAnimating];
+
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 [self.timeTableView reloadData];
                             });

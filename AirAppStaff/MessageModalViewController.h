@@ -17,4 +17,18 @@
 - (IBAction)sendPost:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextField *solicitudTextField;
 
+
+- (IBAction)activatesPriorityGreenButton:(id)sender;
+- (IBAction)activatesPriorityYellowButton:(id)sender;
+- (IBAction)activatesPriorityRedButton:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *priorityGreenButtonProperty;
+@property (strong, nonatomic) IBOutlet UIButton *priorityYellowButtonProperty;
+@property (strong, nonatomic) IBOutlet UIButton *priorityRedButtonProperty;
+
+@property(nonatomic,strong) NSString* colorDefinedForPriority;
+
+
+
+
 @end

@@ -20,7 +20,7 @@ extern NSString *const MessageFieldstext;
 extern NSString *const MessageFieldstextview;
 
 extern NSString *const MessageFieldsphotoUrl;
-
+extern NSString *const MessageFieldscolor;
 
 
 @end
