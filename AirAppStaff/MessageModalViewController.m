@@ -24,13 +24,10 @@ FireBaseApi * controller;
     
     
     // Use the FireBaseApi object "controller" so i can tell him to delegates on this class
-    
-    [controller setDelegate:self];
-    
-    
     //Inialiating
     
-    controller = [[FireBaseApi alloc]init];
+    controller = [[FireBaseApi alloc] init];
+    [controller setDelegate:self];
     
     //Refer to methods declare on the Api
     
@@ -84,16 +81,20 @@ FireBaseApi * controller;
     
 
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
--(void)solicitudResults:(BOOL)succeced{
+- (void)solicitudResults:(BOOL)succeced{
     
     
-    if (succeced != NO ) {
-        
-        NSLog(@"succeded");
+    if (succeced == YES ) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Ha ocurrido un error" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 
 
@@ -107,8 +108,8 @@ FireBaseApi * controller;
 //        button.backgroundColor = [UIColor greenColor];
         button.selected = YES;
         
-        NSString *green = @"green";
-        _colorDefinedForPriority = green;
+       
+        _colorDefinedForPriority = @"green";
         
         
         _priorityYellowButtonProperty.hidden = YES;
@@ -135,15 +136,18 @@ FireBaseApi * controller;
         //        button.backgroundColor = [UIColor greenColor];
         button.selected = YES;
         
-        NSString *yellow = @"yellow";
+        _colorDefinedForPriority = @"yellow";
         
-        
-        _colorDefinedForPriority = yellow;
+        _priorityGreenButtonProperty.hidden = YES;
+        _priorityRedButtonProperty.hidden = YES;
         
     }
     else{
         //        button.backgroundColor = [UIColor grayColor];
         button.selected = NO;
+        
+        _priorityGreenButtonProperty.hidden = NO;
+        _priorityRedButtonProperty.hidden = NO;
     }
     
     
@@ -160,18 +164,25 @@ FireBaseApi * controller;
         //        button.backgroundColor = [UIColor greenColor];
         button.selected = YES;
         
-        NSString *red = @"red";
-        _colorDefinedForPriority = red;
+
+        _colorDefinedForPriority = @"red";
+        
+        _priorityYellowButtonProperty.hidden = YES;
+        _priorityGreenButtonProperty.hidden = YES;
         
       
     }
     else{
-        //        button.backgroundColor = [UIColor grayColor];
+        
         button.selected = NO;
+        
+        _priorityYellowButtonProperty.hidden = NO;
+        _priorityGreenButtonProperty.hidden = NO;
         
      
         
     }
+    
     
     
 

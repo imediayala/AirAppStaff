@@ -239,8 +239,8 @@
 		157460731D193536007A53DB /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				157460711D193525007A53DB /* FireBaseApi.m */,
 				157460701D193525007A53DB /* FireBaseApi.h */,
+				157460711D193525007A53DB /* FireBaseApi.m */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";

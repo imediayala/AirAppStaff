@@ -399,19 +399,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Nt-TO-vkD">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Jat-x6-SAs">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="Turnos de este mes"/>
-                                        <segment title="Turnos proximo mes"/>
-                                    </segments>
-                                </segmentedControl>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="Grg-06-mtO">
+                                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="Exi-86-vUs" id="n51-xz-cbx"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timecell" rowHeight="64" id="W57-e1-KEi" customClass="TimeTableViewCell">
-                                        <rect key="frame" x="0.0" y="121" width="600" height="64"/>
+                                        <rect key="frame" x="0.0" y="136" width="600" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W57-e1-KEi" id="ZF3-N4-GOg">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -435,29 +435,18 @@
                                     <outlet property="delegate" destination="Exi-86-vUs" id="hxH-7l-0fB"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="VtP-Y1-xaL">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Exi-86-vUs" id="uET-fW-dlo"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="5Nt-TO-vkD" secondAttribute="bottom" id="5eS-j0-PNK"/>
-                            <constraint firstItem="5Nt-TO-vkD" firstAttribute="top" secondItem="D4V-E5-ty4" secondAttribute="bottom" constant="44" id="H8X-p4-GNQ"/>
+                            <constraint firstItem="5Nt-TO-vkD" firstAttribute="top" secondItem="D4V-E5-ty4" secondAttribute="bottom" id="H8X-p4-GNQ"/>
                             <constraint firstItem="5Nt-TO-vkD" firstAttribute="leading" secondItem="2lq-QO-vzD" secondAttribute="leading" id="TZt-HE-znA"/>
-                            <constraint firstAttribute="trailing" secondItem="VtP-Y1-xaL" secondAttribute="trailing" symbolic="YES" id="Yy7-iK-DCO"/>
-                            <constraint firstItem="5Nt-TO-vkD" firstAttribute="top" secondItem="VtP-Y1-xaL" secondAttribute="bottom" symbolic="YES" id="ojD-aJ-OtJ"/>
-                            <constraint firstItem="VtP-Y1-xaL" firstAttribute="leading" secondItem="2lq-QO-vzD" secondAttribute="leading" symbolic="YES" id="p1M-Qh-fw0"/>
-                            <constraint firstItem="VtP-Y1-xaL" firstAttribute="top" secondItem="D4V-E5-ty4" secondAttribute="bottom" symbolic="YES" id="tKa-5h-xXq"/>
                             <constraint firstAttribute="trailing" secondItem="5Nt-TO-vkD" secondAttribute="trailing" id="xu0-fd-BqR"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Turnos" image="link" id="jfV-Yj-UDY"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="wNb-hV-hJU" id="tML-1R-QRX"/>
+                        <outlet property="searchDisplayController" destination="rW7-9H-tzS" id="wyq-h0-UHD"/>
                         <outlet property="timeTableView" destination="5Nt-TO-vkD" id="KRY-4e-qop"/>
                         <segue destination="wke-iA-S33" kind="show" identifier="showtimeshift" id="eT8-h6-Qzo"/>
                     </connections>
@@ -466,10 +455,18 @@
                 <searchDisplayController id="wNb-hV-hJU">
                     <connections>
                         <outlet property="delegate" destination="Exi-86-vUs" id="YJo-Yu-yxc"/>
-                        <outlet property="searchBar" destination="VtP-Y1-xaL" id="YbG-Y2-qiu"/>
                         <outlet property="searchContentsController" destination="Exi-86-vUs" id="TcK-4Z-YpQ"/>
                         <outlet property="searchResultsDataSource" destination="Exi-86-vUs" id="8va-Lg-udH"/>
                         <outlet property="searchResultsDelegate" destination="Exi-86-vUs" id="QyK-q1-CZQ"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="rW7-9H-tzS">
+                    <connections>
+                        <outlet property="delegate" destination="Exi-86-vUs" id="PpW-gr-6Cx"/>
+                        <outlet property="searchBar" destination="Grg-06-mtO" id="PBB-Vf-J9t"/>
+                        <outlet property="searchContentsController" destination="Exi-86-vUs" id="ozP-Sn-f8G"/>
+                        <outlet property="searchResultsDataSource" destination="Exi-86-vUs" id="vbn-og-Oyi"/>
+                        <outlet property="searchResultsDelegate" destination="Exi-86-vUs" id="GIE-Oa-OHc"/>
                     </connections>
                 </searchDisplayController>
             </objects>
@@ -1378,6 +1375,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="2IS-wR-SeD"/>
                                 </constraints>
+                                <color key="tintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Alta">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>

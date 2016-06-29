@@ -96,15 +96,15 @@
     
     NSDictionary *childUpdates = @{[@"/posts/" stringByAppendingString:key]: post,
                                    [NSString stringWithFormat:@"/user-posts/%@/%@/", userID, key]: post};
-    [_ref updateChildValues:childUpdates];
+    //[_ref updateChildValues:childUpdates];
     
-    
-    if ([self delegate] != nil) {
-        
-        [[self delegate] solicitudResults:YES];
-        
-        
-    }
+    [_ref updateChildValues:childUpdates withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+        if ([self delegate] != nil) {
+            [[self delegate] solicitudResults:error == nil];
+        }
+
+    }];
+
 
 //    // [END write_fan_out]
     

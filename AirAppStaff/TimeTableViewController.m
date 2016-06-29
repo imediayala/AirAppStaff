@@ -20,6 +20,10 @@
 
 
 NSArray * timeNameArray;
+NSArray * searchResultsArray;
+
+
+
 @implementation TimeTableViewController
 
 - (void)viewDidLoad {
@@ -190,9 +194,14 @@ NSArray * timeNameArray;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    
-   return  [_timeNameArray count];
-    
+
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResultsArray count];
+        
+    } else {
+        return [_timeNameArray count];
+    }
+
 }
 
 
@@ -209,13 +218,39 @@ NSArray * timeNameArray;
         cell = [[TimeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     //    }
-    Empleado * empleado = [_timeNameArray objectAtIndex:indexPath.row];
+    Empleado * empleado = nil;
+    
+    
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        empleado = [searchResultsArray objectAtIndex:indexPath.row];
+    } else {
+        empleado = [_timeNameArray objectAtIndex:indexPath.row];
+    }
+    
     
     cell.employeeLabel.text = empleado.name;
 //    cell.diaUnoLabel.text =empleado.dia1;
     
     return cell;
 
+}
+
+//Search display controller filtering
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    searchResultsArray = [_timeNameArray filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
 }
 
 

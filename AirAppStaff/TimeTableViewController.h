@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimeTableViewController : UIViewController{
+@interface TimeTableViewController : UIViewController<UISearchBarDelegate, UISearchBarDelegate>{
 
 
     UILabel *activityLabel;
