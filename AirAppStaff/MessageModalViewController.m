@@ -72,7 +72,11 @@ FireBaseApi * controller;
     if (_colorDefinedForPriority == nil) {
         NSString *none = @"sinPrioridad";
         _colorDefinedForPriority = none;
+        
+        
     }
+    
+    
     
     
     [controller sendPost:_solicitudTextField.text colorId:_colorDefinedForPriority];

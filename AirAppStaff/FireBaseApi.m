@@ -82,7 +82,7 @@
     }
 }
 //
-- (void)writeNewPost:(NSString *)userID username:(NSString *)username body:(NSString *)body color:(NSString*) color{
+- (void)writeNewPost:(NSString *)userID username:(NSString *)username body:(NSString *)body color:(NSString*) color dateString: (NSString*) date{
     // Create new post at /user-posts/$userid/$postid and at
     // /posts/$postid simultaneously
     // [START write_fan_out]
@@ -90,7 +90,8 @@
     NSDictionary *post = @{@"uid": userID,
                            @"author": username,
                            @"body": body,
-                           @"color": color};
+                           @"color": color,
+                           @"createdDate": date};
     
     
     
@@ -120,6 +121,12 @@
     
     _postRef = [_ref child:@"posts"];
     
+    NSDate* date = [NSDate date];
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    formatter.dateFormat = @"MMMM dd, yyyy HH:mm:ss";
+    NSString* dateString = [formatter stringFromDate:date];
+    
 
     
     // [START single_value_read]
@@ -131,10 +138,16 @@
         
         
         [self writeNewPost:userID
-                  username:user.username
-                  
+                      username:user.username
                       body:msg
-                     color:color];
+                      color:color
+                      dateString:dateString];
+        
+//        [self writeNewPost:userID
+//                  username:user.username
+//                  
+//                      body:msg
+//                     color:color];
         
     }];
     

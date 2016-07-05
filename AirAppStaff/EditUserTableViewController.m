@@ -77,11 +77,7 @@
         self.mailText.text = email;
         self.userText.text = name;
 //        self.imageBox.image = photoUrl;
-        
-        //
-        //      self.lblCalories.text = [NSString stringWithFormat:@"%@", self.pickData[row]];
-        //
-        
+//
     } else {
         // No user is signed in.
     }
@@ -159,13 +155,15 @@
     FIRUserProfileChangeRequest *changeRequest = [user profileChangeRequest];
     
     changeRequest.displayName = userText.text;
-    changeRequest.photoURL =
-    [NSURL URLWithString:@"https://example.com/jane-q-user/profile.jpg"];
+    changeRequest.photoURL = [NSURL URLWithString:@"https://example.com/jane-q-user/profile.jpg"];
     [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
         if (error) {
             // An error happened.
         } else {
             // Profile updated.
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+
         }
     }];
 }

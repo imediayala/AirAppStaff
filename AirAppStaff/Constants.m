@@ -19,6 +19,7 @@ NSString *const MessageFieldsname = @"author";
 NSString *const MessageFieldstext = @"body";
 NSString *const MessageFieldstextview = @"text";
 NSString *const MessageFieldscolor = @"color";
+NSString *const MessageFieldsdate = @"createdDate";
 
 
 NSString *const MessageFieldsphotoUrl = @"photoUrl";

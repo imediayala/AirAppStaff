@@ -35,7 +35,9 @@
 //@property (strong, nonatomic) IBOutlet UILabel *outputSolicitudLabel;
 
 
-- (FIRDatabaseReference *)refForIndex:(NSUInteger)index;
+//- (FIRDatabaseReference *)refForIndex:(NSUInteger)index;
+
+
 
 @property(nonatomic, weak) IBOutlet UITextField *textField;
 @property(nonatomic, weak) IBOutlet UIButton *sendButton;

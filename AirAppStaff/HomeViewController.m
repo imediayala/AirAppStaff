@@ -23,7 +23,11 @@
 
 @interface HomeViewController (){
     
-    NSArray* messagesSearchArray;
+    NSMutableArray* messagesSearchArray;
+    NSMutableArray* messagesOrderedArray;
+    
+    //    NSArray* sortedArray;
+    
     
 }
 @property (nonatomic) BOOL newMessagesOnTop;
@@ -54,30 +58,21 @@
     [_textField setDelegate:self];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-
-
-
+    
+    
+    
     
     
     _ref = [[FIRDatabase database] reference];
     
     _postRef = [_ref child:@"posts"];
-
     
-    
-//    
-//            [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
     
     
     /// TEXT FIELD DELEGATE
     
     [_textField setDelegate:self];
     
-    
-    
-        //----
-    //[self reloadMessages];
-    //----
     
     _msglength = 100;
     _messages = [[NSMutableArray alloc] init];
@@ -91,23 +86,8 @@
     //Cell editing
     
     _clientTable.allowsMultipleSelectionDuringEditing = NO;
-
+    
 }
-
-
-
-//-(void) textFieldDidBeginEditing:(UITextField *)textField{
-//    
-//    if (_textField.text.length > 1) {
-//        
-//        _sendButton.enabled = YES;
-//        
-//    }else{
-//        _sendButton.enabled = NO;
-//        
-//    }
-//    
-//}
 
 
 -(void) textFieldDidEndEditing:(UITextField *)textField{
@@ -122,7 +102,7 @@
         
     }
     
-
+    
 }
 
 
@@ -136,16 +116,7 @@
 }
 
 /// Reload messages data
-- (void) reloadMessages {
-    [_clientTable reloadData];
-    // Listen for new messages in the Firebase database
-    _refHandle = [[_ref child:@"posts"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
-        [_messages addObject:snapshot];
-        [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
-        
 
-    }];
-}
 
 //- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(nonnull NSString *)string {
 //    NSString *text = _textField.text;
@@ -169,37 +140,29 @@
     
     
     NSString* welcomeText = @"Crea una solicitud";
-
+    
     
     if ((_textField.text = welcomeText)) {
         _sendButton.enabled = NO;
     }
     
-
+    
     
     [_messages removeAllObjects];
     [_clientTable reloadData];
     [self reloadMessages];
-
-
-//    // Listen for new messages in the Firebase database
-//    _refHandle = [[_ref child:@"messages"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
-//        [_messages addObject:snapshot];
-//        [_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
-//    }];
+    
 }
 
 
-
-
 -(void) openPostCompleteView{
-
-
+    
+    
     [self performSegueWithIdentifier:@"postsegue" sender:nil];
     
     
     NSLog(@"opening");
-
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -207,7 +170,7 @@
     [super viewWillDisappear:animated];
     
     [[[self.navigationController navigationBar] topItem] setRightBarButtonItem:nil];
-
+    
     
     [_ref removeObserverWithHandle:_refHandle];
 }
@@ -221,6 +184,30 @@
         ++index;
     }
     return -1;
+}
+
+- (void) reloadMessages {
+    
+    
+    [_clientTable reloadData];
+    // Listen for new messages in the Firebase database
+    _refHandle = [[_ref child:@"posts"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+        
+        
+        // addObject does not contain an index and i need to specify index so i can order my array
+        //[_messages addObject:snapshot];
+        
+        
+        //[_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
+        
+        // insertObject does cotain an index so i can specify where to place my new object into the array
+        [_messages insertObject:snapshot atIndex:0];
+        
+        NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
+        [_clientTable insertRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+    }];
+    
 }
 
 
@@ -247,16 +234,16 @@
         FIRDataSnapshot *msg = [_messages objectAtIndex:indexPath.row];
         
         [_messages removeObjectAtIndex:indexPath.row];
-
+        
         
         [msg.ref removeValue];
         
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
-        };
-
-
+    };
+    
+    
     
 }
 
@@ -286,9 +273,10 @@
     // Unpack message from Firebase DataSnapshot
     
     
-
+    
     FIRDataSnapshot *messageSnapshot = nil;
-    Constants * objectPrueba;
+    
+    // I need to get get an array from object fir datasnapshot
     
     
     
@@ -297,17 +285,25 @@
     } else {
         messageSnapshot = [_messages objectAtIndex:indexPath.row];
     }
-      
     
-//    FIRDataSnapshot *messageSnapshot = _messages[indexPath.row];
+    
+    //    FIRDataSnapshot *messageSnapshot = _messages[indexPath.row];
     
     
     NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
     NSString *name = message[MessageFieldsname];
     NSString *text = message[MessageFieldstext];
     NSString *color = message[MessageFieldscolor];
+    NSString *date = message[MessageFieldsdate];
+    
+    
+    
+    
     cell.nameLabel.text = [NSString stringWithFormat:@"%@",  name];
     cell.solicitaLabel.text = [NSString stringWithFormat:@"%@",  text];
+    cell.dateLabel.text =[NSString stringWithFormat:@"%@", date];
+    
+    
     cell.priorityIndicatorLabel.text = [NSString stringWithFormat:@"%@",  color];
     
     
@@ -315,7 +311,7 @@
     NSString *yellow = @"yellow";
     NSString *red = @"red";
     NSString *withoutPriority = @"sinPrioridad";
-
+    
     if ([cell.priorityIndicatorLabel.text isEqualToString: green]) {
         cell.priorityIndicatorLabel.textColor = [UIColor greenColor];
         cell.priorityIndicatorLabel.text = @"Prioridad Normal";
@@ -335,8 +331,8 @@
     else if ([cell.priorityIndicatorLabel.text isEqualToString:withoutPriority]) {
         cell.priorityIndicatorLabel.textColor = [UIColor grayColor];
         cell.priorityIndicatorLabel.text = @"Sin Prioridad :(";
-
-
+        
+        
     }
     
     cell.imageView.image = [UIImage imageNamed: @"ic_account_circle"];
@@ -391,14 +387,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {if ([[segue identifier] isEqualToString:@"showDetail"]){
     
-        // Get reference to the destination view controller
-        DetailViewController *vc = [segue destinationViewController];
-        
-        // Pass any objects to the view controller here, like...
-        vc.details = (FIRDataSnapshot*)sender;
+    // Get reference to the destination view controller
+    DetailViewController *vc = [segue destinationViewController];
+    
+    // Pass any objects to the view controller here, like...
+    vc.details = (FIRDataSnapshot*)sender;
     
     
-    }
+}
 }
 
 
@@ -406,9 +402,9 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     
-
+    
     [self sendSolicitudButton:nil];
-   
+    
     return YES;
 }
 
@@ -458,7 +454,7 @@
 //Text field Return
 
 //-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-//    
+//
 //    if([string isEqualToString:@"\n"]) {
 //        [_textField resignFirstResponder];
 //        return NO;
@@ -492,7 +488,7 @@
 //- (void)imagePickerController:(UIImagePickerController *)picker
 //didFinishPickingMediaWithInfo:(NSDictionary *)info {
 //    [picker dismissViewControllerAnimated:YES completion:NULL];
-//    
+//
 //    NSURL *referenceUrl = info[UIImagePickerControllerReferenceURL];
 //    PHFetchResult* assets = [PHAsset fetchAssetsWithALAssetURLs:@[referenceUrl] options:nil];
 //    PHAsset *asset = [assets firstObject];
@@ -529,9 +525,9 @@
     [super touchesBegan:touches withEvent:event];
     
     [self.view endEditing:YES];
-
-
-
+    
+    
+    
 }
 
 

@@ -20,5 +20,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *priorityIndicatorLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

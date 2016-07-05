@@ -37,6 +37,7 @@
 
 
 
+@property (strong, nonatomic) IBOutlet UIImageView *detailPriorytyBackgrundColorImage;
 
 
 @property (strong, nonatomic) IBOutlet UITableView *repliesTable;
