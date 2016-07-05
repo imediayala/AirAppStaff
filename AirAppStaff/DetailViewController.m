@@ -46,9 +46,38 @@ FIRDatabaseHandle _refHandle;
     _ref = [[FIRDatabase database] reference];
     
     NSString *text = _details.value[MessageFieldstext];
+    NSString *priority = _details.value[MessageFieldscolor];
+
     
     self.detailLabel.text = text;
     NSLog(@"Your name is %@", text);
+    NSLog(@"Your name is %@", priority);
+
+    
+    NSString *green =@"green";
+    NSString *yellow =@"yellow";
+    NSString *red =@"red";
+    
+    
+    if ([priority isEqualToString:red]) {
+        
+        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor redColor];
+        
+    }else if ([priority isEqualToString:yellow]){
+        
+        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor yellowColor];
+    
+    }else if ([priority isEqualToString:green]){
+        
+        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor greenColor];
+    
+    } 
+        
+    
+    
+    
+    
+    
     
     // Do any additional setup after loading the view.
     
