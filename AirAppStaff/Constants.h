@@ -13,7 +13,7 @@
 extern NSString *const NotificationKeysSignedIn;
 
 extern NSString *const SeguesSignInToFp;
-extern NSString *const SeguesFpToSignIn;
+extern NSString *const SeguesToSignIn;
 
 extern NSString *const MessageFieldsname;
 extern NSString *const MessageFieldstext;
@@ -22,6 +22,7 @@ extern NSString *const MessageFieldstextview;
 extern NSString *const MessageFieldsphotoUrl;
 extern NSString *const MessageFieldscolor;
 extern NSString *const MessageFieldsdate;
+
 
 
 

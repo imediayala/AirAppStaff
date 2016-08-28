@@ -7,7 +7,12 @@
 //
 
 #import "EditUserTableViewController.h"
+#import "Constants.h"
+#import "AppState.h"
 @import Firebase;
+@import Photos;
+
+
 
 
 @interface EditUserTableViewController ()
@@ -27,9 +32,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.navigationItem.leftBarButtonItem.title = @"Cancel";
+    _ref = [[FIRDatabase database] reference];
 
-    
+    // self.navigationItem.leftBarButtonItem.title = @"Cancel";
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -41,18 +47,28 @@
     [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth,
                                                     FIRUser *_Nullable user) {
         if (user != nil) {
+            
             // User is signed in.
             
             [self requestProfileInfo];
             
         } else {
+            
             // No user is signed in.
         }
     }];
     
     
     [self requestProfileInfo];
+    
+    [self configureStorage];
 }
+
+- (void)configureStorage {
+    self.storageRef = [[FIRStorage storage] referenceForURL:@"gs://airappstaff-v1.appspot.com"];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -67,7 +83,7 @@
     if (user != nil) {
         NSString *name = user.displayName;
         NSString *email = user.email;
-        NSURL *photoUrl = user.photoURL;
+       NSURL *photoUrl = user.photoURL;
         NSString *uid = user.uid;  // The user's ID, unique to the Firebase
         // project. Do NOT use this value to
         // authenticate with your backend server, if
@@ -93,6 +109,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 6;
 }
+
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -148,24 +165,34 @@
 }
 */
 
+
+// UITextViewDelegate protocol methods
+
+
+- (void)sendMessage:(NSDictionary *)data {
+    
+    
+    NSMutableDictionary *mdata = [data mutableCopy];
+    mdata[MessageFieldsname] = [AppState sharedInstance].displayName;
+    NSURL *photoUrl = AppState.sharedInstance.photoUrl;
+    if (photoUrl) {
+        mdata[MessageFieldsphotoUrl] = [photoUrl absoluteString];
+    }
+    
+    // Push data to Firebase Database
+    [[[_ref child:@"ProfileImages"] childByAutoId] setValue:mdata];
+    
+}
+
+
 - (IBAction)doneNavigationItem:(id)sender {
     
     
-    FIRUser *user = [FIRAuth auth].currentUser;
-    FIRUserProfileChangeRequest *changeRequest = [user profileChangeRequest];
-    
-    changeRequest.displayName = userText.text;
-    changeRequest.photoURL = [NSURL URLWithString:@"https://example.com/jane-q-user/profile.jpg"];
-    [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
-        if (error) {
-            // An error happened.
-        } else {
-            // Profile updated.
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
+//    [self sendMessage:@{MessageFieldsphotoUrl: sender}];
 
-        }
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
 }
 
 - (IBAction)cancelNavigationItem:(id)sender {
@@ -178,21 +205,48 @@
 
 }
 
+# pragma mark - Image Picker
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
     
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.imageBox.image = chosenImage;
+
+    NSURL *referenceUrl = info[UIImagePickerControllerReferenceURL];
+    PHFetchResult* assets = [PHAsset fetchAssetsWithALAssetURLs:@[referenceUrl] options:nil];
+    PHAsset *asset = [assets firstObject];
+    [asset requestContentEditingInputWithOptions:nil
+                               completionHandler:^(PHContentEditingInput *contentEditingInput, NSDictionary *info) {
+                                   NSURL *imageFile = contentEditingInput.fullSizeImageURL;
+                                   NSString *filePath = [NSString stringWithFormat:@"%@/%lld/%@", [FIRAuth auth].currentUser.uid, (long long)([[NSDate date] timeIntervalSince1970] * 1000.0), [referenceUrl lastPathComponent]];
+                                   FIRStorageMetadata *metadata = [FIRStorageMetadata new];
+                                   metadata.contentType = @"image/jpeg";
+                                   [[_storageRef child:filePath]
+                                    putFile:imageFile metadata:metadata
+                                    completion:^(FIRStorageMetadata *metadata, NSError *error) {
+                                        if (error) {
+                                            NSLog(@"Error uploading: %@", error);
+                                            return;
+                                        }
+                                        [self sendMessage:@{MessageFieldsphotoUrl:
+                                                                [_storageRef child:metadata.path].description}];
+                                    }
+                                    ];
+                               }];
     
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    
     
 }
+
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//    
+//    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+//    self.imageBox.image = chosenImage;
+//    
+//    [picker dismissViewControllerAnimated:YES completion:nil];
+//    
+//}
 
 - (IBAction)chooseImageButton:(id)sender {
     
@@ -208,11 +262,18 @@
 - (IBAction)takePhotoButton:(id)sender {
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
+    picker.delegate = self; 
     picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
     [self presentViewController:picker animated:YES completion:NULL];
+    
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
 @end

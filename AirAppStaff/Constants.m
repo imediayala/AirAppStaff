@@ -10,10 +10,13 @@
 
 @implementation Constants
 
+
+
+
 NSString *const NotificationKeysSignedIn = @"onSignInCompleted";
 
 NSString *const SeguesSignInToFp = @"SignInToFP";
-NSString *const SeguesFpToSignIn = @"FPToSignIn";
+NSString *const SeguesToSignIn = @"SeguesToSignIn";
 
 NSString *const MessageFieldsname = @"author";
 NSString *const MessageFieldstext = @"body";

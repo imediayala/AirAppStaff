@@ -27,9 +27,9 @@
 		155D6D451D0622CE004408DD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D441D0622CE004408DD /* User.m */; };
 		155D6D481D063BC7004408DD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D471D063BC7004408DD /* Post.m */; };
 		155D6D4B1D063CE7004408DD /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D4A1D063CE7004408DD /* PostTableViewCell.m */; };
+		155E64481D73020000BB58CB /* UserDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 155E64471D73020000BB58CB /* UserDetailsTableViewController.m */; };
 		1574606F1D19337A007A53DB /* MessageModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1574606E1D19337A007A53DB /* MessageModalViewController.m */; };
 		157460721D193525007A53DB /* FireBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 157460711D193525007A53DB /* FireBaseApi.m */; };
-		15A7FDB31CFC4ACF00C9AF78 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */; };
 		15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */; };
 		15AF1FCC1D0A528B001F89B6 /* FirebaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF1FCB1D0A528B001F89B6 /* FirebaseDataSource.m */; };
 		15AFB04D1CF86B560085F793 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */; };
@@ -98,12 +98,12 @@
 		155D6D471D063BC7004408DD /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		155D6D491D063CE7004408DD /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
 		155D6D4A1D063CE7004408DD /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
+		155E64461D73020000BB58CB /* UserDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsTableViewController.h; sourceTree = "<group>"; };
+		155E64471D73020000BB58CB /* UserDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsTableViewController.m; sourceTree = "<group>"; };
 		1574606D1D19337A007A53DB /* MessageModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModalViewController.h; sourceTree = "<group>"; };
 		1574606E1D19337A007A53DB /* MessageModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModalViewController.m; sourceTree = "<group>"; };
 		157460701D193525007A53DB /* FireBaseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireBaseApi.h; sourceTree = "<group>"; };
 		157460711D193525007A53DB /* FireBaseApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireBaseApi.m; sourceTree = "<group>"; };
-		15A7FDB11CFC4ACF00C9AF78 /* EditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserViewController.h; sourceTree = "<group>"; };
-		15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserViewController.m; sourceTree = "<group>"; };
 		15A7FDB71CFC5F6D00C9AF78 /* EditUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserTableViewController.h; sourceTree = "<group>"; };
 		15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserTableViewController.m; sourceTree = "<group>"; };
 		15AF1FCA1D0A528B001F89B6 /* FirebaseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseDataSource.h; sourceTree = "<group>"; };
@@ -258,8 +258,8 @@
 				1545D1321CFC350300DB68D6 /* UsersProfileViewController.m */,
 				15A7FDB71CFC5F6D00C9AF78 /* EditUserTableViewController.h */,
 				15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */,
-				15A7FDB11CFC4ACF00C9AF78 /* EditUserViewController.h */,
-				15A7FDB21CFC4ACF00C9AF78 /* EditUserViewController.m */,
+				155E64461D73020000BB58CB /* UserDetailsTableViewController.h */,
+				155E64471D73020000BB58CB /* UserDetailsTableViewController.m */,
 				15DF7D231D0E235400143439 /* TimeTableViewController.h */,
 				15DF7D241D0E235400143439 /* TimeTableViewController.m */,
 				15D0F6B91D11F01600049C7C /* TimeTableCollectionViewController.h */,
@@ -517,6 +517,7 @@
 				150B8DA91CE4C2AD00BC4DA4 /* ViewController.m in Sources */,
 				15DF7D281D0E260700143439 /* TimeTableViewCell.m in Sources */,
 				155D6D451D0622CE004408DD /* User.m in Sources */,
+				155E64481D73020000BB58CB /* UserDetailsTableViewController.m in Sources */,
 				1545D1331CFC350300DB68D6 /* UsersProfileViewController.m in Sources */,
 				155D6D481D063BC7004408DD /* Post.m in Sources */,
 				155D6D4B1D063CE7004408DD /* PostTableViewCell.m in Sources */,
@@ -534,7 +535,6 @@
 				1574606F1D19337A007A53DB /* MessageModalViewController.m in Sources */,
 				15DF7D251D0E235400143439 /* TimeTableViewController.m in Sources */,
 				15D0F6BB1D11F01600049C7C /* TimeTableCollectionViewController.m in Sources */,
-				15A7FDB31CFC4ACF00C9AF78 /* EditUserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

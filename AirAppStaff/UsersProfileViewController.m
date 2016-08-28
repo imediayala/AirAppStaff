@@ -7,6 +7,9 @@
 //
 
 #import "UsersProfileViewController.h"
+#import "AppState.h"
+
+
 @import Firebase;
 
 @interface UsersProfileViewController ()
@@ -34,7 +37,7 @@
         if (user != nil) {
             // User is signed in.
             
-                [self requestProfileInfo];
+            [self requestProfileInfo];
             
         } else {
             // No user is signed in.
@@ -44,6 +47,8 @@
     [self requestProfileInfo];
     
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -96,4 +101,17 @@
 }
 */
 
+- (IBAction)logOutButton:(id)sender {
+    
+    FIRAuth *firebaseAuth = [FIRAuth auth];
+    NSError *signOutError;
+    BOOL status = [firebaseAuth signOut:&signOutError];
+    if (!status) {
+        NSLog(@"Error signing out: %@", signOutError);
+        return;
+    }
+    
+    [AppState sharedInstance].signedIn = false;
+    [self performSegueWithIdentifier:@"SeguesToSignIn" sender:nil];
+}
 @end

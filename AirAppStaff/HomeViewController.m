@@ -80,7 +80,7 @@
     [self loadAd];
     [_clientTable registerClass:UITableViewCell.self forCellReuseIdentifier:@"tableViewCell"];
     [self fetchConfig];
-    [self configureStorage];
+//    [self configureStorage];
     
     
     //Cell editing
@@ -106,14 +106,14 @@
 }
 
 
+
+
 - (void)loadAd {
 }
 
 - (void)fetchConfig {
 }
 
-- (void)configureStorage {
-}
 
 /// Reload messages data
 
@@ -295,17 +295,31 @@
     NSString *text = message[MessageFieldstext];
     NSString *color = message[MessageFieldscolor];
     NSString *date = message[MessageFieldsdate];
-    
-    
-    
+    NSString *photoUrl = message[MessageFieldsphotoUrl];
     
     cell.nameLabel.text = [NSString stringWithFormat:@"%@",  name];
     cell.solicitaLabel.text = [NSString stringWithFormat:@"%@",  text];
     cell.dateLabel.text =[NSString stringWithFormat:@"%@", date];
-    
-    
     cell.priorityIndicatorLabel.text = [NSString stringWithFormat:@"%@",  color];
+    cell.userPictureImage.image = [UIImage imageNamed:  @"ic_account_circle"];
     
+    if (photoUrl) {
+        NSURL *url = [NSURL URLWithString:photoUrl];
+        if (url) {
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            if (data) {
+                cell.userPictureImage.image = [UIImage imageWithData:data];
+            }
+        }
+    }
+    
+    
+    
+    
+    
+
+    
+ 
     
     NSString *green = @"green";
     NSString *yellow = @"yellow";
@@ -335,21 +349,14 @@
         
     }
     
-    cell.imageView.image = [UIImage imageNamed: @"ic_account_circle"];
-    NSString *photoUrl = message[MessageFieldsphotoUrl];
-    if (photoUrl) {
-        NSURL *url = [NSURL URLWithString:photoUrl];
-        if (url) {
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            if (data) {
-                cell.imageView.image = [UIImage imageWithData:data];
-            }
-        }
-    }
+
     
     return cell;
     
-}//Search display controller filtering
+}
+
+
+//Search display controller filtering
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
@@ -471,6 +478,8 @@
 }
 
 
+
+
 # pragma mark - Image Picker
 
 - (IBAction)didTapAddPhoto:(id)sender {
@@ -506,7 +515,7 @@
 
 - (IBAction)signOut:(UIButton *)sender {
     [AppState sharedInstance].signedIn = false;
-    [self performSegueWithIdentifier:SeguesFpToSignIn sender:nil];
+    [self performSegueWithIdentifier:SeguesToSignIn sender:nil];
 }
 
 - (void)showAlert:(NSString *)title message:(NSString *)message {

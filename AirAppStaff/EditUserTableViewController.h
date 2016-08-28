@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface EditUserTableViewController : UITableViewController<UIImagePickerControllerDelegate>
-
+@import Firebase;
 
 
+@interface EditUserTableViewController : UITableViewController<UIImagePickerControllerDelegate, UITextViewDelegate>
 
+
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
+@property (strong, nonatomic) FIRStorageReference *storageRef;
 @property (strong, nonatomic) IBOutlet UIImageView *imageBox;
 - (IBAction)doneNavigationItem:(id)sender;
 - (IBAction)cancelNavigationItem:(id)sender;
