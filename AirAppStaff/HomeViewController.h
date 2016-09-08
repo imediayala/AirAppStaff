@@ -16,6 +16,8 @@
     
     int _msglength;
     FIRDatabaseHandle _refHandle;
+    FIRDatabaseHandle _refHandleImage;
+
 }
 
 
@@ -53,6 +55,8 @@
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *messages;
+@property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *imagges;
+
 @property (strong, nonatomic) FIRStorageReference *storageRef;
 @property (strong, nonatomic) FIRRemoteConfig *remoteConfig;
 

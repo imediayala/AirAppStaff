@@ -10,7 +10,7 @@
 @import Firebase;
 
 
-@interface EditUserTableViewController : UITableViewController<UIImagePickerControllerDelegate, UITextViewDelegate>
+@interface EditUserTableViewController : UITableViewController<UIImagePickerControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate>
 
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *phoneText;
 @property (strong, nonatomic) IBOutlet UITextField *favoritosText;
 @property (strong, nonatomic) IBOutlet UITextField *passText;
+@property (strong, nonatomic) NSURL * imageUrl;
 
 
 - (IBAction)chooseImageButton:(id)sender;

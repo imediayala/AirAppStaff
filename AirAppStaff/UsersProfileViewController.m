@@ -30,6 +30,8 @@
     // Do any additional setup after loading the view.
     
     
+    
+    
     //Get the currently signed-in user
     
     [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth,
@@ -62,7 +64,7 @@
     
     if (user != nil) {
 
-//        NSURL *photoUrl = user.photoURL;
+        
         
 //        NSURL *url = [NSURL URLWithString: user.photoURL];
 
@@ -74,9 +76,30 @@
         // authenticate with your backend server, if
         // you have one. Use
         // getTokenWithCompletion:completion: instead.
+        
+        
     
+        NSURL *photosUrl = user.photoURL;
+        NSData *imageData = [NSData dataWithContentsOfURL:photosUrl];
+        self.imageBox.image = [UIImage imageWithData:imageData];
+        
+        
+        
         self.emailLabel.text = user.email;
-        self.userLabel.text = user.displayName;
+        
+        NSString *userName = [[NSUserDefaults standardUserDefaults]
+                                stringForKey:@"preferenceName"];
+        
+        self.userLabel.text = userName;
+        
+//        _ref = [[FIRDatabase database] reference];
+//
+//        
+//        [[[_ref child:@"ProfileImages"] childByAutoId] setValue:mdata];
+//
+//        
+        
+        
 //        self.imageBox.image = im;
     
         

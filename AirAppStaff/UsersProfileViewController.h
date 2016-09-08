@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <Firebase/Firebase.h>
+@import Firebase;
 
 @interface UsersProfileViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *userLabel;
@@ -18,5 +19,6 @@
 - (IBAction)logOutButton:(id)sender;
 
 
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 
 @end

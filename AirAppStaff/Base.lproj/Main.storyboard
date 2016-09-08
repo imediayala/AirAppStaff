@@ -600,7 +600,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2a-r1-DBA">
                                 <rect key="frame" x="214" y="97" width="366" height="42"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Usuario">
+                                    <fragment content="UserProfileImege">
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="36" name="HelveticaNeue-UltraLight"/>
@@ -799,7 +799,6 @@
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sab-UJ-a4X">
                                                     <rect key="frame" x="16" y="15" width="79" height="74"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQI-Ol-ZY9">
                                                     <rect key="frame" x="16" y="96" width="79" height="42"/>
@@ -1092,7 +1091,6 @@
         <!--Edit User View Controller-->
         <scene sceneID="7ff-yi-apl">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xaG-iu-k8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="wMx-i3-wBa" customClass="EditUserViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SDT-Tu-G49"/>
@@ -1258,6 +1256,7 @@
                         <outlet property="editUserTableView" destination="NKc-aR-sGV" id="bP0-Lz-yk0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xaG-iu-k8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4338" y="-491"/>
         </scene>

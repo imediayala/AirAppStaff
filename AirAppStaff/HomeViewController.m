@@ -25,6 +25,8 @@
     
     NSMutableArray* messagesSearchArray;
     NSMutableArray* messagesOrderedArray;
+    NSString * imagesString;
+
     
     //    NSArray* sortedArray;
     
@@ -62,7 +64,6 @@
     
     
     
-    
     _ref = [[FIRDatabase database] reference];
     
     _postRef = [_ref child:@"posts"];
@@ -76,6 +77,8 @@
     
     _msglength = 100;
     _messages = [[NSMutableArray alloc] init];
+    _imagges = [[NSMutableArray alloc] init];
+
     
     [self loadAd];
     [_clientTable registerClass:UITableViewCell.self forCellReuseIdentifier:@"tableViewCell"];
@@ -151,6 +154,8 @@
     [_messages removeAllObjects];
     [_clientTable reloadData];
     [self reloadMessages];
+    [self reloadProfileImages];
+    //    [self reloadProfileImages];
     
 }
 
@@ -208,6 +213,59 @@
         
     }];
     
+}
+
+
+- (void) reloadProfileImages {
+    
+    
+    // Listen for new messages in the Firebase database
+    _refHandleImage = [[_ref child:@"ProfileImages"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+        
+    
+        // insertObject does cotain an index so i can specify where to place my new object into the array
+        
+        
+//        [_imagges insertObject:snapshot atIndex:0];
+        
+        NSDictionary<NSString *, NSString *> *imagge = snapshot.value;
+    
+
+        NSString *name = imagge[MessageFieldsname];
+        NSString *photoUrl = imagge[MessageFieldsphotoUrl];
+        
+        imagesString = photoUrl;
+
+//        
+//        NSString *userName = [[NSUserDefaults standardUserDefaults]
+//                              stringForKey:@"preferenceName"];
+//
+//        
+//        if (userName == name) {
+//            
+//
+//        }
+//        
+
+//        NSLog(@"%@",name);
+
+
+
+        
+        
+
+    
+        
+    }];
+    
+}
+
+-(void) userImageString {
+    
+    
+
+
+
 }
 
 
@@ -275,8 +333,12 @@
     
     
     FIRDataSnapshot *messageSnapshot = nil;
+
     
     // I need to get get an array from object fir datasnapshot
+    
+    
+
     
     
     
@@ -284,27 +346,33 @@
         messageSnapshot = [messagesSearchArray objectAtIndex:indexPath.row];
     } else {
         messageSnapshot = [_messages objectAtIndex:indexPath.row];
+
     }
-    
     
     //    FIRDataSnapshot *messageSnapshot = _messages[indexPath.row];
     
-    
     NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
+    
     NSString *name = message[MessageFieldsname];
     NSString *text = message[MessageFieldstext];
     NSString *color = message[MessageFieldscolor];
     NSString *date = message[MessageFieldsdate];
-    NSString *photoUrl = message[MessageFieldsphotoUrl];
+//    NSString *photoUrl = imagge[MessageFieldsphotoUrl];
+    
     
     cell.nameLabel.text = [NSString stringWithFormat:@"%@",  name];
+    
+    NSString *valueToSave = [NSString stringWithFormat:@"%@",  name];
+    [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"preferenceName"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     cell.solicitaLabel.text = [NSString stringWithFormat:@"%@",  text];
     cell.dateLabel.text =[NSString stringWithFormat:@"%@", date];
     cell.priorityIndicatorLabel.text = [NSString stringWithFormat:@"%@",  color];
-    cell.userPictureImage.image = [UIImage imageNamed:  @"ic_account_circle"];
+    cell.userPictureImage.image = [UIImage imageNamed:  imagesString];
     
-    if (photoUrl) {
-        NSURL *url = [NSURL URLWithString:photoUrl];
+    if (imagesString) {
+        NSURL *url = [NSURL URLWithString:imagesString];
         if (url) {
             NSData *data = [NSData dataWithContentsOfURL:url];
             if (data) {

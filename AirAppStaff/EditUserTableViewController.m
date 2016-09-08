@@ -28,11 +28,11 @@
 @synthesize favoritosText;
 @synthesize passText;
 @synthesize imageBox;
+@synthesize imageUrl;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _ref = [[FIRDatabase database] reference];
 
     // self.navigationItem.leftBarButtonItem.title = @"Cancel";
 
@@ -44,6 +44,7 @@
     
     
     
+    _ref = [[FIRDatabase database] reference];
     [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth,
                                                     FIRUser *_Nullable user) {
         if (user != nil) {
@@ -52,7 +53,7 @@
             
             [self requestProfileInfo];
             
-        } else {
+        } else{
             
             // No user is signed in.
         }
@@ -83,18 +84,25 @@
     if (user != nil) {
         NSString *name = user.displayName;
         NSString *email = user.email;
-       NSURL *photoUrl = user.photoURL;
-        NSString *uid = user.uid;  // The user's ID, unique to the Firebase
-        // project. Do NOT use this value to
-        // authenticate with your backend server, if
-        // you have one. Use
-        // getTokenWithCompletion:completion: instead.
+        NSURL *photoUrl = user.photoURL;
+//        NSString *uid = user.uid;
+                                  // The user's ID, unique to the Firebase
+                                  // project. Do NOT use this value to
+                                 // authenticate with your backend server, if
+                                // you have one. Use
+                               // getTokenWithCompletion:completion: instead.
         
         self.mailText.text = email;
         self.userText.text = name;
-//        self.imageBox.image = photoUrl;
+        
+        
+
+        //NSString *formatToString = [photoUrl absoluteString];
+        NSData *imageData = [NSData dataWithContentsOfURL:photoUrl];
+        self.imageBox.image = [UIImage imageWithData:imageData];
 //
     } else {
+        
         // No user is signed in.
     }
     
@@ -171,13 +179,20 @@
 
 - (void)sendMessage:(NSDictionary *)data {
     
+    FIRUser *user = [FIRAuth auth].currentUser;
+
+    
+    
     
     NSMutableDictionary *mdata = [data mutableCopy];
-    mdata[MessageFieldsname] = [AppState sharedInstance].displayName;
-    NSURL *photoUrl = AppState.sharedInstance.photoUrl;
-    if (photoUrl) {
-        mdata[MessageFieldsphotoUrl] = [photoUrl absoluteString];
-    }
+    NSString *userName = [[NSUserDefaults standardUserDefaults]
+                            stringForKey:@"preferenceName"];
+    
+    mdata[MessageFieldsname] = userName;
+//    NSURL *photoUrl = AppState.sharedInstance.photoUrl;
+//    if (photoUrl) {
+//        mdata[MessageFieldsphotoUrl] = [photoUrl absoluteString];
+//    }
     
     // Push data to Firebase Database
     [[[_ref child:@"ProfileImages"] childByAutoId] setValue:mdata];
@@ -189,6 +204,8 @@
     
     
 //    [self sendMessage:@{MessageFieldsphotoUrl: sender}];
+    
+//    [self updateUserProfile];
 
     [self dismissViewControllerAnimated:YES completion:nil];
     
@@ -228,8 +245,10 @@
                                             NSLog(@"Error uploading: %@", error);
                                             return;
                                         }
+                                        
+                                        
                                         [self sendMessage:@{MessageFieldsphotoUrl:
-                                                                [_storageRef child:metadata.path].description}];
+                                                                metadata.downloadURL.absoluteString}];
                                     }
                                     ];
                                }];
@@ -248,6 +267,43 @@
 //    
 //}
 
+-(void)updateUserProfile{
+    
+    FIRUser *user = [FIRAuth auth].currentUser;
+    FIRUserProfileChangeRequest *changeRequest = [user profileChangeRequest];
+    
+    
+    
+    changeRequest.displayName =userText.text;
+    changeRequest.photoURL =
+    [NSURL URLWithString:imageUrl.absoluteString];
+    [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
+        if (error) {
+            // An error happened.
+        } else {
+            // Profile updated.
+        }
+    }];
+
+ 
+
+}
+
+
+
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//    
+//    
+//    NSURL* localUrl = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
+//    imageUrl = localUrl;
+//
+//    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+//    self.imageBox.image = chosenImage;
+//    
+//    [picker dismissViewControllerAnimated:YES completion:NULL];
+//    
+//}
+
 - (IBAction)chooseImageButton:(id)sender {
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -261,14 +317,15 @@
 
 - (IBAction)takePhotoButton:(id)sender {
     
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self; 
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+        
+    }
     
-    [self presentViewController:picker animated:YES completion:NULL];
-    
-}
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
