@@ -14,10 +14,10 @@
 #import "Constants.h"
 #import "MeasurementHelper.h"
 #import "User.h"
+#import "FTWCache.h"
+#import "NSString+MD5.h"
 
 @import Firebase;
-
-
 
 #define airAppNS @"https://airappstaff.firebaseio.com/user-posts/<user-id>/<unique-post-id>"
 
@@ -26,10 +26,9 @@
     NSMutableArray* messagesSearchArray;
     NSMutableArray* messagesOrderedArray;
     NSString * imagesString;
-
+    NSDictionary<NSString *, NSString *> *imaggeGlobal;
     
     //    NSArray* sortedArray;
-    
     
 }
 @property (nonatomic) BOOL newMessagesOnTop;
@@ -58,33 +57,21 @@
     /// TEXT FIELD DELEGATE
     
     [_textField setDelegate:self];
-    
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
     
-    
-    
     _ref = [[FIRDatabase database] reference];
-    
     _postRef = [_ref child:@"posts"];
     
-    
-    
-    /// TEXT FIELD DELEGATE
-    
-    [_textField setDelegate:self];
-    
-    
-    _msglength = 100;
+//    _msglength = 100;
     _messages = [[NSMutableArray alloc] init];
     _imagges = [[NSMutableArray alloc] init];
-
+    
     
     [self loadAd];
     [_clientTable registerClass:UITableViewCell.self forCellReuseIdentifier:@"tableViewCell"];
     [self fetchConfig];
-//    [self configureStorage];
-    
+    [self reloadProfileImages];
     
     //Cell editing
     
@@ -95,8 +82,6 @@
 
 -(void) textFieldDidEndEditing:(UITextField *)textField{
     
-    
-    
     if (_textField.text.length > 1) {
         _sendButton.enabled = YES;
         
@@ -104,8 +89,6 @@
         _sendButton.enabled = NO;
         
     }
-    
-    
 }
 
 
@@ -130,6 +113,7 @@
 //    return (newLength <= _msglength);
 //}
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -137,25 +121,18 @@
     // Creating nav bar button item to post
     
     UIBarButtonItem * post = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target: self action:@selector(openPostCompleteView)];
-    
     [[[self.navigationController navigationBar] topItem] setRightBarButtonItem:post];
-    
-    
-    
     NSString* welcomeText = @"Crea una solicitud";
     
-    
     if ((_textField.text = welcomeText)) {
+        
         _sendButton.enabled = NO;
     }
     
-    
-    
     [_messages removeAllObjects];
+    
     [_clientTable reloadData];
     [self reloadMessages];
-    [self reloadProfileImages];
-    //    [self reloadProfileImages];
     
 }
 
@@ -170,6 +147,7 @@
     
 }
 
+
 - (void)viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
@@ -179,6 +157,8 @@
     
     [_ref removeObserverWithHandle:_refHandle];
 }
+
+
 
 - (int) indexOfMessage:(FIRDataSnapshot *)snapshot {
     int index = 0;
@@ -191,23 +171,21 @@
     return -1;
 }
 
+
+
 - (void) reloadMessages {
-    
     
     [_clientTable reloadData];
     // Listen for new messages in the Firebase database
     _refHandle = [[_ref child:@"posts"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
         
-        
         // addObject does not contain an index and i need to specify index so i can order my array
         //[_messages addObject:snapshot];
-        
         
         //[_clientTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_messages.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
         
         // insertObject does cotain an index so i can specify where to place my new object into the array
         [_messages insertObject:snapshot atIndex:0];
-        
         NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
         [_clientTable insertRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationAutomatic];
         
@@ -222,53 +200,20 @@
     // Listen for new messages in the Firebase database
     _refHandleImage = [[_ref child:@"ProfileImages"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
         
-    
+        
         // insertObject does cotain an index so i can specify where to place my new object into the array
         
-        
-//        [_imagges insertObject:snapshot atIndex:0];
-        
+        [_imagges insertObject:snapshot atIndex:0];
         NSDictionary<NSString *, NSString *> *imagge = snapshot.value;
-    
-
-        NSString *name = imagge[MessageFieldsname];
-        NSString *photoUrl = imagge[MessageFieldsphotoUrl];
-        
+        NSString *photoUrl =  [imagge valueForKey:@"photoUrl"];
         imagesString = photoUrl;
-
-//        
-//        NSString *userName = [[NSUserDefaults standardUserDefaults]
-//                              stringForKey:@"preferenceName"];
-//
-//        
-//        if (userName == name) {
-//            
-//
-//        }
-//        
-
-//        NSLog(@"%@",name);
-
-
-
-        
-        
-
-    
-        
     }];
     
 }
 
 -(void) userImageString {
     
-    
-
-
-
 }
-
-
 
 # pragma mark - TableView
 
@@ -333,35 +278,35 @@
     
     
     FIRDataSnapshot *messageSnapshot = nil;
-
+    
     
     // I need to get get an array from object fir datasnapshot
-    
-    
-
-    
     
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         messageSnapshot = [messagesSearchArray objectAtIndex:indexPath.row];
     } else {
         messageSnapshot = [_messages objectAtIndex:indexPath.row];
-
+        
     }
     
     //    FIRDataSnapshot *messageSnapshot = _messages[indexPath.row];
     
-    NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
+    NSMutableDictionary<NSString *, NSString *> *message = messageSnapshot.value;
+    
+    
+    [message setValue:imagesString forKey:@"photoUrl"];
     
     NSString *name = message[MessageFieldsname];
     NSString *text = message[MessageFieldstext];
     NSString *color = message[MessageFieldscolor];
     NSString *date = message[MessageFieldsdate];
-//    NSString *photoUrl = imagge[MessageFieldsphotoUrl];
+    NSString *photoUrl = imaggeGlobal[MessageFieldsphotoUrl];
+    
+    
     
     
     cell.nameLabel.text = [NSString stringWithFormat:@"%@",  name];
-    
     NSString *valueToSave = [NSString stringWithFormat:@"%@",  name];
     [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"preferenceName"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -369,25 +314,7 @@
     cell.solicitaLabel.text = [NSString stringWithFormat:@"%@",  text];
     cell.dateLabel.text =[NSString stringWithFormat:@"%@", date];
     cell.priorityIndicatorLabel.text = [NSString stringWithFormat:@"%@",  color];
-    cell.userPictureImage.image = [UIImage imageNamed:  imagesString];
     
-    if (imagesString) {
-        NSURL *url = [NSURL URLWithString:imagesString];
-        if (url) {
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            if (data) {
-                cell.userPictureImage.image = [UIImage imageWithData:data];
-            }
-        }
-    }
-    
-    
-    
-    
-    
-
-    
- 
     
     NSString *green = @"green";
     NSString *yellow = @"yellow";
@@ -416,8 +343,30 @@
         
         
     }
-    
-
+    //    NSString * URL;
+    //    NSURL *imageURL = [NSURL URLWithString:imagesString];
+    NSString *key = [imagesString MD5Hash];
+    NSData *data = [FTWCache objectForKey:key];
+    if (data) {
+        UIImage *image = [UIImage imageWithData:data];
+        cell.userPictureImage.image = image;
+        
+    } else {
+        cell.userPictureImage.image = [UIImage imageNamed:@"hostess.png"];
+        
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+        dispatch_async(queue, ^{
+            NSURL *url = [[NSURL alloc] initWithString:photoUrl];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            UIImage *image = [UIImage imageWithData:data];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.userPictureImage.image = image;
+                
+            });
+        });
+        
+        
+    }
     
     return cell;
     
@@ -440,10 +389,6 @@
     
     return YES;
 }
-
-
-
-
 
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -475,7 +420,6 @@
 
 // UITextViewDelegate protocol methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
     
     
     [self sendSolicitudButton:nil];

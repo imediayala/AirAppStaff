@@ -10,7 +10,12 @@
 #import <Firebase/Firebase.h>
 @import Firebase;
 
-@interface UsersProfileViewController : UIViewController
+@interface UsersProfileViewController : UIViewController{
+
+    FIRDatabaseHandle _refHandleImage;
+
+
+}
 @property (strong, nonatomic) IBOutlet UILabel *userLabel;
 @property (strong, nonatomic) IBOutlet UILabel *emailLabel;
 @property (strong, nonatomic) IBOutlet UILabel *passwordLabel;
@@ -20,5 +25,7 @@
 
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *imagges;
+
 
 @end

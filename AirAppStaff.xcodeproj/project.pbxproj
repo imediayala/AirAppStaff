@@ -28,6 +28,8 @@
 		155D6D481D063BC7004408DD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D471D063BC7004408DD /* Post.m */; };
 		155D6D4B1D063CE7004408DD /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D6D4A1D063CE7004408DD /* PostTableViewCell.m */; };
 		155E64481D73020000BB58CB /* UserDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 155E64471D73020000BB58CB /* UserDetailsTableViewController.m */; };
+		1561E9761D91B7BC00F297DF /* FTWCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561E9751D91B7BC00F297DF /* FTWCache.m */; };
+		1561E9791D91BA6500F297DF /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561E9781D91BA6500F297DF /* NSString+MD5.m */; };
 		1574606F1D19337A007A53DB /* MessageModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1574606E1D19337A007A53DB /* MessageModalViewController.m */; };
 		157460721D193525007A53DB /* FireBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 157460711D193525007A53DB /* FireBaseApi.m */; };
 		15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */; };
@@ -77,6 +79,7 @@
 		150B8DC81CE4C2AD00BC4DA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		150B8DD41CE4C32700BC4DA4 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		150F29FD1D86185D002CD6E0 /* AirAppStaff.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AirAppStaff.entitlements; sourceTree = "<group>"; };
 		1524B6D11CE671630062485E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		1524B6D21CE671630062485E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		1524B6D41CE672BD0062485E /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
@@ -100,6 +103,10 @@
 		155D6D4A1D063CE7004408DD /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
 		155E64461D73020000BB58CB /* UserDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsTableViewController.h; sourceTree = "<group>"; };
 		155E64471D73020000BB58CB /* UserDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsTableViewController.m; sourceTree = "<group>"; };
+		1561E9741D91B7BC00F297DF /* FTWCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTWCache.h; sourceTree = "<group>"; };
+		1561E9751D91B7BC00F297DF /* FTWCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTWCache.m; sourceTree = "<group>"; };
+		1561E9771D91BA6500F297DF /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		1561E9781D91BA6500F297DF /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		1574606D1D19337A007A53DB /* MessageModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModalViewController.h; sourceTree = "<group>"; };
 		1574606E1D19337A007A53DB /* MessageModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModalViewController.m; sourceTree = "<group>"; };
 		157460701D193525007A53DB /* FireBaseApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireBaseApi.h; sourceTree = "<group>"; };
@@ -176,6 +183,7 @@
 		150B8DA01CE4C2AD00BC4DA4 /* AirAppStaff */ = {
 			isa = PBXGroup;
 			children = (
+				150F29FD1D86185D002CD6E0 /* AirAppStaff.entitlements */,
 				151BC90E1CEA4A9D00D54C02 /* Delegates */,
 				151BC90D1CEA4A7B00D54C02 /* Controllers */,
 				150B8DA71CE4C2AD00BC4DA4 /* ViewController.h */,
@@ -283,6 +291,10 @@
 				15DF7D271D0E260700143439 /* TimeTableViewCell.m */,
 				15D0F6BC1D11F5D400049C7C /* ShiftsCollectionViewCell.h */,
 				15D0F6BD1D11F5D400049C7C /* ShiftsCollectionViewCell.m */,
+				1561E9741D91B7BC00F297DF /* FTWCache.h */,
+				1561E9751D91B7BC00F297DF /* FTWCache.m */,
+				1561E9771D91BA6500F297DF /* NSString+MD5.h */,
+				1561E9781D91BA6500F297DF /* NSString+MD5.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -390,12 +402,17 @@
 		150B8D961CE4C2AD00BC4DA4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = idesigndreams;
 				TargetAttributes = {
 					150B8D9D1CE4C2AD00BC4DA4 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 3WN2HPYHZR;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					150B8DB61CE4C2AD00BC4DA4 = {
 						CreatedOnToolsVersion = 7.3;
@@ -518,6 +535,7 @@
 				15DF7D281D0E260700143439 /* TimeTableViewCell.m in Sources */,
 				155D6D451D0622CE004408DD /* User.m in Sources */,
 				155E64481D73020000BB58CB /* UserDetailsTableViewController.m in Sources */,
+				1561E9761D91B7BC00F297DF /* FTWCache.m in Sources */,
 				1545D1331CFC350300DB68D6 /* UsersProfileViewController.m in Sources */,
 				155D6D481D063BC7004408DD /* Post.m in Sources */,
 				155D6D4B1D063CE7004408DD /* PostTableViewCell.m in Sources */,
@@ -530,6 +548,7 @@
 				152F04C21CF709C50013BF74 /* AppState.m in Sources */,
 				152F04C51CF70ADF0013BF74 /* Constants.m in Sources */,
 				15D0F6BE1D11F5D400049C7C /* ShiftsCollectionViewCell.m in Sources */,
+				1561E9791D91BA6500F297DF /* NSString+MD5.m in Sources */,
 				15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */,
 				15DF7D221D0E22CA00143439 /* Empleado.m in Sources */,
 				1574606F1D19337A007A53DB /* MessageModalViewController.m in Sources */,
@@ -603,8 +622,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: sediayala@hotmail.com (BPXG9RQAZA)";
@@ -627,7 +648,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
@@ -649,8 +670,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: sediayala@hotmail.com (BPXG9RQAZA)";
@@ -667,7 +690,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -680,6 +703,7 @@
 			baseConfigurationReference = 5AA256DF415F5B764F076623 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AirAppStaff/AirAppStaff.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AirAppStaff/Info.plist;
@@ -697,6 +721,7 @@
 			baseConfigurationReference = E6520AB2E28A0774D6A1871B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AirAppStaff/AirAppStaff.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AirAppStaff/Info.plist;
