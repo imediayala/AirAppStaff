@@ -71,7 +71,7 @@
     [self loadAd];
     [_clientTable registerClass:UITableViewCell.self forCellReuseIdentifier:@"tableViewCell"];
     [self fetchConfig];
-    [self reloadProfileImages];
+//    [self reloadProfileImages];
     
     //Cell editing
     
@@ -301,7 +301,7 @@
     NSString *text = message[MessageFieldstext];
     NSString *color = message[MessageFieldscolor];
     NSString *date = message[MessageFieldsdate];
-    NSString *photoUrl = imaggeGlobal[MessageFieldsphotoUrl];
+//    NSString *photoUrl = imaggeGlobal[MessageFieldsphotoUrl];
     
     
     
@@ -314,7 +314,8 @@
     cell.solicitaLabel.text = [NSString stringWithFormat:@"%@",  text];
     cell.dateLabel.text =[NSString stringWithFormat:@"%@", date];
     cell.priorityIndicatorLabel.text = [NSString stringWithFormat:@"%@",  color];
-    
+    cell.userPictureImage.image = [UIImage imageNamed:@"hostess.png"];
+
     
     NSString *green = @"green";
     NSString *yellow = @"yellow";
@@ -343,30 +344,30 @@
         
         
     }
-    //    NSString * URL;
-    //    NSURL *imageURL = [NSURL URLWithString:imagesString];
-    NSString *key = [imagesString MD5Hash];
-    NSData *data = [FTWCache objectForKey:key];
-    if (data) {
-        UIImage *image = [UIImage imageWithData:data];
-        cell.userPictureImage.image = image;
-        
-    } else {
-        cell.userPictureImage.image = [UIImage imageNamed:@"hostess.png"];
-        
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-        dispatch_async(queue, ^{
-            NSURL *url = [[NSURL alloc] initWithString:photoUrl];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            UIImage *image = [UIImage imageWithData:data];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.userPictureImage.image = image;
-                
-            });
-        });
-        
-        
-    }
+//    //    NSString * URL;
+//    //    NSURL *imageURL = [NSURL URLWithString:imagesString];
+//    NSString *key = [imagesString MD5Hash];
+//    NSData *data = [FTWCache objectForKey:key];
+//    if (data) {
+//        UIImage *image = [UIImage imageWithData:data];
+//        cell.userPictureImage.image = image;
+//        
+//    } else {
+//        cell.userPictureImage.image = [UIImage imageNamed:@"hostess.png"];
+//        
+//        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+//        dispatch_async(queue, ^{
+//            NSURL *url = [[NSURL alloc] initWithString:photoUrl];
+//            NSData *data = [NSData dataWithContentsOfURL:url];
+//            UIImage *image = [UIImage imageWithData:data];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                cell.userPictureImage.image = image;
+//                
+//            });
+//        });
+//        
+//        
+//    }
     
     return cell;
     

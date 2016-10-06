@@ -37,6 +37,7 @@ FIRDatabaseHandle _refHandle;
     self.comments = [[NSMutableArray alloc] init];
     self.post = [[Post alloc] init];
     
+    
     _repliesTable.allowsMultipleSelectionDuringEditing = NO;
 //    UINib *nib = [UINib nibWithNibName:@"PostTableViewCell" bundle:nil];
 //    [_repliesTable registerNib:nib forCellReuseIdentifier:@"post"];
@@ -247,7 +248,7 @@ FIRDatabaseHandle _refHandle;
     NSString *text = message[MessageFieldstextview];
     cell.authorLabel.text = [NSString stringWithFormat:@"%@", name];
     cell.postBody.text = [NSString stringWithFormat:@"%@", text];
-
+    cell.authorImage.image = [UIImage imageNamed:@"hostess.png"];
 //    } else if (indexPath.section == kSectionSend) {
 //        cell = [tableView dequeueReusableCellWithIdentifier:@"send"];
 //        _replyTextField = [(UITextField *) cell viewWithTag:7];

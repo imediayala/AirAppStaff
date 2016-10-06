@@ -22,6 +22,8 @@ FireBaseApi * controller;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _userImage.image = [UIImage imageNamed:@"hostess.png"];
+    
     
     // Use the FireBaseApi object "controller" so i can tell him to delegates on this class
     //Inialiating

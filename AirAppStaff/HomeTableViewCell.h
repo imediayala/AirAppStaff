@@ -10,7 +10,7 @@
 
 @interface HomeTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *solicitaLabel;
+@property (strong, nonatomic) IBOutlet UITextView *solicitaLabel;
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
