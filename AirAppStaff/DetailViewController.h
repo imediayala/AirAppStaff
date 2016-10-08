@@ -10,7 +10,7 @@
 #import "Post.h"
 @import Firebase;
 
-@interface DetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
+@interface DetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>{
     
        FIRDatabaseHandle _refHandle;
 
@@ -22,17 +22,24 @@
 @property (strong, nonatomic) FIRDataSnapshot *details;
 
 
+- (IBAction)closeChat:(id)sender;
+
+- (IBAction)actionButton:(id)sender;
 
 
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) FIRDatabaseReference *postRef;
 @property (strong, nonatomic) FIRDatabaseReference *commentsRef;
+@property (strong,nonatomic) FIRDatabaseReference * aceptadosRef;
 
 // Table view replies config
 
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *comments;
+@property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *userAcepptance;
+
+
 @property (strong, nonatomic) NSString *postKey;
 
 

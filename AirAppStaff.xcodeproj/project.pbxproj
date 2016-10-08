@@ -33,6 +33,7 @@
 		1574606F1D19337A007A53DB /* MessageModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1574606E1D19337A007A53DB /* MessageModalViewController.m */; };
 		157460721D193525007A53DB /* FireBaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 157460711D193525007A53DB /* FireBaseApi.m */; };
 		15A7FDB91CFC5F6D00C9AF78 /* EditUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */; };
+		15AA7E301DA818CD00D84243 /* PreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AA7E2F1DA818CD00D84243 /* PreDetailViewController.m */; };
 		15AF1FCC1D0A528B001F89B6 /* FirebaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AF1FCB1D0A528B001F89B6 /* FirebaseDataSource.m */; };
 		15AFB04D1CF86B560085F793 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */; };
 		15D0F6BB1D11F01600049C7C /* TimeTableCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D0F6BA1D11F01600049C7C /* TimeTableCollectionViewController.m */; };
@@ -113,6 +114,8 @@
 		157460711D193525007A53DB /* FireBaseApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireBaseApi.m; sourceTree = "<group>"; };
 		15A7FDB71CFC5F6D00C9AF78 /* EditUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserTableViewController.h; sourceTree = "<group>"; };
 		15A7FDB81CFC5F6D00C9AF78 /* EditUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserTableViewController.m; sourceTree = "<group>"; };
+		15AA7E2E1DA818CD00D84243 /* PreDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreDetailViewController.h; sourceTree = "<group>"; };
+		15AA7E2F1DA818CD00D84243 /* PreDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreDetailViewController.m; sourceTree = "<group>"; };
 		15AF1FCA1D0A528B001F89B6 /* FirebaseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseDataSource.h; sourceTree = "<group>"; };
 		15AF1FCB1D0A528B001F89B6 /* FirebaseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseDataSource.m; sourceTree = "<group>"; };
 		15AFB04B1CF86B560085F793 /* DetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
@@ -260,6 +263,8 @@
 				150B8DD51CE4C32700BC4DA4 /* HomeViewController.m */,
 				1524B6D11CE671630062485E /* DetailViewController.h */,
 				1524B6D21CE671630062485E /* DetailViewController.m */,
+				15AA7E2E1DA818CD00D84243 /* PreDetailViewController.h */,
+				15AA7E2F1DA818CD00D84243 /* PreDetailViewController.m */,
 				1543021C1CEB9F0600A1268B /* LoginAuthViewController.h */,
 				1543021D1CEB9F0600A1268B /* LoginAuthViewController.m */,
 				1545D1311CFC350300DB68D6 /* UsersProfileViewController.h */,
@@ -408,6 +413,7 @@
 					150B8D9D1CE4C2AD00BC4DA4 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 3WN2HPYHZR;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -528,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				152F04C81CF713EA0013BF74 /* MeasurementHelper.m in Sources */,
+				15AA7E301DA818CD00D84243 /* PreDetailViewController.m in Sources */,
 				1524B6D31CE671630062485E /* DetailViewController.m in Sources */,
 				1543021E1CEB9F0600A1268B /* LoginAuthViewController.m in Sources */,
 				15AFB04D1CF86B560085F793 /* DetailTableViewCell.m in Sources */,
@@ -703,6 +710,7 @@
 			baseConfigurationReference = 5AA256DF415F5B764F076623 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AirAppStaff/AirAppStaff.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -712,6 +720,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.idesigndreams.AirAppStaff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -721,6 +731,7 @@
 			baseConfigurationReference = E6520AB2E28A0774D6A1871B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AirAppStaff/AirAppStaff.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -730,6 +741,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.idesigndreams.AirAppStaff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

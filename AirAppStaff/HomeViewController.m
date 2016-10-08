@@ -16,14 +16,17 @@
 #import "User.h"
 #import "FTWCache.h"
 #import "NSString+MD5.h"
+#import "PreDetailViewController.h"
 
 @import Firebase;
 
 #define airAppNS @"https://airappstaff.firebaseio.com/user-posts/<user-id>/<unique-post-id>"
 
 @interface HomeViewController (){
-    
-    NSMutableArray* messagesSearchArray;
+
+//    NSMutableArray<FIRDataSnapshot *> *messagesSearchArray;
+
+    NSArray* messagesSearchArray;
     NSMutableArray* messagesOrderedArray;
     NSString * imagesString;
     NSDictionary<NSString *, NSString *> *imaggeGlobal;
@@ -129,9 +132,13 @@
         _sendButton.enabled = NO;
     }
     
+
+    
     [_messages removeAllObjects];
     
-    [_clientTable reloadData];
+    self.clientTable.estimatedRowHeight = 30.0; // for example. Set your average height
+    self.clientTable.rowHeight = UITableViewAutomaticDimension;
+    [self.clientTable reloadData];
     [self reloadMessages];
     
 }
@@ -377,9 +384,25 @@
 //Search display controller filtering
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
+    
+    FIRDataSnapshot * messageSnapshot =  nil;
+    NSIndexPath * indexPath;
+    messageSnapshot = [_messages objectAtIndex:indexPath.row];
+    
+    
+    
+    
+    
+//    NSMutableDictionary<NSString *, NSString *> *message = messageSnapshot.value;
+//    NSArray *newArray = [message valueForKey:@"body"];
+    
+    
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-    messagesSearchArray = [_messages filteredArrayUsingPredicate:resultPredicate];
+    messagesSearchArray = [messageSnapshot.value filteredArrayUsingPredicate:resultPredicate];
 }
+
+
+
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
@@ -409,7 +432,7 @@
 {if ([[segue identifier] isEqualToString:@"showDetail"]){
     
     // Get reference to the destination view controller
-    DetailViewController *vc = [segue destinationViewController];
+    PreDetailViewController *vc = [segue destinationViewController];
     
     // Pass any objects to the view controller here, like...
     vc.details = (FIRDataSnapshot*)sender;

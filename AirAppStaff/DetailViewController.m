@@ -34,7 +34,9 @@ FIRDatabaseHandle _refHandle;
     FIRDatabaseReference *ref = [FIRDatabase database].reference;
     self.postRef = [[ref child:@"posts"] child:_details.key];
     self.commentsRef = [[ref child:@"post-comments"] child:_details.key];
+    self.aceptadosRef = [[ref child:@"usuario-okrequest"] child:_details.key];
     self.comments = [[NSMutableArray alloc] init];
+
     self.post = [[Post alloc] init];
     
     
@@ -46,34 +48,34 @@ FIRDatabaseHandle _refHandle;
     
     _ref = [[FIRDatabase database] reference];
     
-    NSString *text = _details.value[MessageFieldstext];
-    NSString *priority = _details.value[MessageFieldscolor];
-
-    
-    self.detailLabel.text = text;
-    NSLog(@"Your name is %@", text);
-    NSLog(@"Your name is %@", priority);
-
-    
-    NSString *green =@"green";
-    NSString *yellow =@"yellow";
-    NSString *red =@"red";
-    
-    
-    if ([priority isEqualToString:red]) {
-        
-        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor redColor];
-        
-    }else if ([priority isEqualToString:yellow]){
-        
-        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor yellowColor];
-    
-    }else if ([priority isEqualToString:green]){
-        
-        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor greenColor];
-    
-    } 
-        
+//    NSString *text = _details.value[MessageFieldstext];
+//    NSString *priority = _details.value[MessageFieldscolor];
+//
+//    
+//    self.detailLabel.text = text;
+//    NSLog(@"Your name is %@", text);
+//    NSLog(@"Your name is %@", priority);
+//
+//    
+//    NSString *green =@"green";
+//    NSString *yellow =@"yellow";
+//    NSString *red =@"red";
+//    
+//    
+//    if ([priority isEqualToString:red]) {
+//        
+//        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor redColor];
+//        
+//    }else if ([priority isEqualToString:yellow]){
+//        
+//        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor yellowColor];
+//    
+//    }else if ([priority isEqualToString:green]){
+//        
+//        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor greenColor];
+//    
+//    } 
+//        
     
     
     
@@ -111,7 +113,9 @@ FIRDatabaseHandle _refHandle;
         
     }];
     
-    
+//    self.repliesTable.estimatedRowHeight = 30.0; // for example. Set your average height
+//    self.repliesTable.rowHeight = UITableViewAutomaticDimension;
+//    [self.repliesTable reloadData];
     
     
 //    // [START child_event_listener]
@@ -158,6 +162,9 @@ FIRDatabaseHandle _refHandle;
     }
     return -1;
 }
+
+
+
 
 
 
@@ -268,4 +275,72 @@ FIRDatabaseHandle _refHandle;
 }
 
 
+- (IBAction)closeChat:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)actionButton:(id)sender {
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Alerta!"
+                                          message:@"Estas seguro que aceptas el cambio con el usuario, no podras deshacer esta accion"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel action");
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSLog(@"OK action");
+                                   
+                                   NSString *valueToSave = [NSString stringWithFormat:@"%@",  _details.key];
+                                   
+                                   NSLog(@"%@", valueToSave);
+                                   
+                                   
+                                   [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"aceptadoKey"];
+                                   [[NSUserDefaults standardUserDefaults] synchronize];
+                                   
+                                   NSString *uid = [FIRAuth auth].currentUser.uid;
+                                   [[[[FIRDatabase database].reference child:@"users"] child:uid]
+                                    observeSingleEventOfType:FIRDataEventTypeValue
+                                    withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                                        NSDictionary *user = snapshot.value;
+                                        NSString *username = user[@"username"];
+                                        NSDictionary *comment = @{@"uid": uid,
+                                                                  @"author": username,
+                                                                  @"key": valueToSave,
+                                                                  @"text": @"ok"};
+                                        [[_aceptadosRef childByAutoId] setValue:comment];
+                                    }];
+                                   
+                              
+                                   
+                                   
+                                   
+                                   
+
+                              
+                                   
+                                   
+                                   
+                                   [self dismissViewControllerAnimated:YES completion:nil];
+
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+
+
+}
 @end
