@@ -7,7 +7,6 @@
 //
 
 #import "DetailViewController.h"
-#import "DetailTableViewCell.h"
 #import "PostTableViewCell.h"
 
 #import "Constants.h"

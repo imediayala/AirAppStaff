@@ -292,11 +292,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AirAppStaff/PreDetailViewController.m"
-            timestampString = "497655559.985224"
+            timestampString = "497696232.952055"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -308,11 +308,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AirAppStaff/PreDetailViewController.m"
-            timestampString = "497655559.985224"
+            timestampString = "497696232.952055"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-reloadMessages"
             landmarkType = "7">
          </BreakpointContent>

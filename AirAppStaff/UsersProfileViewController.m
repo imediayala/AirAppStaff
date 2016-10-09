@@ -35,6 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+
     _ref = [[FIRDatabase database] reference];
     //Get the currently signed-in user
     
@@ -196,5 +197,8 @@
     
     [AppState sharedInstance].signedIn = false;
     [self performSegueWithIdentifier:@"SeguesToSignIn" sender:nil];
+}
+
+- (IBAction)editUserButton:(id)sender {
 }
 @end

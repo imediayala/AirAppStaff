@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageBox;
 - (IBAction)logOutButton:(id)sender;
 
+- (IBAction)editUserButton:(id)sender;
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *imagges;

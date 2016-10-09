@@ -13,7 +13,7 @@
 
 
 
-@interface PreDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
+@interface PreDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UINavigationControllerDelegate>{
     
     FIRDatabaseHandle _refHandle;
 
@@ -26,12 +26,17 @@
 @property (strong, nonatomic) FIRDatabaseReference *postRef;
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 
+@property (weak, nonatomic) IBOutlet UIImageView *detailPriorytyBackgrundColorImage;
 
-
+@property (weak, nonatomic) IBOutlet UIImageView *imageBox;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet UITextView *detailText;
+
+
 @property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *userAcepptance;
 
 @property (strong,nonatomic) FIRDatabaseReference * aceptadosRef;
 
+- (IBAction)actionCambiarTurnoButton:(id)sender;
 
 @end

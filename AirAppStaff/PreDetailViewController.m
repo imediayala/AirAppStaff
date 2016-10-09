@@ -10,6 +10,8 @@
 #import "Constants.h"
 #import "DetailViewController.h"
 #import "PostTableViewCell.h"
+@import Firebase;
+
 
 @interface PreDetailViewController ()
 
@@ -24,25 +26,53 @@
     FIRDatabaseReference *ref = [FIRDatabase database].reference;
     self.aceptadosRef = [[ref child:@"usuario-okrequest"] child:_details.key];
     self.userAcepptance = [[NSMutableArray alloc] init];
-    [self.userOkRequestTable reloadData];
-
-
+    self.post = [[Post alloc] init];
+    
+    _ref = [[FIRDatabase database] reference];
+    
+    _userAcepptance = [[NSMutableArray alloc] init];
 
 
     
+
+
+    //detailBox
+
+   _imageBox.image  = [UIImage imageNamed:@"hostess.png"];
     NSString *text = _details.value[MessageFieldstext];
+    NSString *user = _details.value[MessageFieldsname];
+
     NSString *priority = _details.value[MessageFieldscolor];
-    
-    
     self.detailText.text = text;
+    self.userLabel.text = user;
     
-            NSString *aceptadoSolicitudkey = [[NSUserDefaults standardUserDefaults]
+    NSString *aceptadoSolicitudkey = [[NSUserDefaults standardUserDefaults]
                                   stringForKey:@"aceptadokey"];
     
     
-//    if (aceptadoSolicitudkey) {
-//        <#statements#>
-//    }
+        NSLog(@"Your name is %@", text);
+        NSLog(@"Your priority is %@", priority);
+    
+    
+        NSString *green =@"green";
+        NSString *yellow =@"yellow";
+        NSString *red =@"red";
+    
+    
+        if ([priority isEqualToString:red]) {
+    
+            _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor redColor];
+    
+        }else if ([priority isEqualToString:yellow]){
+    
+            _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor orangeColor];
+    
+        }else if ([priority isEqualToString:green]){
+    
+            _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor greenColor];
+        
+        } 
+            
     
     
     
@@ -68,7 +98,10 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     
-    [self.userOkRequestTable reloadData];
+    [self.userAcepptance removeAllObjects];
+
+    
+//    [self.userOkRequestTable reloadData];
 
     [self reloadMessages];
 
@@ -86,6 +119,10 @@
      observeEventType:FIRDataEventTypeChildAdded
      withBlock:^(FIRDataSnapshot *snapshot) {
          [_userAcepptance addObject:snapshot];
+         [_userOkRequestTable insertRowsAtIndexPaths:@[
+                                                 [NSIndexPath indexPathForRow:[self.userAcepptance count] - 1 inSection:0]
+                                                 ]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
          
         
          
@@ -178,4 +215,6 @@
 }
 */
 
+- (IBAction)actionCambiarTurnoButton:(id)sender {
+}
 @end

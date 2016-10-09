@@ -38,6 +38,7 @@
 		15AFB04D1CF86B560085F793 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AFB04C1CF86B560085F793 /* DetailTableViewCell.m */; };
 		15D0F6BB1D11F01600049C7C /* TimeTableCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D0F6BA1D11F01600049C7C /* TimeTableCollectionViewController.m */; };
 		15D0F6BE1D11F5D400049C7C /* ShiftsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D0F6BD1D11F5D400049C7C /* ShiftsCollectionViewCell.m */; };
+		15D6EE111DAA4DEE00B3D0A6 /* UtilidadesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D6EE101DAA4DEE00B3D0A6 /* UtilidadesTableViewController.m */; };
 		15DF7D221D0E22CA00143439 /* Empleado.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DF7D211D0E22CA00143439 /* Empleado.m */; };
 		15DF7D251D0E235400143439 /* TimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DF7D241D0E235400143439 /* TimeTableViewController.m */; };
 		15DF7D281D0E260700143439 /* TimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DF7D271D0E260700143439 /* TimeTableViewCell.m */; };
@@ -124,6 +125,8 @@
 		15D0F6BA1D11F01600049C7C /* TimeTableCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTableCollectionViewController.m; sourceTree = "<group>"; };
 		15D0F6BC1D11F5D400049C7C /* ShiftsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftsCollectionViewCell.h; sourceTree = "<group>"; };
 		15D0F6BD1D11F5D400049C7C /* ShiftsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftsCollectionViewCell.m; sourceTree = "<group>"; };
+		15D6EE0F1DAA4DEE00B3D0A6 /* UtilidadesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilidadesTableViewController.h; sourceTree = "<group>"; };
+		15D6EE101DAA4DEE00B3D0A6 /* UtilidadesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilidadesTableViewController.m; sourceTree = "<group>"; };
 		15DF7D201D0E22CA00143439 /* Empleado.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Empleado.h; sourceTree = "<group>"; };
 		15DF7D211D0E22CA00143439 /* Empleado.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Empleado.m; sourceTree = "<group>"; };
 		15DF7D231D0E235400143439 /* TimeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTableViewController.h; sourceTree = "<group>"; };
@@ -279,6 +282,8 @@
 				15D0F6BA1D11F01600049C7C /* TimeTableCollectionViewController.m */,
 				1574606D1D19337A007A53DB /* MessageModalViewController.h */,
 				1574606E1D19337A007A53DB /* MessageModalViewController.m */,
+				15D6EE0F1DAA4DEE00B3D0A6 /* UtilidadesTableViewController.h */,
+				15D6EE101DAA4DEE00B3D0A6 /* UtilidadesTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				1524B6D61CE672BD0062485E /* HomeTableViewCell.m in Sources */,
 				150B8DA61CE4C2AD00BC4DA4 /* AppDelegate.m in Sources */,
 				15AF1FCC1D0A528B001F89B6 /* FirebaseDataSource.m in Sources */,
+				15D6EE111DAA4DEE00B3D0A6 /* UtilidadesTableViewController.m in Sources */,
 				150B8DA31CE4C2AD00BC4DA4 /* main.m in Sources */,
 				150B8DD61CE4C32700BC4DA4 /* HomeViewController.m in Sources */,
 				157460721D193525007A53DB /* FireBaseApi.m in Sources */,

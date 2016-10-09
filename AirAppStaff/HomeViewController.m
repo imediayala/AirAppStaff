@@ -60,7 +60,7 @@
     /// TEXT FIELD DELEGATE
     
     [_textField setDelegate:self];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
     
     _ref = [[FIRDatabase database] reference];
@@ -336,7 +336,7 @@
     }
     
     else if ([cell.priorityIndicatorLabel.text isEqualToString: yellow]) {
-        cell.priorityIndicatorLabel.textColor = [UIColor yellowColor];
+        cell.priorityIndicatorLabel.textColor = [UIColor orangeColor];
         cell.priorityIndicatorLabel.text = @"Prioridad Media";
     }
     
