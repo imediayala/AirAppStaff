@@ -10,6 +10,8 @@
 #import "AppState.h"
 #import "NSString+MD5.h"
 #import "FTWCache.h"
+#import "User.h"
+
 
 
 @import Firebase;
@@ -67,27 +69,36 @@
 }
 
 -(void) requestProfileInfo{
-
     
-    FIRUser *user = [FIRAuth auth].currentUser;
+    // [START single_value_read]
+    NSString *userID = [FIRAuth auth].currentUser.uid;
+    [[[_ref child:@"users"] child:userID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        // Get user value
+        User *user = [[User alloc] initWithUsername:snapshot.value[@"username"]];
+        self.userLabel.text = user.username;
     
-    if (user != nil) {
-        NSString *uid = user.uid;  // The user's ID, unique to the Firebase
-        // project. Do NOT use this value to
-        // authenticate with your backend server, if
-        // you have one. Use
-        // getTokenWithCompletion:completion: instead.
-        
-        self.emailLabel.text = user.email;
-        NSString *userName = [[NSUserDefaults standardUserDefaults]
-                                stringForKey:@"preferenceName"];
-        
-        self.userLabel.text = userName;
-        
-    } else {
-        // No user is signed in.
-    }
+    }];
+    
 
+//    
+//    FIRUser *user = [FIRAuth auth].currentUser;
+//
+//    
+//    if (user != nil) {
+//        NSString *uid = user.uid;  // The user's ID, unique to the Firebase
+//        // project. Do NOT use this value to
+//        // authenticate with your backend server, if
+//        // you have one. Use
+//        // getTokenWithCompletion:completion: instead.
+//        
+//       
+//        
+//        self.userLabel.text = user.displayName;
+//        
+//    } else {
+//        // No user is signed in.
+//    }
+//
 }
 
 - (void) reloadProfileImages {

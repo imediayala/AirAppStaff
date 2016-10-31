@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import "DetailViewController.h"
 
 @import Firebase;
 
 
 
-@interface PreDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UINavigationControllerDelegate>{
+@interface PreDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UINavigationControllerDelegate, ChatDelegate>{
     
     FIRDatabaseHandle _refHandle;
 
@@ -38,5 +39,7 @@
 @property (strong,nonatomic) FIRDatabaseReference * aceptadosRef;
 
 - (IBAction)actionCambiarTurnoButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *actionProperty;
+@property (weak, nonatomic) IBOutlet UIButton *ConversationButton;
 
 @end

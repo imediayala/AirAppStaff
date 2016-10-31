@@ -10,11 +10,20 @@
 #import "Post.h"
 @import Firebase;
 
+@protocol ChatDelegate <NSObject>
+
+- (void)dataFromController:(NSString *)data;
+
+@end
+
 @interface DetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>{
     
        FIRDatabaseHandle _refHandle;
-
 }
+@property (nonatomic, retain) NSString *data;
+
+@property (nonatomic, weak) id <ChatDelegate> delegate;
+
 @property (strong, nonatomic) IBOutlet UITextView *detailLabel;
 
 @property(strong, nonatomic) NSString *detailArray;

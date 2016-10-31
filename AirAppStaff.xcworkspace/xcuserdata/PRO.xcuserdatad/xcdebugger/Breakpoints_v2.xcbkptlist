@@ -33,6 +33,38 @@
             endingLineNumber = "12"
             landmarkName = "@interface EditUserTableViewController"
             landmarkType = "2">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[EditUserTableViewController ref]"
+                  moduleName = "AirAppStaff"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///DEVELOPMENT/Xcode%20Projects/AirAppStaff%20Master/AirAppStaff/EditUserTableViewController.h"
+                  timestampString = "498955253.74084"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[EditUserTableViewController setRef:]"
+                  moduleName = "AirAppStaff"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///DEVELOPMENT/Xcode%20Projects/AirAppStaff%20Master/AirAppStaff/EditUserTableViewController.h"
+                  timestampString = "498955253.744548"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -196,12 +228,12 @@
                   moduleName = "AirAppStaff"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///DEVELOPMENT/Xcode%20Projects/AirAppStaff%20Master/AirAppStaff/HomeViewController.h"
-                  timestampString = "497655443.78055"
+                  timestampString = "498955253.794152"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "44"
                   endingLineNumber = "44"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -211,12 +243,12 @@
                   moduleName = "AirAppStaff"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///DEVELOPMENT/Xcode%20Projects/AirAppStaff%20Master/AirAppStaff/HomeViewController.h"
-                  timestampString = "497655443.783403"
+                  timestampString = "498955253.796984"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "44"
                   endingLineNumber = "44"
-                  offsetFromSymbolStart = "49">
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -292,12 +324,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AirAppStaff/PreDetailViewController.m"
-            timestampString = "497696232.952055"
+            timestampString = "498955252.56478"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-reloadMessages"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -308,12 +340,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AirAppStaff/PreDetailViewController.m"
-            timestampString = "497696232.952055"
+            timestampString = "498950510.533646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "-reloadMessages"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AirAppStaff/UsersProfileViewController.m"
+            timestampString = "498948665.074662"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-reloadProfileImages"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UsersProfileViewController reloadProfileImages]"
+                  moduleName = "AirAppStaff"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///DEVELOPMENT/Xcode%20Projects/AirAppStaff%20Master/AirAppStaff/UsersProfileViewController.m"
+                  timestampString = "498955253.834575"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__49-[UsersProfileViewController reloadProfileImages]_block_invoke"
+                  moduleName = "AirAppStaff"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///DEVELOPMENT/Xcode%20Projects/AirAppStaff%20Master/AirAppStaff/UsersProfileViewController.m"
+                  timestampString = "498955253.837412"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AirAppStaff/PreDetailViewController.m"
+            timestampString = "498954973.430428"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "-addItemViewController:didFinishEnteringItem:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

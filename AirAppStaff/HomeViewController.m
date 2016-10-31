@@ -60,6 +60,8 @@
     /// TEXT FIELD DELEGATE
     
     [_textField setDelegate:self];
+    
+    
 //    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
     
@@ -314,9 +316,11 @@
     
     
     cell.nameLabel.text = [NSString stringWithFormat:@"%@",  name];
-    NSString *valueToSave = [NSString stringWithFormat:@"%@",  name];
-    [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"preferenceName"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    NSString *valueToSave = [NSString stringWithFormat:@"%@",  name];
+//    [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"preferenceName"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    cell.solicitaLabel.userInteractionEnabled = NO;
     
     cell.solicitaLabel.text = [NSString stringWithFormat:@"%@",  text];
     cell.dateLabel.text =[NSString stringWithFormat:@"%@", date];

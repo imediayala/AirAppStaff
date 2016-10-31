@@ -25,80 +25,46 @@
 
 @end
 
+
+
 @implementation DetailViewController
 FIRDatabaseHandle _refHandle;
 
+@synthesize delegate;
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Do any additional setup after loading the view.
+
+    
     FIRDatabaseReference *ref = [FIRDatabase database].reference;
     self.postRef = [[ref child:@"posts"] child:_details.key];
     self.commentsRef = [[ref child:@"post-comments"] child:_details.key];
     self.aceptadosRef = [[ref child:@"usuario-okrequest"] child:_details.key];
+    
     self.comments = [[NSMutableArray alloc] init];
-
     self.post = [[Post alloc] init];
     
-    
     _repliesTable.allowsMultipleSelectionDuringEditing = NO;
-//    UINib *nib = [UINib nibWithNibName:@"PostTableViewCell" bundle:nil];
-//    [_repliesTable registerNib:nib forCellReuseIdentifier:@"post"];
-    
-    
     
     _ref = [[FIRDatabase database] reference];
-    
-//    NSString *text = _details.value[MessageFieldstext];
-//    NSString *priority = _details.value[MessageFieldscolor];
-//
-//    
-//    self.detailLabel.text = text;
-//    NSLog(@"Your name is %@", text);
-//    NSLog(@"Your name is %@", priority);
-//
-//    
-//    NSString *green =@"green";
-//    NSString *yellow =@"yellow";
-//    NSString *red =@"red";
-//    
-//    
-//    if ([priority isEqualToString:red]) {
-//        
-//        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor redColor];
-//        
-//    }else if ([priority isEqualToString:yellow]){
-//        
-//        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor yellowColor];
-//    
-//    }else if ([priority isEqualToString:green]){
-//        
-//        _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor greenColor];
-//    
-//    } 
-//        
-    
-    
-    
-    
-    
-    
-    // Do any additional setup after loading the view.
     
     _comments = [[NSMutableArray alloc] init];
 
 }
-
+- (void)passDataBack
+{
+    [self.delegate dataFromController:@"data to pass back"];
+    
+}
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.comments removeAllObjects];
     
     [_repliesTable reloadData];
-    // Listen for new messages in the Firebase database
-//    _refHandle = [[_ref child:@"post-comments"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
-//        [_comments addObject:snapshot];
-//        [_repliesTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_comments.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
-    
-        
         //    // [START child_event_listener]
         //    // Listen for new comments in the Firebase database
             [_commentsRef
@@ -111,44 +77,6 @@ FIRDatabaseHandle _refHandle;
                                        withRowAnimation:UITableViewRowAnimationAutomatic];
         
     }];
-    
-//    self.repliesTable.estimatedRowHeight = 30.0; // for example. Set your average height
-//    self.repliesTable.rowHeight = UITableViewAutomaticDimension;
-//    [self.repliesTable reloadData];
-    
-    
-//    // [START child_event_listener]
-//    // Listen for new comments in the Firebase database
-//    [_commentsRef
-//     observeEventType:FIRDataEventTypeChildAdded
-//     withBlock:^(FIRDataSnapshot *snapshot) {
-//         [self.comments addObject:snapshot];
-//         [_repliesTable insertRowsAtIndexPaths:@[
-//                                                  [NSIndexPath indexPathForRow:[self.comments count] - 1 inSection:0]
-//                                                  ]
-//                               withRowAnimation:UITableViewRowAnimationAutomatic];
-//     }];
-//    // Listen for deleted comments in the Firebase database
-//    [_commentsRef
-//     observeEventType:FIRDataEventTypeChildRemoved
-//     withBlock:^(FIRDataSnapshot *snapshot) {
-//         int index = [self indexOfMessage:snapshot];
-//         [self.comments removeObjectAtIndex:index];
-//         [_repliesTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]
-//                               withRowAnimation:UITableViewRowAnimationAutomatic];
-//     }];
-//    // [END child_event_listener]
-//    
-//    // [START post_value_event_listener]
-//    _refHandle = [_postRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        NSDictionary *postDict = snapshot.value;
-//        // [START_EXCLUDE]
-//        [_post setValuesForKeysWithDictionary:postDict];
-//        [_repliesTable reloadData];
-//        self.navigationItem.title = _post.title;
-//        // [END_EXCLUDE]
-//    }];
-//    // [END post_value_event_listener]
 }
 
 - (int) indexOfMessage:(FIRDataSnapshot *)snapshot {
@@ -255,10 +183,14 @@ FIRDatabaseHandle _refHandle;
     cell.authorLabel.text = [NSString stringWithFormat:@"%@", name];
     cell.postBody.text = [NSString stringWithFormat:@"%@", text];
     cell.authorImage.image = [UIImage imageNamed:@"hostess.png"];
-//    } else if (indexPath.section == kSectionSend) {
-//        cell = [tableView dequeueReusableCellWithIdentifier:@"send"];
-//        _replyTextField = [(UITextField *) cell viewWithTag:7];
-//    }
+    
+    if (name >0) {
+      
+        [self passDataBack];
+        
+    }
+    
+
     return cell;
 }
 
@@ -275,6 +207,7 @@ FIRDatabaseHandle _refHandle;
 
 
 - (IBAction)closeChat:(id)sender {
+    
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

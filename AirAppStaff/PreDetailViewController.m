@@ -10,18 +10,43 @@
 #import "Constants.h"
 #import "DetailViewController.h"
 #import "PostTableViewCell.h"
+#import "User.h"
 @import Firebase;
 
 
-@interface PreDetailViewController ()
+@interface PreDetailViewController (){
+    
+    NSString *chatStarted;
+
+
+}
+
+
 
 @end
 
-@implementation PreDetailViewController
+@implementation PreDetailViewController                                                                                           
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth,
+                                                    FIRUser *_Nullable user) {
+        if (user != nil) {
+            // User is signed in.
+            
+            
+            NSLog(@"%@", user);
+        } else {
+            // No user is signed in.
+        }
+    }];
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+
+    
     
     FIRDatabaseReference *ref = [FIRDatabase database].reference;
     self.aceptadosRef = [[ref child:@"usuario-okrequest"] child:_details.key];
@@ -46,11 +71,8 @@
     self.detailText.text = text;
     self.userLabel.text = user;
     
-    NSString *aceptadoSolicitudkey = [[NSUserDefaults standardUserDefaults]
-                                  stringForKey:@"aceptadokey"];
     
-    
-        NSLog(@"Your name is %@", text);
+        NSLog(@"Your name is %@", user);
         NSLog(@"Your priority is %@", priority);
     
     
@@ -78,6 +100,7 @@
     
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -99,6 +122,13 @@
 -(void) viewWillAppear:(BOOL)animated{
     
     [self.userAcepptance removeAllObjects];
+    
+    NSString * dataToPass = @"data to pass back";
+    if ([chatStarted isEqualToString:dataToPass] ) {
+        
+        [_ConversationButton setTitle:@"Ir a chat" forState:UIControlStateNormal];
+        
+    }
 
     
 //    [self.userOkRequestTable reloadData];
@@ -153,6 +183,30 @@
     
 }
 
+-(void) getUserName{
+    
+    [_userOkRequestTable reloadData];
+
+    
+    // [START single_value_read]
+    NSString *userID = [FIRAuth auth].currentUser.uid;
+    [[[_ref child:@"users"] child:userID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        // Get user value
+        User *user = [[User alloc] initWithUsername:snapshot.value[@"username"]];
+        self.userLabel.text = user.username;
+        
+            NSString *valueToSave = [NSString stringWithFormat:@"%@",  user];
+            [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"preferenceName"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    }];
+    
+
+
+
+
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -169,10 +223,34 @@
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
+    FIRUser *user = [FIRAuth auth].currentUser;
+//    NSString *userName = [[NSUserDefaults standardUserDefaults]
+//                          stringForKey:@"preferenceName"];
+
+
+    NSString *userName = _details.value[MessageFieldsname];
+
+    
     FIRDataSnapshot *messageSnapshot = _userAcepptance[indexPath.row];
     NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
     NSString *name = message[MessageFieldsname];
     cell.authorLabel.text = [NSString stringWithFormat:@"%@", name];
+
+    if ([[message valueForKey:@"author"] isEqualToString:userName] ) {
+        
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+
+        
+        
+        
+    }else{
+    
+    
+    
+    }
+    
+    
+    
 
 //    NSString *text = message[MessageFieldstextview];
 //    cell.postBody.text = [NSString stringWithFormat:@"%@", text];
@@ -196,8 +274,7 @@
     
     UINavigationController *navController = [segue destinationViewController];
     DetailViewController *detailViewController = (DetailViewController  *)navController.topViewController;
-
-//    DetailViewController *vc = [segue destinationViewController];
+    [detailViewController setDelegate:self];
     
     // Pass any objects to the view controller here, like...
     detailViewController.details = _details;
@@ -216,5 +293,77 @@
 */
 
 - (IBAction)actionCambiarTurnoButton:(id)sender {
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Solicitud de cambio!"
+                                          message:@"Atencion si pulsas ok el turno sera cambiado automaticamente"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel action");
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSLog(@"OK action");
+                                   
+//                                   NSString *valueToSave = [NSString stringWithFormat:@"%@",  _details.key];
+//                                   
+//                                   NSLog(@"%@", valueToSave);
+//                                   
+//                                   
+//                                   [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"aceptadoKey"];
+//                                   [[NSUserDefaults standardUserDefaults] synchronize];
+////                                   
+//                                   NSString *uid = [FIRAuth auth].currentUser.uid;
+//                                   [[[[FIRDatabase database].reference child:@"users"] child:uid]
+//                                    observeSingleEventOfType:FIRDataEventTypeValue
+//                                    withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//                                        NSDictionary *user = snapshot.value;
+//                                        NSString *username = user[@"username"];
+//                                        NSDictionary *comment = @{@"uid": uid,
+//                                                                  @"author": username,
+//                                                                  @"key": valueToSave,
+//                                                                  @"text": @"ok"};
+//                                        [[_aceptadosRef childByAutoId] setValue:comment];
+//                                    }];
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+//                                   [self dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    
+    
+    
 }
+
+- (void)dataFromController:(NSString *)data
+{
+    chatStarted = data;
+    
+    NSLog(@"%@", data);
+}
+
+
 @end

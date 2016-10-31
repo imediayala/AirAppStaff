@@ -720,6 +720,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirAppStaff/AirAppStaff.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3WN2HPYHZR;
 				INFOPLIST_FILE = AirAppStaff/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -741,6 +742,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirAppStaff/AirAppStaff.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3WN2HPYHZR;
 				INFOPLIST_FILE = AirAppStaff/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
