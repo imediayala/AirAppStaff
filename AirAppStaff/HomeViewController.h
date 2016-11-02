@@ -39,6 +39,8 @@
 
 //- (FIRDatabaseReference *)refForIndex:(NSUInteger)index;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+- (IBAction)segmentedControl:(id)sender;
 
 
 @property(nonatomic, weak) IBOutlet UITextField *textField;

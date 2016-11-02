@@ -23,21 +23,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aJJ-Gd-9gO">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="28"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="E6l-49-bOH"/>
+                                    <constraint firstAttribute="height" constant="28" id="E6l-49-bOH"/>
                                 </constraints>
                             </imageView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="mYt-SQ-rr3">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xIl-g8-YWE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="29"/>
+                                <segments>
+                                    <segment title="Ver Todo"/>
+                                    <segment title="Mis Solicitudes en curso "/>
+                                </segments>
                                 <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="DKV-D5-g20"/>
+                                    <action selector="segmentedControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="64e-Uh-Cz1"/>
                                 </connections>
-                            </searchBar>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="riJ-5D-xRN">
-                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="510"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -150,22 +153,24 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="xIl-g8-YWE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2JJ-Yp-cxl"/>
                             <constraint firstItem="aJJ-Gd-9gO" firstAttribute="leading" secondItem="riJ-5D-xRN" secondAttribute="leading" id="4rc-jR-4p9"/>
                             <constraint firstItem="aJJ-Gd-9gO" firstAttribute="trailing" secondItem="riJ-5D-xRN" secondAttribute="trailing" id="778-m2-jk3"/>
                             <constraint firstItem="aJJ-Gd-9gO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Jnf-sO-WWC"/>
                             <constraint firstAttribute="trailing" secondItem="aJJ-Gd-9gO" secondAttribute="trailing" id="N27-ml-5n1"/>
-                            <constraint firstAttribute="trailing" secondItem="mYt-SQ-rr3" secondAttribute="trailing" symbolic="YES" id="Pry-vR-emx"/>
                             <constraint firstItem="aJJ-Gd-9gO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Q8A-Gs-vTN"/>
-                            <constraint firstAttribute="bottom" secondItem="riJ-5D-xRN" secondAttribute="bottom" constant="49" id="SRJ-CD-d5t"/>
-                            <constraint firstItem="riJ-5D-xRN" firstAttribute="top" secondItem="aJJ-Gd-9gO" secondAttribute="bottom" id="aWe-am-Md1"/>
-                            <constraint firstItem="riJ-5D-xRN" firstAttribute="top" secondItem="mYt-SQ-rr3" secondAttribute="bottom" id="dam-qk-VXx"/>
-                            <constraint firstItem="mYt-SQ-rr3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" symbolic="YES" id="ogD-m9-Gkc"/>
+                            <constraint firstAttribute="trailing" secondItem="xIl-g8-YWE" secondAttribute="trailing" id="RKE-Bc-Vyf"/>
+                            <constraint firstAttribute="bottom" secondItem="riJ-5D-xRN" secondAttribute="bottom" constant="63" id="SRJ-CD-d5t"/>
+                            <constraint firstItem="riJ-5D-xRN" firstAttribute="top" secondItem="xIl-g8-YWE" secondAttribute="bottom" constant="2" id="WNW-C4-ueZ"/>
+                            <constraint firstItem="riJ-5D-xRN" firstAttribute="top" secondItem="aJJ-Gd-9gO" secondAttribute="bottom" constant="2" id="aWe-am-Md1"/>
+                            <constraint firstItem="xIl-g8-YWE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="lFr-yu-QIZ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Solicitudes" image="message" id="G7G-7w-D2w"/>
                     <connections>
                         <outlet property="clientTable" destination="riJ-5D-xRN" id="vyg-GR-Rnq"/>
                         <outlet property="searchDisplayController" destination="k6f-Yk-pyE" id="brd-Xc-mpY"/>
+                        <outlet property="segmentedControl" destination="xIl-g8-YWE" id="ttt-kn-VwL"/>
                         <segue destination="fOO-Ad-tWC" kind="show" identifier="showDetail" id="D47-xq-G2o"/>
                         <segue destination="ZnA-BB-ram" kind="presentation" identifier="postsegue" id="Cvk-9B-KPo"/>
                     </connections>
@@ -174,7 +179,6 @@
                 <searchDisplayController id="k6f-Yk-pyE">
                     <connections>
                         <outlet property="delegate" destination="BYZ-38-t0r" id="Ge5-7v-m3Y"/>
-                        <outlet property="searchBar" destination="mYt-SQ-rr3" id="FC5-Dj-Umt"/>
                         <outlet property="searchContentsController" destination="BYZ-38-t0r" id="Av3-ir-Qy4"/>
                         <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="lug-3V-YuK"/>
                         <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="ILa-Wy-dOE"/>

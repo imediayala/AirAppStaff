@@ -34,6 +34,9 @@
     //    NSArray* sortedArray;
     
 }
+
+@property (nonatomic, strong) NSMutableArray *availableResults;
+
 @property (nonatomic) BOOL newMessagesOnTop;
 @end
 
@@ -61,16 +64,13 @@
     
     [_textField setDelegate:self];
     
-    
-//    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
-    
     _ref = [[FIRDatabase database] reference];
     _postRef = [_ref child:@"posts"];
     
 //    _msglength = 100;
     _messages = [[NSMutableArray alloc] init];
     _imagges = [[NSMutableArray alloc] init];
+    _availableResults = [[NSMutableArray alloc]init];
     
     
     [self loadAd];
@@ -109,19 +109,6 @@
 }
 
 
-/// Reload messages data
-
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(nonnull NSString *)string {
-//    NSString *text = _textField.text;
-//    if (!text) {
-//        return YES;
-//    }
-//    long newLength = text.length + string.length - range.length;
-//    return (newLength <= _msglength);
-//}
-
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -140,10 +127,12 @@
 
     
     [_messages removeAllObjects];
+    [_availableResults removeAllObjects];
     
   
     [self.clientTable reloadData];
     [self reloadMessages];
+    [self reloadMessagesFromUser];
     
 }
 
@@ -187,6 +176,13 @@
     return -1;
 }
 
+-(void) viewDidDisappear:(BOOL)animated{
+    
+    _segmentedControl.selectedSegmentIndex = 0;
+
+
+}
+
 
 
 - (void) reloadMessages {
@@ -208,6 +204,35 @@
     }];
     
 }
+
+- (void) reloadMessagesFromUser {
+    
+    [_clientTable reloadData];
+    // Listen for new messages in the Firebase database
+    _refHandle = [[_ref child:@"posts"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+        
+        
+// insertObject does cotain an index so i can specify where to place my new object into the array
+
+            FIRUser *user = [FIRAuth auth].currentUser;
+        
+        NSString * Uid = user.uid;
+        NSString * UidFromMessagge = [snapshot.value valueForKey:@"uid"];
+
+        
+        if ([Uid isEqualToString:UidFromMessagge]) {
+            
+            [_availableResults insertObject:snapshot atIndex:0];
+            
+            
+        }
+        
+       
+        
+    }];
+    
+}
+
 
 
 - (void) reloadProfileImages {
@@ -268,11 +293,12 @@
 
 // UITableViewDataSource protocol methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [messagesSearchArray count];
-        
-    } else {
-        return [_messages count];
+
+    if (_segmentedControl.selectedSegmentIndex == 1 ) {
+        return _availableResults.count;
+    }else{
+        return _messages.count;
+    
     }
 }
 
@@ -295,15 +321,18 @@
     
     FIRDataSnapshot *messageSnapshot = nil;
     
-    
+
     // I need to get get an array from object fir datasnapshot
     
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        messageSnapshot = [messagesSearchArray objectAtIndex:indexPath.row];
-    } else {
-        messageSnapshot = [_messages objectAtIndex:indexPath.row];
+    if (_segmentedControl.selectedSegmentIndex == 1) {
         
+        messageSnapshot = [_availableResults objectAtIndex:indexPath.row];
+
+
+    }else{
+        messageSnapshot = [_messages objectAtIndex:indexPath.row];
+    
     }
     
     //    FIRDataSnapshot *messageSnapshot = _messages[indexPath.row];
@@ -589,4 +618,24 @@
 
 
 
+- (IBAction)segmentedControl:(id)sender {
+    
+    if (_segmentedControl.selectedSegmentIndex == 0) {
+        
+        NSLog(@"0 is switched");
+        [_clientTable reloadData];
+        
+    } else if(_segmentedControl.selectedSegmentIndex == 1) {
+        
+        
+        NSLog(@"1 is switched");
+        [_clientTable reloadData];
+;
+        
+        
+    }
+    
+    
+    
+}
 @end
