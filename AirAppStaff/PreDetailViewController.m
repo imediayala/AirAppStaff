@@ -36,11 +36,17 @@
                                                     FIRUser *_Nullable user) {
         if (user != nil) {
             // User is signed in.
+        
+            
+            
             
             
             NSLog(@"%@", user);
         } else {
+            
             // No user is signed in.
+            
+
         }
     }];
     
@@ -83,23 +89,62 @@
     
         if ([priority isEqualToString:red]) {
     
-            _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor redColor];
+//            _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor redColor];
+            
+            [_detailPriorytyBackgrundColorImage setImage:[UIImage imageNamed:@"Rectanglered"]];
+
     
         }else if ([priority isEqualToString:yellow]){
     
-            _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor orangeColor];
+//            _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor orangeColor];
+            
+            [_detailPriorytyBackgrundColorImage setImage:[UIImage imageNamed:@"Rectangleorange"]];
+
     
         }else if ([priority isEqualToString:green]){
     
-            _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor greenColor];
+//            _detailPriorytyBackgrundColorImage.backgroundColor = [UIColor greenColor];
+            
+            [_detailPriorytyBackgrundColorImage setImage:[UIImage imageNamed:@"Rectangleblue"]];
+
         
-        } 
+        }
+    
+    
             
     
     
     
 }
 
+
+-(void) requestProfileInfo{
+    
+    // [START single_value_read]
+    NSString *userID = [FIRAuth auth].currentUser.uid;
+    [[[_ref child:@"users"] child:userID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        // Get user value
+        User *user = [[User alloc] initWithUsername:snapshot.value[@"username"]];
+        
+        // Get name from user signed in and the user from post
+        // Then hide button if user name is equal and change text tittle
+        
+        NSString * userSignedIn = user.username;
+        NSString * userNameFromDetail = _details.value[MessageFieldsname];
+        
+        if ( [userNameFromDetail isEqualToString:userSignedIn]) {
+            _ConversationButton.hidden = YES;
+            
+        }else{
+            
+//            [_ConversationButton setTitle:@"Ver Chat" forState:UIControlStateNormal];        
+        
+        }
+        
+        
+    }];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -123,12 +168,18 @@
     
     [self.userAcepptance removeAllObjects];
     
+    [self requestProfileInfo];
+
+    
+    
+    
     NSString * dataToPass = @"data to pass back";
     if ([chatStarted isEqualToString:dataToPass] ) {
         
         [_ConversationButton setTitle:@"Ir a chat" forState:UIControlStateNormal];
         
     }
+    
 
     
 //    [self.userOkRequestTable reloadData];

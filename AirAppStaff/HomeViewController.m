@@ -82,6 +82,9 @@
     
     _clientTable.allowsMultipleSelectionDuringEditing = NO;
     
+    self.clientTable.estimatedRowHeight = 80.0; // for example. Set your average height
+    self.clientTable.rowHeight = UITableViewAutomaticDimension;
+    
 }
 
 
@@ -138,11 +141,15 @@
     
     [_messages removeAllObjects];
     
-    self.clientTable.estimatedRowHeight = 30.0; // for example. Set your average height
-    self.clientTable.rowHeight = UITableViewAutomaticDimension;
+  
     [self.clientTable reloadData];
     [self reloadMessages];
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewAutomaticDimension;
 }
 
 
